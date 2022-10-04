@@ -1,13 +1,14 @@
-package gui;
+package com.next.pong.gui;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import model.Court;
+import com.next.pong.model.Court;
 
 public class GameView {
+
     // class parameters
     private final Court court;
     private final Pane gameRoot; // main node of the game
@@ -78,4 +79,5 @@ public class GameView {
             }
         }.start();
     }
+
 }

@@ -1,4 +1,6 @@
-Interface AIInterface {
+package com.next.pong.interfaces;
+
+interface IAInterface {
 
     // Abstract methods for the AI controller
 
@@ -10,4 +12,5 @@ Interface AIInterface {
 
     // Make the decision either to move up or to move down
     void UpOrDown();
+
 }
