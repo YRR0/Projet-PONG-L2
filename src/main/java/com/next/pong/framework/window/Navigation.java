@@ -4,14 +4,14 @@ import com.next.pong.framework.activity.Activity;
 
 class Navigation {
 
-    private static Activity currentActivity = null;
+    private static Activity<?> currentActivity = null;
     private static OnActivityChangeListener onActivityChangeListener = null;
 
     interface OnActivityChangeListener {
-        void onChange(Activity oldActivity, Activity newActivity);
+        void onChange(Activity<?> oldActivity, Activity<?> newActivity);
     }
 
-    protected static void goTo(Activity activity) {
+    protected static void goTo(Activity<?> activity) {
 
         if (currentActivity != null) {
             currentActivity.onStop();
