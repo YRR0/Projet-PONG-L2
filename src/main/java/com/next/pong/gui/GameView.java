@@ -38,7 +38,7 @@ public class GameView {
         racketA.setFill(Color.BLACK);
 
         racketA.setX(xMargin - racketThickness);
-        racketA.setY(court.getRacketA() * scale);
+        racketA.setY(court.getGP().getRacketA() * scale);
 
         racketB = new Rectangle();
         racketB.setHeight(court.getRacketSize() * scale);
@@ -46,14 +46,14 @@ public class GameView {
         racketB.setFill(Color.BLACK);
 
         racketB.setX(court.getWidth() * scale + xMargin);
-        racketB.setY(court.getRacketB() * scale);
+        racketB.setY(court.getGP().getRacketB() * scale);
 
         ball = new Circle();
         ball.setRadius(court.getBallRadius());
         ball.setFill(Color.BLACK);
 
-        ball.setCenterX(court.getBallX() * scale + xMargin);
-        ball.setCenterY(court.getBallY() * scale);
+        ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
+        ball.setCenterY(court.getGP().getBallY() * scale);
 
         gameRoot.getChildren().addAll(racketA, racketB, ball);
 
@@ -72,10 +72,10 @@ public class GameView {
                 }
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
-                racketA.setY(court.getRacketA() * scale);
-                racketB.setY(court.getRacketB() * scale);
-                ball.setCenterX(court.getBallX() * scale + xMargin);
-                ball.setCenterY(court.getBallY() * scale);
+                racketA.setY(court.getGP().getRacketA() * scale);
+                racketB.setY(court.getGP().getRacketB() * scale);
+                ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
+                ball.setCenterY(court.getGP().getBallY() * scale);
             }
         }.start();
     }
