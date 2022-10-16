@@ -4,7 +4,9 @@ package com.next.pong.model;
 import com.next.pong.model.RacketController;
 import com.next.pong.model.GameParameters;*/
 
-public class AIPlayer extends Player {
+import com.next.pong.interfaces.IAInterface;
+
+public class AIPlayer extends Player implements IAInterface {
 
     private GameParameters gp; 
 
