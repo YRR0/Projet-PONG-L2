@@ -76,6 +76,7 @@ public class App extends Application {
         var gameView = new GameView(court, root, 1.0);
 
         primaryStage.setScene(gameScene);
+        primaryStage.setTitle("Pong");
         primaryStage.show();
         primaryStage.setOnCloseRequest(ev -> {
             task.cancel();

@@ -83,7 +83,6 @@ public class Court {
         }
     }
 
-
     /**
      * @return true if a player lost
      */
