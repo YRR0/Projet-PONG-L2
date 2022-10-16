@@ -3,11 +3,11 @@ package com.next.pong.model;
 public class GameParameters {
 
     // instance state
-    public double racketA; // m
-    public double racketB; // m
-    public double ballX, ballY; // m
-    public double ballSpeedX, ballSpeedY; // m
-    public double height, width;
+    double racketA; // m
+    double racketB; // m
+    double ballX, ballY; // m
+    double ballSpeedX, ballSpeedY; // m
+    double height, width;
 
     public GameParameters(double height, double width) {
         this.height = height;
