@@ -1,4 +1,4 @@
-package com.next.pong.model;
+package com.next.pong.game.model;
 
 public class GameParameters {
 

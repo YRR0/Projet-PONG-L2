@@ -1,10 +1,10 @@
-package com.next.pong.model;
+package com.next.pong.game.model;
 
 /*import javax.crypto.spec.GCMParameterSpec;
 import javax.swing.plaf.nimbus.State;
-import com.next.pong.model.RacketController;
-import com.next.pong.model.GameParameters;
-import com.next.pong.model.AIPlayer;*/
+import com.next.pong.game.model.RacketController;
+import com.next.pong.game.model.GameParameters;
+import com.next.pong.game.model.AIPlayer;*/
 
 public class Court {
 

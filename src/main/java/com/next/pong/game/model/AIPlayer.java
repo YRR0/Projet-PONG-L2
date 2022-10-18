@@ -1,10 +1,10 @@
-package com.next.pong.model;
+package com.next.pong.game.model;
 
-/*import com.next.pong.model.Player;
-import com.next.pong.model.RacketController;
-import com.next.pong.model.GameParameters;*/
+/*import com.next.pong.game.model.Player;
+import com.next.pong.game.model.RacketController;
+import com.next.pong.game.model.GameParameters;*/
 
-import com.next.pong.interfaces.IAInterface;
+import com.next.pong.game.interfaces.IAInterface;
 
 public class AIPlayer extends Player implements IAInterface {
 

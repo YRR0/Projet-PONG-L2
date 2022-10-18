@@ -1,4 +1,4 @@
-package com.next.pong.model;
+package com.next.pong.game.model;
 
 public interface RacketController {
     enum State { GOING_UP, IDLE, GOING_DOWN }
