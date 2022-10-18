@@ -1,13 +1,13 @@
-package com.next.pong.game.model;
+package com.next.pong.game.state;
 
 public class GameParameters {
 
     // instance state
-    double racketA; // m
-    double racketB; // m
-    double ballX, ballY; // m
-    double ballSpeedX, ballSpeedY; // m
-    double height, width;
+    private double racketA; // m
+    private double racketB; // m
+    private double ballX, ballY; // m
+    private double ballSpeedX, ballSpeedY; // m
+    private double height, width;
 
     public GameParameters(double height, double width) {
         this.height = height;
@@ -28,29 +28,51 @@ public class GameParameters {
         return height;
     }
 
-
     public double getRacketA() {
         return racketA;
+    }
+
+    public void setRacketA(double racketA) {
+        this.racketA = racketA;
     }
 
     public double getRacketB() {
         return racketB;
     }
 
+    public void setRacketB(double racketB) {
+        this.racketB = racketB;
+    }
+
     public double getBallX() {
         return ballX;
+    }
+
+    public void setBallX(double ballX) {
+        this.ballX = ballX;
     }
 
     public double getBallY() {
         return ballY;
     }
 
-    public double getballSpeedX() {
+    public void setBallY(double ballY) {
+        this.ballY = ballY;
+    }
+
+    public double getBallSpeedX() {
         return ballSpeedX;
     }
 
-    public double getballSpeedY() {
+    public void setBallSpeedX(double ballSpeedX) {
+        this.ballSpeedX = ballSpeedX;
+    }
+
+    public double getBallSpeedY() {
         return ballSpeedY;
     }
 
+    public void setBallSpeedY(double ballSpeedY) {
+        this.ballSpeedY = ballSpeedY;
+    }
 }

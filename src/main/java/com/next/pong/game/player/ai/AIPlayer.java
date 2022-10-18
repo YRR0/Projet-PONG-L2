@@ -1,14 +1,12 @@
-package com.next.pong.game.model;
+package com.next.pong.game.player.ai;
 
-/*import com.next.pong.game.model.Player;
-import com.next.pong.game.model.RacketController;
-import com.next.pong.game.model.GameParameters;*/
-
-import com.next.pong.game.interfaces.IAInterface;
+import com.next.pong.game.state.GameParameters;
+import com.next.pong.game.player.Player;
+import com.next.pong.game.player.RacketController;
 
 public class AIPlayer extends Player implements IAInterface {
 
-    private GameParameters gp; 
+    private GameParameters gp;
 
     public AIPlayer(GameParameters gp) {
         super.setState(State.IDLE);
@@ -29,13 +27,20 @@ public class AIPlayer extends Player implements IAInterface {
     }
 
     public void upOrDown() {
-        if(gp.ballX > gp.getWidth()/2) {
-            if(gp.ballY < gp.racketB) {
+
+        var width = gp.getWidth();
+
+        var ballX = gp.getBallX();
+        var ballY = gp.getBallY();
+        var racketB = gp.getRacketB();
+
+        if (ballX > width / 2) {
+            if (ballY < racketB) {
                 this.moveUp();
-            } else if(gp.ballY + 10.0 > gp.racketB + 100.0) {
+            } else if (ballY + 10.0 > racketB + 100.0) {
                 this.moveDown();
-            } 
-        } 
+            }
+        }
     }
-    
+
 }

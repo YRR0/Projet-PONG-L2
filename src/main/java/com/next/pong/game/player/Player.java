@@ -1,4 +1,4 @@
-package com.next.pong.game.model;
+package com.next.pong.game.player;
 
 public class Player implements RacketController {
     private State state = State.IDLE;
