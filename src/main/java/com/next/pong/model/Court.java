@@ -7,13 +7,14 @@ public class Court {
     private final double width, height; // m
     private final double racketSpeed = 300.0; // m/s
     private final double racketSize = 100.0; // m
-    private final double ballRadius = 10.0; // m
+    private final double ballRadius = 10.0; //
 
     // instance state
     private double racketA; // m
     private double racketB; // m
     private double ballX, ballY; // m
     private double ballSpeedX, ballSpeedY; // m
+    private static int scoreL, scoreR;
 
     public Court(RacketController playerA, RacketController playerB, double width, double height) {
         this.playerA = playerA;
@@ -51,35 +52,47 @@ public class Court {
         return ballY;
     }
 
+    public int getScoreL() {
+        return scoreL;
+    }
+
+    public int getScoreR() {
+        return scoreR;
+    }
+
     public void update(double deltaT) {
 
         switch (playerA.getState()) {
             case GOING_UP:
                 racketA -= racketSpeed * deltaT;
-                if (racketA < 0.0) racketA = 0.0;
+                if (racketA < 0.0)
+                    racketA = 0.0;
                 break;
             case IDLE:
                 break;
             case GOING_DOWN:
                 racketA += racketSpeed * deltaT;
-                if (racketA + racketSize > height) racketA = height - racketSize;
+                if (racketA + racketSize > height)
+                    racketA = height - racketSize;
                 break;
         }
         switch (playerB.getState()) {
             case GOING_UP:
                 racketB -= racketSpeed * deltaT;
-                if (racketB < 0.0) racketB = 0.0;
+                if (racketB < 0.0)
+                    racketB = 0.0;
                 break;
             case IDLE:
                 break;
             case GOING_DOWN:
                 racketB += racketSpeed * deltaT;
-                if (racketB + racketSize > height) racketB = height - racketSize;
+                if (racketB + racketSize > height)
+                    racketB = height - racketSize;
                 break;
         }
-        if (updateBall(deltaT)) reset();
+        if (updateBall(deltaT))
+            reset();
     }
-
 
     /**
      * @return true if a player lost
@@ -98,8 +111,10 @@ public class Court {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+            scoreR++;
             return true;
         } else if (nextBallX > width) {
+            scoreL++;
             return true;
         }
         ballX = nextBallX;
