@@ -6,6 +6,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import com.next.pong.model.Court;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 public class GameView {
 
@@ -18,11 +21,15 @@ public class GameView {
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
+    private Text text;
 
     /**
-     * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
-     * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
-     * @param scale le facteur d'échelle entre les distances du modèle et le nombre de pixels correspondants dans la vue
+     * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout
+     *              ce qu'il y a dessus)
+     * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera
+     *              affiché
+     * @param scale le facteur d'échelle entre les distances du modèle et le nombre
+     *              de pixels correspondants dans la vue
      */
     public GameView(Court court, Pane root, double scale) {
         this.court = court;
@@ -55,8 +62,12 @@ public class GameView {
         ball.setCenterX(court.getBallX() * scale + xMargin);
         ball.setCenterY(court.getBallY() * scale);
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball);
+        text = new Text();
+        text.setX(court.getWidth() / 2);
+        text.setY(70);
+        text.setFont(Font.font("Times new Roman", FontWeight.BOLD, 50));
 
+        gameRoot.getChildren().addAll(racketA, racketB, ball, text);
 
     }
 
@@ -76,6 +87,8 @@ public class GameView {
                 racketB.setY(court.getRacketB() * scale);
                 ball.setCenterX(court.getBallX() * scale + xMargin);
                 ball.setCenterY(court.getBallY() * scale);
+                text.setText(court.getScoreL() + " | " + court.getScoreR());
+
             }
         }.start();
     }
