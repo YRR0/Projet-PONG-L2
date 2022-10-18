@@ -24,4 +24,4 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = 'com.next.pong.gui.App'
+mainClassName = 'com.next.pong.App'
