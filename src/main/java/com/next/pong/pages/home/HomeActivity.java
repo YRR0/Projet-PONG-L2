@@ -1,15 +1,15 @@
-package com.next.pong.pages.menu;
+package com.next.pong.pages.home;
 
 import com.next.pong.framework.activity.Activity;
 import com.next.pong.framework.window.Window;
 import com.next.pong.pages.game.GameActivity;
 
-public class MenuActivity extends Activity<MenuLayout> {
+public class HomeActivity extends Activity<HomeLayout> {
 
-    public MenuActivity() {
-        super(new MenuLayout());
+    public HomeActivity() {
+        super(new HomeLayout());
 
-        MenuLayout layout = getLayout();
+        HomeLayout layout = getLayout();
 
         layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity()));
     }

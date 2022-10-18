@@ -1,7 +1,7 @@
 package com.next.pong.framework.window;
 
 import com.next.pong.framework.activity.Activity;
-import com.next.pong.pages.menu.MenuActivity;
+import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.utils.TimeUtils;
 import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Window extends Navigation {
 
     public static void init(Stage stage) {
-        var startActivity = new MenuActivity();
+        var startActivity = new HomeActivity();
 
         setOnActivityChangeListener((oldActivity, newActivity) -> {
             stage.setScene(newActivity.getScene());
