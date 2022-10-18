@@ -1,4 +1,4 @@
-package com.next.pong.game.interfaces;
+package com.next.pong.game.player.ai;
 
 public interface IAInterface {
 

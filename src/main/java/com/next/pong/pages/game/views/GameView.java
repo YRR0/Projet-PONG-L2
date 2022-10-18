@@ -1,11 +1,11 @@
-package com.next.pong.game.gui;
+package com.next.pong.pages.game.views;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import com.next.pong.game.model.Court;
+import com.next.pong.game.state.Court;
 
 public class GameView {
 
@@ -33,7 +33,7 @@ public class GameView {
         root.setMinHeight(court.getHeight() * scale);
 
         racketA = new Rectangle();
-        racketA.setHeight(court.getRacketSize() * scale);
+        racketA.setHeight(Court.RACKET_SIZE * scale);
         racketA.setWidth(racketThickness);
         racketA.setFill(Color.BLACK);
 
@@ -41,7 +41,7 @@ public class GameView {
         racketA.setY(court.getGP().getRacketA() * scale);
 
         racketB = new Rectangle();
-        racketB.setHeight(court.getRacketSize() * scale);
+        racketB.setHeight(Court.RACKET_SIZE * scale);
         racketB.setWidth(racketThickness);
         racketB.setFill(Color.BLACK);
 
