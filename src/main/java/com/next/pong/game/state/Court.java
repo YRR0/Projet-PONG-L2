@@ -5,7 +5,7 @@ import com.next.pong.game.player.ai.AIPlayer;
 
 public class Court {
 
-    public static final double RACKET_SPEED = 300.0; // m/s
+    public static final double RACKET_SPEED = 600.0; // m/s
     public static final double RACKET_SIZE = 100.0; // m
     public static final double BALL_RADIUS = 10.0; // m
 
@@ -109,13 +109,13 @@ public class Court {
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             gp.setBallSpeedY(-ballSpeedY);
-            nextBallY = ballY + deltaT * ballSpeedY;
+            nextBallY = ballY + deltaT * gp.getBallSpeedY();
         }
 
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + RACKET_SIZE + BALL_RADIUS / 2)
                 || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + RACKET_SIZE + BALL_RADIUS / 2)) {
             gp.setBallSpeedX(-ballSpeedX);
-            nextBallX = ballX + deltaT * ballSpeedX;
+            nextBallX = ballX + deltaT * gp.getBallSpeedX();
         } else if (nextBallX < 0) {
             scoreR++;
             return true;
