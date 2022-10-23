@@ -12,8 +12,7 @@ public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
     private final double width, height; // m
-    public int score1 = 0;
-    public int score2 = 0;
+    private int scoreL = 0, scoreR = 0;
 
     private GameParameters gp;
 
@@ -35,6 +34,14 @@ public class Court {
 
     public GameParameters getGP() {
         return gp;
+    }
+
+    public int getScoreL() {
+        return scoreL;
+    }
+
+    public int getScoreR() {
+        return scoreR;
     }
 
     public void setGameParameters(GameParameters gp) {
@@ -72,7 +79,6 @@ public class Court {
         }
 
         if (updateBall(deltaT)) {
-            System.out.println("Le score est " + score1 + ":" + score2);
             this.gp = new GameParameters(height, width);
             if (playerB instanceof AIPlayer) {
                 ((AIPlayer) this.playerB).reset(gp);
@@ -111,10 +117,10 @@ public class Court {
             gp.setBallSpeedX(-ballSpeedX);
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
-            score1++;
+            scoreR++;
             return true;
         } else if (nextBallX > width) {
-            score2++;
+            scoreL++;
             return true;
         }
 

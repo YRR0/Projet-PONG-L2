@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import com.next.pong.game.state.Court;
+import javafx.scene.text.*;
 
 public class GameView {
 
@@ -14,7 +15,7 @@ public class GameView {
     private final Pane gameRoot; // main node of the game
     private final double scale;
     private final double xMargin = 50.0, racketThickness = 10.0; // pixels
-
+    private Text text;
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
@@ -55,7 +56,12 @@ public class GameView {
         ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
         ball.setCenterY(court.getGP().getBallY() * scale);
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball);
+        text = new Text();
+        text.setX(court.getWidth() / 2);
+        text.setY(70);
+        text.setFont(Font.font("Times new Roman", FontWeight.BOLD, 50));
+
+        gameRoot.getChildren().addAll(racketA, racketB, ball, text);
 
 
     }
@@ -76,6 +82,7 @@ public class GameView {
                 racketB.setY(court.getGP().getRacketB() * scale);
                 ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
                 ball.setCenterY(court.getGP().getBallY() * scale);
+                text.setText(court.getScoreL() + " | " + court.getScoreR());
             }
         }.start();
     }
