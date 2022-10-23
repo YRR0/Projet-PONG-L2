@@ -1,6 +1,5 @@
 /.build/
 /.idea/
 /.gradle/
-/bin
-/build
-/tsiory
+/bin/
+/build/
