@@ -51,5 +51,4 @@ public class Window extends Navigation {
     public static void goTo(Activity activity) {
         Navigation.goTo(activity);
     }
-
 }

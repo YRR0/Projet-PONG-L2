@@ -7,17 +7,22 @@ import javafx.scene.paint.Color;
 public class HomeLayout extends Layout {
 
     private final Button mainButton;
+    private final Button exit;
 
     public HomeLayout() {
         setBackground(Color.FIREBRICK);
 
         mainButton = new Button("Click Me!");
-        addElements(mainButton);
+        exit = new Button("Quitter");
+        exit.setTranslateY(30);
+        addElements(mainButton,exit);
     }
 
     public Button getMainButton() {
         return mainButton;
     }
+
+    public Button getExitButton(){return exit;}
 
     @Override
     public void onUpdate(float deltaT) {

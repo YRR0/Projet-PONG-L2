@@ -78,7 +78,7 @@ public class App extends Application {
 
         var court = new Court(playerA, playerB, 1000, 600, gameParameters);
         var gameView = new GameView(court, root, 1.0);
-        primaryStage.setTitle("Pong");
+
         primaryStage.setScene(gameScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(ev -> {
