@@ -12,6 +12,7 @@ public class HomeActivity extends Activity<HomeLayout> {
         HomeLayout layout = getLayout();
 
         layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity()));
+
     }
 
     @Override

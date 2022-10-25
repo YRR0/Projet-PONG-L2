@@ -19,7 +19,8 @@ public class GameView {
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
-
+    
+  
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
      * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
@@ -65,26 +66,43 @@ public class GameView {
 
 
     }
-
-    public void animate() {
-        new AnimationTimer() {
-            long last = 0;
-
-            @Override
-            public void handle(long now) {
-                if (last == 0) { // ignore the first tick, just compute the first deltaT
-                    last = now;
-                    return;
-                }
-                court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
-                last = now;
-                racketA.setY(court.getGP().getRacketA() * scale);
-                racketB.setY(court.getGP().getRacketB() * scale);
-                ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
-                ball.setCenterY(court.getGP().getBallY() * scale);
-                text.setText(court.getScoreL() + " | " + court.getScoreR());
-            }
-        }.start();
+    
+    private boolean pause=true;
+    public boolean getPause() {
+    	return pause;
     }
-
+    public void setPause(boolean a) {
+    	pause=a;
+    }
+    
+    private class Movement extends AnimationTimer{
+    	long last = 0;
+    	@Override
+    	public void handle(long now) {
+    		   if (last == 0) { // ignore the first tick, just compute the first deltaT
+                   last = now;
+                   return;
+               }
+               court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
+               last = now;
+               racketA.setY(court.getGP().getRacketA() * scale);
+               racketB.setY(court.getGP().getRacketB() * scale);
+               ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
+               ball.setCenterY(court.getGP().getBallY() * scale);
+               text.setText(court.getScoreL() + " : " + court.getScoreR());
+    	}
+    }
+    
+    Movement mov = new Movement();
+    public Movement getMovement() {
+    	return mov;
+    }
+    public void animeStart() {
+    	pause = true;
+    	mov.start();
+    }
+    public void animeStop() {
+    	pause = false;
+    	mov.stop();
+    }
 }
