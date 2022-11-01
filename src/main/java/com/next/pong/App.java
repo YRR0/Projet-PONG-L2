@@ -9,6 +9,7 @@ import com.next.pong.game.state.GameParameters;
 import com.next.pong.pages.game.views.GameView;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -78,6 +79,10 @@ public class App extends Application {
 
         var court = new Court(playerA, playerB, 1000, 600, gameParameters);
         var gameView = new GameView(court, root, 1.0);
+        
+        primaryStage.setTitle("Pong");
+        Image icon = new Image("/com.next.pong/img/pong.png");
+        primaryStage.getIcons().add(icon);
 
         primaryStage.setScene(gameScene);
         primaryStage.show();
