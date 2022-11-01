@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="sc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="613.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.next.pong.menu.Controller">
+   <center>
+      <VBox alignment="CENTER" prefHeight="401.0" prefWidth="286.0" spacing="10.0" style="-fx-background-color: #00ABB3;">
+         <children>
+            <Button fx:id="reprendre" mnemonicParsing="false" onAction="#reprendre" prefHeight="62.0" prefWidth="155.0" text="Reprendre" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </Button>
+            <Button fx:id="recommencer" mnemonicParsing="false" onAction="#recommencer" prefHeight="48.0" prefWidth="154.0" text="Recommencer" textFill="#f4f2f2">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="acceuil" mnemonicParsing="false" onAction="#acceuil" prefHeight="49.0" prefWidth="155.0" text="Acceuil" textFill="#f2efef">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="option" mnemonicParsing="false" onAction="#option" prefHeight="48.0" prefWidth="158.0" text="Options" textFill="#fcf8f8">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="Quitter" mnemonicParsing="false" onAction="#quitter" prefHeight="51.0" prefWidth="162.0" text="Quitter" textFill="#faf6f6" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="100.0" right="100.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <left>
+      <Pane prefHeight="460.0" prefWidth="86.0" style="-fx-background-color: #395B64;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="460.0" prefWidth="67.0" style="-fx-background-color: #4FA095;" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <AnchorPane prefHeight="87.0" prefWidth="614.0" style="-fx-background-color: #00ABB3;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="18.0" prefHeight="67.0" prefWidth="246.0" stylesheets="@application.css" text="PAUSE" textAlignment="JUSTIFY" textFill="#f7e9e9" AnchorPane.bottomAnchor="16.400000000000006" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="184.20000000000002" AnchorPane.topAnchor="18.0">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

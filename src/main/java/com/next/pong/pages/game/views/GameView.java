@@ -67,7 +67,9 @@ public class GameView {
 
     }
     
-    private boolean pause=true;
+    private boolean pause = true;
+    private long valContinue = 0;
+    
     public boolean getPause() {
     	return pause;
     }
@@ -81,15 +83,18 @@ public class GameView {
     	public void handle(long now) {
     		   if (last == 0) { // ignore the first tick, just compute the first deltaT
                    last = now;
+                   valContinue = last;
                    return;
                }
                court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
+               valContinue = now;
                last = now;
-               racketA.setY(court.getGP().getRacketA() * scale);
-               racketB.setY(court.getGP().getRacketB() * scale);
+               racketA.setY(court.getGP().getRacketA() * scale );
+               racketB.setY(court.getGP().getRacketB() * scale );
                ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
                ball.setCenterY(court.getGP().getBallY() * scale);
                text.setText(court.getScoreL() + " : " + court.getScoreR());
+               
     	}
     }
     
@@ -99,6 +104,11 @@ public class GameView {
     }
     public void animeStart() {
     	pause = true;
+    	mov.start();
+    }
+    public void animeContinu() {
+    	pause = true;
+    	mov.handle(valContinue);
     	mov.start();
     }
     public void animeStop() {
