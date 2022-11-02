@@ -30,8 +30,8 @@ public class HomeLayout extends Layout {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public boolean onStop() {
+        return super.onStop();
     }
 
 }

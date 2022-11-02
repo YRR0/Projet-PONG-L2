@@ -21,8 +21,8 @@ public class HomeActivity extends Activity<HomeLayout> {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public boolean onStop() {
+        return super.onStop();
     }
 
 }
