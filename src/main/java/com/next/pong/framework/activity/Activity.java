@@ -35,7 +35,7 @@ public abstract class Activity<T extends Layout> {
         layout.onUpdate(deltaTime);
     }
 
-    public void onStop() {
+    public boolean onStop() {
         layout.onStop();
     }
 

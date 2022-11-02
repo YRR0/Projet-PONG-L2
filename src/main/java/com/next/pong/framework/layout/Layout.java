@@ -21,8 +21,8 @@ public abstract class Layout extends Pane {
     }
 
     public void onUpdate(float deltaT) {}
-    public void onStop() {
-        //Platform.exit();
+    public boolean onStop() {
+        return false;
     }
 
     protected void addElements(Node... elements) {
