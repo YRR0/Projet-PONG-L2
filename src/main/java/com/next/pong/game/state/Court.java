@@ -28,6 +28,14 @@ public class Court {
         return width;
     }
 
+    public RacketController getPlayerA(){
+        return playerA;
+    }
+
+    public RacketController getPlayerB(){
+        return playerB;
+    }
+
     public double getHeight() {
         return height;
     }
