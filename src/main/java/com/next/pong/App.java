@@ -21,7 +21,6 @@ import java.util.TimerTask;
 
 
 public class App extends Application {
-	boolean copieGameView;
     @Override
     public void start(Stage primaryStage) {
         /*Window.init(primaryStage);

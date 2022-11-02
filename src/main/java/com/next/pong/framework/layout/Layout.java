@@ -17,7 +17,7 @@ public abstract class Layout extends Pane {
     public Layout(int width, int height) {
         setMinWidth(width);
         setMinHeight(height);
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
     }
 
     public void onUpdate(double deltaT) {}
