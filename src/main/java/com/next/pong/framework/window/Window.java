@@ -27,13 +27,14 @@ public class Window extends Navigation {
                 }else{
                     stage.close();
                 }
+            });
         });
 
         goTo(startActivity);
     }
 
     public static void startLoop() {
-        at =  AnimationTimer() {
+        at =  new AnimationTimer() {
 
             private long previousTimeNs = 0;
 
