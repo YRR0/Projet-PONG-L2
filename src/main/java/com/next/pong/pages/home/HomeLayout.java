@@ -25,7 +25,7 @@ public class HomeLayout extends Layout {
     public Button getExitButton(){return exit;}
 
     @Override
-    public void onUpdate(float deltaT) {
+    public void onUpdate(double deltaT) {
         super.onUpdate(deltaT);
     }
 

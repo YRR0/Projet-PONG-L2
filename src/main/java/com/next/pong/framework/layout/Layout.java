@@ -20,7 +20,7 @@ public abstract class Layout extends Pane {
         setBackground(Color.BLACK);
     }
 
-    public void onUpdate(float deltaT) {}
+    public void onUpdate(double deltaT) {}
     public boolean onStop() {
         return false;
     }

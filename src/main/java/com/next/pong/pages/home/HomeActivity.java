@@ -11,12 +11,12 @@ public class HomeActivity extends Activity<HomeLayout> {
 
         HomeLayout layout = getLayout();
 
-        layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity()));
+        layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity(1000,600,1.0)));
 
     }
 
     @Override
-    public void onUpdate(float deltaTime) {
+    public void onUpdate(double deltaTime) {
         super.onUpdate(deltaTime);
     }
 
