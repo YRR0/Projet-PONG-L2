@@ -36,7 +36,7 @@ public abstract class Activity<T extends Layout> {
     }
 
     public boolean onStop() {
-        layout.onStop();
+        return layout.onStop();
     }
 
 }
