@@ -43,9 +43,10 @@ public class Window extends Navigation {
 
                 if(previousTimeNs == 0 || restarted) {
                     previousTimeNs = timeNs;
+                    restarted = false;
                 }
 
-                var deltaMs = (float) TimeUtils.nsToMs(timeNs - previousTimeNs);
+                var deltaMs = TimeUtils.nsToMs(timeNs - previousTimeNs);
                 var fps = (int)(1000 / deltaMs);
 
                 previousTimeNs = timeNs;

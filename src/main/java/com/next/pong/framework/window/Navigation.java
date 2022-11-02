@@ -24,7 +24,7 @@ class Navigation {
         currentActivity = activity;
     }
 
-    protected static void update(float deltaTime) {
+    protected static void update(double deltaTime) {
 
         if (currentActivity == null) {
             return;
