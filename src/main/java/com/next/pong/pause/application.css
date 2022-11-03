@@ -10,10 +10,12 @@
 	-fx-font-size:15px;
 	-fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 2 , 0 );
 }
+
 .button:hoover{
 	-fx-background-color:#001253;
 	-fx-background-radius:30 20 20 30;
 }
+
 .button:pressed{
 	-fx-background-color: #5DA7DB;
 	-fx-background-radius:40 40 40 40;

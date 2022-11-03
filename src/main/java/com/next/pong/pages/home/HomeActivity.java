@@ -1,8 +1,10 @@
 package com.next.pong.pages.home;
 
 import com.next.pong.framework.activity.Activity;
+
 import com.next.pong.framework.window.Window;
 import com.next.pong.pages.game.GameActivity;
+import com.next.pong.pause.*;
 
 public class HomeActivity extends Activity<HomeLayout> {
 
@@ -11,8 +13,8 @@ public class HomeActivity extends Activity<HomeLayout> {
 
         HomeLayout layout = getLayout();
 
-        layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity()));
-
+        layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new PauseActivity()));
+        
     }
 
     @Override

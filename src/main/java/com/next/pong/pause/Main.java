@@ -20,7 +20,7 @@ public class Main extends Application {
 		try {
 			System.out.println("Reussi");
 			
-			// une autre manière de la lancer le fichier fxml
+			// une autre maniere de la lancer le fichier fxml
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu1.fxml"));
 			Parent root = loader.load();
 			
