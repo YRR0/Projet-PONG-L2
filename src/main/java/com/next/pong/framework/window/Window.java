@@ -55,9 +55,9 @@ public class Window extends Navigation {
                 update(deltaMs);
                 navUpdateTime = System.currentTimeMillis() - navUpdateTime;
 
-                System.out.println("Frame: " + deltaMs + "ms | " + fps + "fps");
+                /*System.out.println("Frame: " + deltaMs + "ms | " + fps + "fps");
                 System.out.println("Work: " + navUpdateTime + "ms");
-                System.out.println("------------------------------");
+                System.out.println("------------------------------");*/
             }
 
         };
