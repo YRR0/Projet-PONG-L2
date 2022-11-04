@@ -36,11 +36,6 @@ public class GameActivity extends Activity<GameLayout> {
             m.schedule(task, 0, 110);
         }
 
-        /*gameScene.getWindow().setOnCloseRequest(event -> {
-            task.cancel();
-            m.cancel();
-        });*/
-
         gameScene.setOnKeyReleased(ev -> {
             switch (ev.getCode()) {
                 case CONTROL, ALT -> playerA.setState(RacketController.State.IDLE);
