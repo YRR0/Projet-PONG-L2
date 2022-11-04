@@ -1,5 +1,6 @@
 package com.next.pong.pages.game;
 
+import com.next.pong.Sound;
 import com.next.pong.framework.activity.Activity;
 import com.next.pong.game.player.Player;
 import com.next.pong.game.player.RacketController;
@@ -53,6 +54,8 @@ public class GameActivity extends Activity<GameLayout> {
 
         return new Court(playerA, playerB, gp);
     }
+
+    
 
     public GameActivity(double width, double height, double scale) {
         super(new GameLayout(generateCourt(width, height), scale));

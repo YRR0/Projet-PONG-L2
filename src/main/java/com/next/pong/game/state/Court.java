@@ -1,5 +1,6 @@
 package com.next.pong.game.state;
 
+import com.next.pong.Sound;
 import com.next.pong.game.player.RacketController;
 import com.next.pong.game.player.ai.AIPlayer;
 
@@ -15,6 +16,7 @@ public class Court {
     private int scoreL = 0, scoreR = 0;
 
     private GameParameters gp;
+    private Sound se = new Sound();
 
     public Court(RacketController playerA, RacketController playerB, GameParameters gp) {
         this.playerA = playerA;
@@ -116,6 +118,7 @@ public class Court {
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             gp.setBallSpeedY(-ballSpeedY);
+            se.playSoundEffect(0);
             nextBallY = ballY + deltaT * gp.getBallSpeedY();
         }
 
@@ -123,11 +126,14 @@ public class Court {
                 || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + RACKET_SIZE)) {
             gp.setBallSpeedX(-ballSpeedX);
             nextBallX = ballX + deltaT * gp.getBallSpeedX();
+            se.playSoundEffect(1);
         } else if (nextBallX < 0) {
             scoreR++;
+            se.playSoundEffect(3);
             return true;
         } else if (nextBallX > width) {
             scoreL++;
+            se.playSoundEffect(3);
             return true;
         }
 
