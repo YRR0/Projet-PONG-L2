@@ -1,6 +1,7 @@
 package com.next.pong.game.player.ai;
 
 public interface IAInterface {
+    enum  Level {EASY, MEDIUM, HARD};
 
     // Abstract methods for the AI controller
 

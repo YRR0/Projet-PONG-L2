@@ -11,7 +11,7 @@ public class HomeActivity extends Activity<HomeLayout> {
 
         HomeLayout layout = getLayout();
 
-        layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity(1000,600,1.0)));
+        layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity(this.getLayout().getWidth(),this.getLayout().getHeight(),1.0)));
 
     }
 

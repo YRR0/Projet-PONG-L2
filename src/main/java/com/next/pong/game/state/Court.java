@@ -89,7 +89,7 @@ public class Court {
         if (updateBall(deltaT)) {
             this.gp = new GameParameters(height, width);
             if (playerB instanceof AIPlayer) {
-                ((AIPlayer) this.playerB).reset(gp);
+                ((AIPlayer) this.playerB).reset(gp, ((AIPlayer) playerB).getLevel());
             }
 
         }

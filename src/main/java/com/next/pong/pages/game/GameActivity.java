@@ -4,6 +4,7 @@ import com.next.pong.framework.activity.Activity;
 import com.next.pong.game.player.Player;
 import com.next.pong.game.player.RacketController;
 import com.next.pong.game.player.ai.AIPlayer;
+import com.next.pong.game.player.ai.IAInterface;
 import com.next.pong.game.state.Court;
 import com.next.pong.game.state.GameParameters;
 import javafx.scene.Scene;
@@ -25,7 +26,6 @@ public class GameActivity extends Activity<GameLayout> {
                 default -> throw new IllegalArgumentException("Unexpected value: " + ev.getCode());
             }
         });
-
         final Timer m = new Timer();
         final TimerTask task = new TimerTask() {
             public void run() {
@@ -49,7 +49,7 @@ public class GameActivity extends Activity<GameLayout> {
 
         //generating the players
         Player playerA = new Player();
-        Player playerB = new AIPlayer(gp);
+        Player playerB = new AIPlayer(gp, IAInterface.Level.MEDIUM);
 
         return new Court(playerA, playerB, gp);
     }
