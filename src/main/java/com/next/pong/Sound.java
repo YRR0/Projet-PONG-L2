@@ -20,7 +20,6 @@ public class Sound {
 
     public void setSound(int i) {
         URL soundUrl = sounds.get(i);
-        System.out.println(soundUrl);
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundUrl);
             clip = AudioSystem.getClip();
