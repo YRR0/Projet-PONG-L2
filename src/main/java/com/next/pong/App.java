@@ -12,15 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class App extends Application {
+
     @Override
     public void start(Stage primaryStage) {
         /*Window.init(primaryStage);
@@ -82,41 +78,14 @@ public class App extends Application {
 
         var court = new Court(playerA, playerB, 1000, 600, gameParameters);
         var gameView = new GameView(court, root, 1.0);
-        
-        copieGameView = gameView.getPause();
-        
+
         primaryStage.setScene(gameScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(ev -> {
-            ev.consume();
-            gameView.animeStop();
-            logout(primaryStage);
-            if(copieGameView) {
-            	gameView.animeStart();
-            }
-            //task.cancel();
-            //m.cancel();
+            task.cancel();
+            m.cancel();
         });
-        
-        if(copieGameView) {
-        	gameView.animeStart();
-        }
-        
+        gameView.animate();
     }
-    
-    
-    public void logout(Stage stage) {
-    	Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle(" Quitter");
-        alert.setHeaderText(" Vous allez quitter ...... ");
-        alert.setContentText(" Nous espérons vous revoir bientot");
 
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("You quitted !!");
-            stage.close();
-        }
-        else {
-        	copieGameView=true;
-        }
-    }
 }

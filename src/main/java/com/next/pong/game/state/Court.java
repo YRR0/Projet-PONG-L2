@@ -16,11 +16,11 @@ public class Court {
 
     private GameParameters gp;
 
-    public Court(RacketController playerA, RacketController playerB, double width, double height, GameParameters gp) {
+    public Court(RacketController playerA, RacketController playerB, GameParameters gp) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = width;
-        this.height = height;
+        this.width = gp.getWidth();
+        this.height = gp.getHeight();
         this.gp = gp;
     }
 
@@ -95,7 +95,6 @@ public class Court {
         }
     }
 
-
     /**
      * @return true if a player lost
      */
@@ -120,8 +119,8 @@ public class Court {
             nextBallY = ballY + deltaT * gp.getBallSpeedY();
         }
 
-        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + RACKET_SIZE + BALL_RADIUS / 2)
-                || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + RACKET_SIZE + BALL_RADIUS / 2)) {
+        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + RACKET_SIZE)
+                || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + RACKET_SIZE)) {
             gp.setBallSpeedX(-ballSpeedX);
             nextBallX = ballX + deltaT * gp.getBallSpeedX();
         } else if (nextBallX < 0) {

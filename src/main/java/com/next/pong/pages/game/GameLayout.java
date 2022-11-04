@@ -23,8 +23,6 @@ public class GameLayout extends Layout {
     private final Text text;
 
     public GameLayout(Court court, double scale) {
-        super();
-
         this.scale = scale;
         this.court = court;
 
@@ -74,20 +72,12 @@ public class GameLayout extends Layout {
     }
 
     @Override
-    public boolean onStop(){
-        boolean stop = true;
+    public boolean onStop() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(" Quitter");
         alert.setHeaderText(" Vous allez quitter ...... ");
         alert.setContentText(" Nous espérons vous revoir bientot");
-
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("You quitted !!");
-        }
-        else {
-            stop=false;
-        }
-        return stop;
+        return (alert.showAndWait().get() == ButtonType.OK);
     }
 
     public Court getCourt(){

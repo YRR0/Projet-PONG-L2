@@ -7,16 +7,14 @@ import com.next.pong.game.player.ai.AIPlayer;
 import com.next.pong.game.state.Court;
 import com.next.pong.game.state.GameParameters;
 import javafx.scene.Scene;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javafx.stage.Stage;
 
 public class GameActivity extends Activity<GameLayout> {
 
     //generating the scene
-    private static void initScene(RacketController playerA, RacketController playerB, Scene gameScene){
+    private void initScene(RacketController playerA, RacketController playerB, Scene gameScene){
 
         gameScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -38,30 +36,15 @@ public class GameActivity extends Activity<GameLayout> {
             m.schedule(task, 0, 110);
         }
 
+        /*gameScene.getWindow().setOnCloseRequest(event -> {
+            task.cancel();
+            m.cancel();
+        });*/
+
         gameScene.setOnKeyReleased(ev -> {
             switch (ev.getCode()) {
-                case CONTROL:
-                    if (playerA.getState() == RacketController.State.GOING_UP){
-                        playerA.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                case ALT:
-                    if (playerA.getState() == RacketController.State.GOING_DOWN) {
-                        playerA.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                case UP:
-                    if (playerB.getState() == RacketController.State.GOING_UP) {
-                        playerB.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                case DOWN:
-                    if (playerB.getState() == RacketController.State.GOING_DOWN) {
-                        playerB.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                default:
-                    break;
+                case CONTROL, ALT -> playerA.setState(RacketController.State.IDLE);
+                case UP, DOWN -> playerB.setState(RacketController.State.IDLE);
             }
         });
     }
@@ -73,7 +56,7 @@ public class GameActivity extends Activity<GameLayout> {
         Player playerA = new Player();
         Player playerB = new AIPlayer(gp);
 
-        return new Court(playerA, playerB, width, height, gp);
+        return new Court(playerA, playerB, gp);
     }
 
     public GameActivity(double width, double height, double scale) {
