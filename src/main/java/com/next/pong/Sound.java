@@ -1,10 +1,10 @@
 package com.next.pong;
 
-import java.net.URL;
-import java.util.ArrayList;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class Sound {
 
@@ -16,6 +16,7 @@ public class Sound {
         sounds.add(getClass().getResource("/com.next.pong/audio/kick.wav"));
         sounds.add(getClass().getResource("/com.next.pong/audio/game.wav"));
         sounds.add(getClass().getResource("/com.next.pong/audio/update.wav"));
+        sounds.add(getClass().getResource("/com.next.pong/audio/coin.wav"));
     }
 
     public void setSound(int i) {
