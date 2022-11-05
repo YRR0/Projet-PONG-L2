@@ -11,9 +11,10 @@ public class GameLayout extends Layout {
 
     private final Court court;
     private final double scale;
-    private final double xMargin = 50.0, racketThickness = 10.0; // pixels
 
-    // children of the game main node
+    private static final double X_MARGIN = 50.0; // px
+    private static final double RACKET_THICKNESS = 10.0; // px
+
     private final Rectangle racketA, racketB;
     private final Circle ball;
     private final Text text;
@@ -24,30 +25,30 @@ public class GameLayout extends Layout {
         this.scale = scale;
         this.court = court;
 
-        setMinWidth((int) (court.getWidth() * scale + 2 * xMargin));
+        setMinWidth((int) (court.getWidth() * scale + 2 * X_MARGIN));
         setMinHeight((int) (court.getHeight() * scale));
 
         racketA = new Rectangle();
         racketA.setHeight(Court.RACKET_SIZE * scale);
-        racketA.setWidth(racketThickness);
+        racketA.setWidth(RACKET_THICKNESS);
         racketA.setFill(Color.BLACK);
 
-        racketA.setX(xMargin - racketThickness);
+        racketA.setX(X_MARGIN - RACKET_THICKNESS);
         racketA.setY(court.getGP().getRacketA() * scale);
 
         racketB = new Rectangle();
         racketB.setHeight(Court.RACKET_SIZE * scale);
-        racketB.setWidth(racketThickness);
+        racketB.setWidth(RACKET_THICKNESS);
         racketB.setFill(Color.BLACK);
 
-        racketB.setX(court.getWidth() * scale + xMargin);
+        racketB.setX(court.getWidth() * scale + X_MARGIN);
         racketB.setY(court.getGP().getRacketB() * scale);
 
         ball = new Circle();
         ball.setRadius(court.getBallRadius());
         ball.setFill(Color.BLACK);
 
-        ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
+        ball.setCenterX(court.getGP().getBallX() * scale + X_MARGIN);
         ball.setCenterY(court.getGP().getBallY() * scale);
 
         text = new Text();
@@ -55,7 +56,6 @@ public class GameLayout extends Layout {
         text.setY(70);
         text.setFont(Font.font("Times new Roman", FontWeight.BOLD, 50));
 
-        //add the nodes into the layout
         addElements(racketA, racketB, ball, text);
     }
 
@@ -64,7 +64,7 @@ public class GameLayout extends Layout {
         court.update(deltaTime);
         racketA.setY(court.getGP().getRacketA() * scale);
         racketB.setY(court.getGP().getRacketB() * scale);
-        ball.setCenterX(court.getGP().getBallX() * scale + xMargin);
+        ball.setCenterX(court.getGP().getBallX() * scale + X_MARGIN);
         ball.setCenterY(court.getGP().getBallY() * scale);
         text.setText(court.getScoreL() + " : " + court.getScoreR());
     }

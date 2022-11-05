@@ -15,7 +15,13 @@ import javafx.stage.Stage;
 
 public class GameActivity extends Activity<GameLayout> {
 
-    //generating the scene
+    public GameActivity(double width, double height, double scale) {
+        super(new GameLayout(generateCourt(width, height), scale));
+
+        var court = getLayout().getCourt();
+        initScene(court.getPlayerA(), court.getPlayerB(), getScene());
+    }
+
     private static void initScene(RacketController playerA, RacketController playerB, Scene gameScene){
 
         gameScene.setOnKeyPressed(ev -> {
@@ -34,6 +40,7 @@ public class GameActivity extends Activity<GameLayout> {
                 ((AIPlayer)playerB).upOrDown();
             }
         };
+
         if(playerB instanceof AIPlayer) {
             m.schedule(task, 0, 110);
         }
@@ -69,16 +76,10 @@ public class GameActivity extends Activity<GameLayout> {
     private static Court generateCourt(double width, double height){
         var gp = new GameParameters(height, width);
 
-        //generating the players
         Player playerA = new Player();
         Player playerB = new AIPlayer(gp);
 
         return new Court(playerA, playerB, width, height, gp);
     }
-
-    public GameActivity(double width, double height, double scale) {
-        super(new GameLayout(generateCourt(width, height), scale));
-        initScene(getLayout().getCourt().getPlayerA(), getLayout().getCourt().getPlayerB(), getScene());
-    }    
 
 }

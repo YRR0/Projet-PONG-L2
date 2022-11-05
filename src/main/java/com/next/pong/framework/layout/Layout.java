@@ -23,7 +23,7 @@ public abstract class Layout extends Pane {
     public void onUpdate(double deltaT) {
     }
 
-    public void onStop() {
+    public void onDestroy() {
     }
 
     protected void addElements(Node... elements) {
