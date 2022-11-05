@@ -17,6 +17,7 @@ public class Court {
 
     private GameParameters gp;
     private Sound se = new Sound();
+    private boolean pause = false;
 
     public Court(RacketController playerA, RacketController playerB, GameParameters gp) {
         this.playerA = playerA;
@@ -58,42 +59,51 @@ public class Court {
         this.gp = gp;
     }
 
+    public void setPause(boolean v) {
+        pause = v;
+    }
+
+    public boolean getPause() {
+        return pause;
+    }
+
     public void update(double deltaT) {
+        if(!pause) {
+            var racketA = gp.getRacketA();
+            var racketB = gp.getRacketB();
 
-        var racketA = gp.getRacketA();
-        var racketB = gp.getRacketB();
-
-        switch (playerA.getState()) {
-            case GOING_UP:
-                gp.setRacketA(racketA - RACKET_SPEED * deltaT);
-                if (racketA < 0.0) gp.setRacketA(0.0);
-                break;
-            case IDLE:
-                break;
-            case GOING_DOWN:
-                gp.setRacketA(racketA + RACKET_SPEED * deltaT);
-                if (racketA + RACKET_SIZE > height) gp.setRacketA(height - RACKET_SIZE);
-                break;
-        }
-        switch (playerB.getState()) {
-            case GOING_UP:
-                gp.setRacketB(racketB - RACKET_SPEED * deltaT);
-                if (racketB < 0.0) gp.setRacketB(0.0);
-                break;
-            case IDLE:
-                break;
-            case GOING_DOWN:
-                gp.setRacketB(racketB + RACKET_SPEED * deltaT);
-                if (racketB + RACKET_SIZE > height) gp.setRacketB(height - RACKET_SIZE);
-                break;
-        }
-
-        if (updateBall(deltaT)) {
-            this.gp = new GameParameters(height, width);
-            if (playerB instanceof AIPlayer) {
-                ((AIPlayer) this.playerB).reset(gp, ((AIPlayer) playerB).getLevel());
+            switch (playerA.getState()) {
+                case GOING_UP:
+                    gp.setRacketA(racketA - RACKET_SPEED * deltaT);
+                    if (racketA < 0.0) gp.setRacketA(0.0);
+                    break;
+                case IDLE:
+                    break;
+                case GOING_DOWN:
+                    gp.setRacketA(racketA + RACKET_SPEED * deltaT);
+                    if (racketA + RACKET_SIZE > height) gp.setRacketA(height - RACKET_SIZE);
+                    break;
+            }
+            switch (playerB.getState()) {
+                case GOING_UP:
+                    gp.setRacketB(racketB - RACKET_SPEED * deltaT);
+                    if (racketB < 0.0) gp.setRacketB(0.0);
+                    break;
+                case IDLE:
+                    break;
+                case GOING_DOWN:
+                    gp.setRacketB(racketB + RACKET_SPEED * deltaT);
+                    if (racketB + RACKET_SIZE > height) gp.setRacketB(height - RACKET_SIZE);
+                    break;
             }
 
+            if (updateBall(deltaT)) {
+                this.gp = new GameParameters(height, width);
+                if (playerB instanceof AIPlayer) {
+                    ((AIPlayer) this.playerB).reset(gp, ((AIPlayer) playerB).getLevel());
+                }
+
+            }
         }
     }
 

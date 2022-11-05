@@ -1,12 +1,14 @@
 package com.next.pong.pages.game;
 
 import com.next.pong.framework.activity.Activity;
+import com.next.pong.framework.window.Window;
 import com.next.pong.game.player.Player;
 import com.next.pong.game.player.RacketController;
 import com.next.pong.game.player.ai.AIPlayer;
 import com.next.pong.game.player.ai.IAInterface;
 import com.next.pong.game.state.Court;
 import com.next.pong.game.state.GameParameters;
+import com.next.pong.pages.pause.PauseActivity;
 import javafx.scene.Scene;
 
 import java.util.Timer;
@@ -26,6 +28,10 @@ public class GameActivity extends Activity<GameLayout> {
                 case ALT -> playerA.setState(RacketController.State.GOING_DOWN);
                 case UP -> playerB.setState(RacketController.State.GOING_UP);
                 case DOWN -> playerB.setState(RacketController.State.GOING_DOWN);
+                case ESCAPE -> {
+                    getLayout().getCourt().setPause(true);
+                    Window.goTo(new PauseActivity(this));
+                }
                 default -> throw new IllegalArgumentException("Unexpected value: " + ev.getCode());
             }
         });
@@ -47,6 +53,10 @@ public class GameActivity extends Activity<GameLayout> {
         });
     }
 
+    public void stopTimer() {
+        m.cancel();
+    }
+
     private static Court generateCourt(double width, double height){
         var gp = new GameParameters(height, width);
 
@@ -66,8 +76,11 @@ public class GameActivity extends Activity<GameLayout> {
 
     @Override
     public boolean onStop() {
-        boolean res = super.onStop();
-        if(res) m.cancel();
-        return res;
+        if(!getLayout().getCourt().getPause()) {
+            boolean res = super.onStop();
+            if(res) m.cancel();
+            return res;
+        }
+        return false;
     }
 }
