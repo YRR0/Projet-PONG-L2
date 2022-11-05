@@ -1,6 +1,5 @@
 package com.next.pong.pages.game;
 
-import com.next.pong.Sound;
 import com.next.pong.framework.activity.Activity;
 import com.next.pong.game.player.Player;
 import com.next.pong.game.player.RacketController;
@@ -9,11 +8,14 @@ import com.next.pong.game.player.ai.IAInterface;
 import com.next.pong.game.state.Court;
 import com.next.pong.game.state.GameParameters;
 import javafx.scene.Scene;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class GameActivity extends Activity<GameLayout> {
+
+    final Timer m = new Timer();
 
     //generating the scene
     private void initScene(RacketController playerA, RacketController playerB, Scene gameScene){
@@ -27,7 +29,7 @@ public class GameActivity extends Activity<GameLayout> {
                 default -> throw new IllegalArgumentException("Unexpected value: " + ev.getCode());
             }
         });
-        final Timer m = new Timer();
+
         final TimerTask task = new TimerTask() {
             public void run() {
                 ((AIPlayer)playerB).upOrDown();
@@ -60,6 +62,12 @@ public class GameActivity extends Activity<GameLayout> {
     public GameActivity(double width, double height, double scale) {
         super(new GameLayout(generateCourt(width, height), scale));
         initScene(getLayout().getCourt().getPlayerA(), getLayout().getCourt().getPlayerB(), getScene());
-    }    
+    }
 
+    @Override
+    public boolean onStop() {
+        boolean res = super.onStop();
+        if(res) m.cancel();
+        return res;
+    }
 }
