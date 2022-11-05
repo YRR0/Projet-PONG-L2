@@ -8,30 +8,45 @@ import javafx.stage.Stage;
 
 public class Window extends Navigation {
 
+    private static AnimationTimer at;
+    private static boolean restarted;
+
     public static void init(Stage stage) {
         var startActivity = new HomeActivity();
 
         setOnActivityChangeListener((oldActivity, newActivity) -> {
             stage.setScene(newActivity.getScene());
             stage.show();
+            stage.setOnCloseRequest(ev -> {
+                restarted = false;
+                ev.consume();
+                at.stop();
+                if (!newActivity.onStop()){
+                    at.start();
+                    restarted = true;
+                }else{
+                    stage.close();
+                }
+            });
         });
 
         goTo(startActivity);
     }
 
     public static void startLoop() {
-        new AnimationTimer() {
+        at =  new AnimationTimer() {
 
             private long previousTimeNs = 0;
 
             @Override
             public void handle(long timeNs) {
 
-                if(previousTimeNs == 0) {
+                if(previousTimeNs == 0 || restarted) {
                     previousTimeNs = timeNs;
+                    restarted = false;
                 }
 
-                var deltaMs = (float) TimeUtils.nsToMs(timeNs - previousTimeNs);
+                var deltaMs = TimeUtils.nsToMs(timeNs - previousTimeNs);
                 var fps = (int)(1000 / deltaMs);
 
                 previousTimeNs = timeNs;
@@ -45,7 +60,8 @@ public class Window extends Navigation {
                 System.out.println("------------------------------");
             }
 
-        }.start();
+        };
+        at.start();
     }
 
     public static void goTo(Activity activity) {

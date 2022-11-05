@@ -17,12 +17,12 @@ public abstract class Layout extends Pane {
     public Layout(int width, int height) {
         setMinWidth(width);
         setMinHeight(height);
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
     }
 
-    public void onUpdate(float deltaT) {}
-    public void onStop() {
-        //Platform.exit();
+    public void onUpdate(double deltaT) {}
+    public boolean onStop() {
+        return false;
     }
 
     protected void addElements(Node... elements) {

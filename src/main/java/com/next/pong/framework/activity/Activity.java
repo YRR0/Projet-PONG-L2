@@ -31,12 +31,12 @@ public abstract class Activity<T extends Layout> {
         return payload;
     }
 
-    public void onUpdate(float deltaTime) {
+    public void onUpdate(double deltaTime) {
         layout.onUpdate(deltaTime);
     }
 
-    public void onStop() {
-        layout.onStop();
+    public boolean onStop() {
+        return layout.onStop();
     }
 
 }
