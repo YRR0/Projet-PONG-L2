@@ -15,23 +15,15 @@ public class HomeLayout extends Layout {
         mainButton = new Button("Click Me!");
         exit = new Button("Quitter");
         exit.setTranslateY(30);
-        addElements(mainButton,exit);
+        addElements(mainButton, exit);
     }
 
     public Button getMainButton() {
         return mainButton;
     }
 
-    public Button getExitButton(){return exit;}
-
-    @Override
-    public void onUpdate(double deltaT) {
-        super.onUpdate(deltaT);
-    }
-
-    @Override
-    public boolean onStop() {
-        return super.onStop();
+    public Button getExitButton() {
+        return exit;
     }
 
 }

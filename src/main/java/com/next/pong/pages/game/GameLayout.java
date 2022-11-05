@@ -7,16 +7,12 @@ import javafx.scene.shape.Rectangle;
 import com.next.pong.game.state.Court;
 import javafx.scene.text.*;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
-
-
 public class GameLayout extends Layout {
 
     private final Court court;
     private final double scale;
     private final double xMargin = 50.0, racketThickness = 10.0; // pixels
+
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
@@ -28,8 +24,8 @@ public class GameLayout extends Layout {
         this.scale = scale;
         this.court = court;
 
-        setMinWidth((int)(court.getWidth() * scale + 2 * xMargin));
-        setMinHeight((int)(court.getHeight() * scale));
+        setMinWidth((int) (court.getWidth() * scale + 2 * xMargin));
+        setMinHeight((int) (court.getHeight() * scale));
 
         racketA = new Rectangle();
         racketA.setHeight(Court.RACKET_SIZE * scale);
@@ -64,7 +60,7 @@ public class GameLayout extends Layout {
     }
 
     @Override
-    public void onUpdate(double deltaTime){
+    public void onUpdate(double deltaTime) {
         court.update(deltaTime);
         racketA.setY(court.getGP().getRacketA() * scale);
         racketB.setY(court.getGP().getRacketB() * scale);
@@ -73,24 +69,7 @@ public class GameLayout extends Layout {
         text.setText(court.getScoreL() + " : " + court.getScoreR());
     }
 
-    @Override
-    public boolean onStop(){
-        boolean stop = true;
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle(" Quitter");
-        alert.setHeaderText(" Vous allez quitter ...... ");
-        alert.setContentText(" Nous espérons vous revoir bientot");
-
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("You quitted !!");
-        }
-        else {
-            stop=false;
-        }
-        return stop;
-    }
-
-    public Court getCourt(){
+    public Court getCourt() {
         return court;
     }
 

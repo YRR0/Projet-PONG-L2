@@ -11,18 +11,8 @@ public class HomeActivity extends Activity<HomeLayout> {
 
         HomeLayout layout = getLayout();
 
-        layout.getMainButton().setOnMouseClicked(e -> Window.goTo(new GameActivity(1000,600,1.0)));
-
-    }
-
-    @Override
-    public void onUpdate(double deltaTime) {
-        super.onUpdate(deltaTime);
-    }
-
-    @Override
-    public boolean onStop() {
-        return super.onStop();
+        var mainButton = layout.getMainButton();
+        mainButton.setOnMouseClicked(e -> Window.goTo(new GameActivity(1000,600,1.0)));
     }
 
 }
