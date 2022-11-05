@@ -19,6 +19,7 @@ public class HomeLayout extends Layout {
         exit = new Button("Quitter");
         exit.setTranslateY(30);
         addElements(mainButton,exit);
+        getStylesheets().add(String.valueOf(getClass().getResource("/com.next.pong/styles/home_style.css")));
         s.playMusic(2);
     }
 

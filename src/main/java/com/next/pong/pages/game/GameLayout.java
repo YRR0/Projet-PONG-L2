@@ -57,6 +57,7 @@ public class GameLayout extends Layout {
         text.setY(70);
         text.setFont(Font.font("Times new Roman", FontWeight.BOLD, 50));
 
+        getStylesheets().add(String.valueOf(getClass().getResource("/com.next.pong/styles/basic_game_style.css")));
         //add the nodes into the layout
         addElements(racketA, racketB, ball, text);
     }
