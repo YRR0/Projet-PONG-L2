@@ -11,12 +11,10 @@ import javafx.scene.Scene;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javafx.stage.Stage;
-
 public class GameActivity extends Activity<GameLayout> {
 
-    public GameActivity(double width, double height, double scale) {
-        super(new GameLayout(generateCourt(width, height), scale));
+    public GameActivity() {
+        super(new GameLayout(generateCourt(1000, 600), 1.0));
 
         var court = getLayout().getCourt();
         initScene(court.getPlayerA(), court.getPlayerB(), getScene());

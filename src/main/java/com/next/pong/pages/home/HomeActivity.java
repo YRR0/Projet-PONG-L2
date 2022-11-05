@@ -12,7 +12,7 @@ public class HomeActivity extends Activity<HomeLayout> {
         HomeLayout layout = getLayout();
 
         var mainButton = layout.getMainButton();
-        mainButton.setOnMouseClicked(e -> Window.goTo(new GameActivity(1000,600,1.0)));
+        mainButton.setOnMouseClicked(e -> Window.goTo(new GameActivity()));
     }
 
 }
