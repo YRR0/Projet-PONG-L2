@@ -1,0 +1,4 @@
+.root {
+    -fx-background-image: url("/com.next.pong/styles/images/pong2.jpg");
+     -fx-background-size: 100% 100%;
+}
