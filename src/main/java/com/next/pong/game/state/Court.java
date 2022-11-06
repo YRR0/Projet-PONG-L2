@@ -16,11 +16,11 @@ public class Court {
 
     private GameParameters gp;
 
-    public Court(RacketController playerA, RacketController playerB, double width, double height, GameParameters gp) {
+    public Court(RacketController playerA, RacketController playerB, GameParameters gp) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = width;
-        this.height = height;
+        this.width = gp.getWidth();
+        this.height = gp.getHeight();
         this.gp = gp;
     }
 
@@ -138,7 +138,4 @@ public class Court {
         return false;
     }
 
-    public double getBallRadius() {
-        return BALL_RADIUS;
-    }
 }

@@ -14,7 +14,7 @@ import java.util.TimerTask;
 public class GameActivity extends Activity<GameLayout> {
 
     public GameActivity() {
-        super(new GameLayout(generateCourt(1000, 600), 1.0));
+        super(new GameLayout(generateCourt(), 1.0));
 
         var court = getLayout().getCourt();
         initScene(court.getPlayerA(), court.getPlayerB(), getScene());
@@ -71,13 +71,13 @@ public class GameActivity extends Activity<GameLayout> {
         });
     }
 
-    private static Court generateCourt(double width, double height){
-        var gp = new GameParameters(height, width);
+    private static Court generateCourt(){
+        var gp = new GameParameters(1000, 600);
 
         Player playerA = new Player();
         Player playerB = new AIPlayer(gp);
 
-        return new Court(playerA, playerB, width, height, gp);
+        return new Court(playerA, playerB, gp);
     }
 
 }

@@ -45,7 +45,7 @@ public class GameLayout extends Layout {
         racketB.setY(court.getGP().getRacketB() * scale);
 
         ball = new Circle();
-        ball.setRadius(court.getBallRadius());
+        ball.setRadius(Court.BALL_RADIUS);
         ball.setFill(Color.BLACK);
 
         ball.setCenterX(court.getGP().getBallX() * scale + X_MARGIN);

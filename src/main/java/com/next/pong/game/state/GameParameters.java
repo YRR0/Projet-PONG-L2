@@ -9,7 +9,7 @@ public class GameParameters {
     private double ballSpeedX, ballSpeedY; // m
     private double height, width;
 
-    public GameParameters(double height, double width) {
+    public GameParameters(double width, double height) {
         this.height = height;
         this.width = width;
         this.racketA = height / 2;
