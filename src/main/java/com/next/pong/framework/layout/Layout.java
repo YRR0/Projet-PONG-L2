@@ -7,7 +7,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.application.Application;
+
 public abstract class Layout extends Pane {
 
     public Layout() {
@@ -20,9 +20,10 @@ public abstract class Layout extends Pane {
         setBackground(Color.WHITE);
     }
 
-    public void onUpdate(double deltaT) {}
-    public boolean onStop() {
-        return false;
+    public void onUpdate(double deltaT) {
+    }
+
+    public void onDestroy() {
     }
 
     protected void addElements(Node... elements) {

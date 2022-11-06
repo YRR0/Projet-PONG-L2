@@ -8,15 +8,25 @@ import com.next.pong.game.state.Court;
 import com.next.pong.game.state.GameParameters;
 import javafx.scene.Scene;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javafx.stage.Stage;
-
 public class GameActivity extends Activity<GameLayout> {
 
-    //generating the scene
-    private static void initScene(RacketController playerA, RacketController playerB, Scene gameScene){
+    private final Court court;
+
+    public GameActivity() {
+        super(new GameLayout(generateCourt(), 1.0));
+
+        court = getLayout().getCourt();
+        initScene(court.getPlayerA(), court.getPlayerB(), getScene());
+    }
+
+    @Override
+    public void onUpdate(double deltaTime) {
+        super.onUpdate(deltaTime);
+
+        ((AIPlayer) court.getPlayerB()).upOrDown();
+    }
+
+    private static void initScene(RacketController playerA, RacketController playerB, Scene gameScene) {
 
         gameScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -28,20 +38,10 @@ public class GameActivity extends Activity<GameLayout> {
             }
         });
 
-        final Timer m = new Timer();
-        final TimerTask task = new TimerTask() {
-            public void run() {
-                ((AIPlayer)playerB).upOrDown();
-            }
-        };
-        if(playerB instanceof AIPlayer) {
-            m.schedule(task, 0, 110);
-        }
-
         gameScene.setOnKeyReleased(ev -> {
             switch (ev.getCode()) {
                 case CONTROL:
-                    if (playerA.getState() == RacketController.State.GOING_UP){
+                    if (playerA.getState() == RacketController.State.GOING_UP) {
                         playerA.setState(RacketController.State.IDLE);
                     }
                     break;
@@ -66,19 +66,13 @@ public class GameActivity extends Activity<GameLayout> {
         });
     }
 
-    private static Court generateCourt(double width, double height){
-        var gp = new GameParameters(height, width);
+    private static Court generateCourt() {
+        var gp = new GameParameters(1000, 600);
 
-        //generating the players
         Player playerA = new Player();
         Player playerB = new AIPlayer(gp);
 
-        return new Court(playerA, playerB, width, height, gp);
+        return new Court(playerA, playerB, gp);
     }
-
-    public GameActivity(double width, double height, double scale) {
-        super(new GameLayout(generateCourt(width, height), scale));
-        initScene(getLayout().getCourt().getPlayerA(), getLayout().getCourt().getPlayerB(), getScene());
-    }    
 
 }

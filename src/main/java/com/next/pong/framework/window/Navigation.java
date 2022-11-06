@@ -14,7 +14,7 @@ class Navigation {
     protected static void goTo(Activity<?> activity) {
 
         if (currentActivity != null) {
-            currentActivity.onStop();
+            currentActivity.onDestroy();
         }
 
         if (onActivityChangeListener != null) {
