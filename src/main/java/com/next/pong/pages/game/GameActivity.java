@@ -8,19 +8,25 @@ import com.next.pong.game.state.Court;
 import com.next.pong.game.state.GameParameters;
 import javafx.scene.Scene;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class GameActivity extends Activity<GameLayout> {
+
+    private final Court court;
 
     public GameActivity() {
         super(new GameLayout(generateCourt(), 1.0));
 
-        var court = getLayout().getCourt();
+        court = getLayout().getCourt();
         initScene(court.getPlayerA(), court.getPlayerB(), getScene());
     }
 
-    private static void initScene(RacketController playerA, RacketController playerB, Scene gameScene){
+    @Override
+    public void onUpdate(double deltaTime) {
+        super.onUpdate(deltaTime);
+
+        ((AIPlayer) court.getPlayerB()).upOrDown();
+    }
+
+    private static void initScene(RacketController playerA, RacketController playerB, Scene gameScene) {
 
         gameScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -32,21 +38,10 @@ public class GameActivity extends Activity<GameLayout> {
             }
         });
 
-        final Timer m = new Timer();
-        final TimerTask task = new TimerTask() {
-            public void run() {
-                ((AIPlayer)playerB).upOrDown();
-            }
-        };
-
-        if(playerB instanceof AIPlayer) {
-            m.schedule(task, 0, 110);
-        }
-
         gameScene.setOnKeyReleased(ev -> {
             switch (ev.getCode()) {
                 case CONTROL:
-                    if (playerA.getState() == RacketController.State.GOING_UP){
+                    if (playerA.getState() == RacketController.State.GOING_UP) {
                         playerA.setState(RacketController.State.IDLE);
                     }
                     break;
@@ -71,7 +66,7 @@ public class GameActivity extends Activity<GameLayout> {
         });
     }
 
-    private static Court generateCourt(){
+    private static Court generateCourt() {
         var gp = new GameParameters(1000, 600);
 
         Player playerA = new Player();
