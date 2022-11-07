@@ -1,12 +1,17 @@
 package com.next.pong.framework.layout;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+
+import java.io.IOException;
+
 
 public abstract class Layout extends Pane {
 
@@ -18,6 +23,20 @@ public abstract class Layout extends Pane {
         setMinWidth(width);
         setMinHeight(height);
         setBackground(Color.WHITE);
+    }
+
+    public Layout(String layoutName) {
+
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/com/next/pong/layout/" + layoutName + ".fxml")
+        );
+
+        try {
+            Parent parent = loader.load();
+            addElements(parent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onUpdate(double deltaT) {
