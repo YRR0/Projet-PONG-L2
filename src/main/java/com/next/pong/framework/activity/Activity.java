@@ -1,6 +1,7 @@
 package com.next.pong.framework.activity;
 
 import com.next.pong.framework.layout.Layout;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 
 public abstract class Activity<T extends Layout> {
@@ -25,6 +26,10 @@ public abstract class Activity<T extends Layout> {
 
     public T getLayout() {
         return layout;
+    }
+
+    public Node findElementById(String id) {
+        return scene.lookup('#' + id);
     }
 
     public ActivityPayload getPayload() {
