@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 public class Window extends Navigation {
 
     public static void init(Stage stage) {
+        stage.setResizable(false);
+
         var startActivity = new HomeActivity();
 
         setOnActivityChangeListener((oldActivity, newActivity) -> {
