@@ -1,7 +1,6 @@
 package com.next.pong.pages.home;
 
 import com.next.pong.framework.layout.Layout;
-
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
@@ -26,13 +25,13 @@ public class HomeLayout extends Layout {
     public Button getExitButton(){return exit;}
 
     @Override
-    public void onUpdate(float deltaT) {
+    public void onUpdate(double deltaT) {
         super.onUpdate(deltaT);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public boolean onStop() {
+        return super.onStop();
     }
 
 }
