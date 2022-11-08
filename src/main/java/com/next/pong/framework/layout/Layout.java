@@ -1,5 +1,6 @@
 package com.next.pong.framework.layout;
 
+import com.next.pong.content.Resources;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -37,6 +38,10 @@ public abstract class Layout extends Pane {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Layout(Resources.Layout layout) {
+        this(layout.toString());
     }
 
     public void onUpdate(double deltaT) {

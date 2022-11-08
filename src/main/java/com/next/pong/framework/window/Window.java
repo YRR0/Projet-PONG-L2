@@ -29,12 +29,12 @@ public class Window extends Navigation {
             @Override
             public void handle(long timeNs) {
 
-                if(previousTimeNs == 0) {
+                if (previousTimeNs == 0) {
                     previousTimeNs = timeNs;
                 }
 
                 var deltaMs = TimeUtils.nsToMs(timeNs - previousTimeNs);
-                var fps = (int)(1000 / deltaMs);
+                var fps = (int) (1000 / deltaMs);
 
                 previousTimeNs = timeNs;
 
