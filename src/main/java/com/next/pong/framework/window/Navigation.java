@@ -24,13 +24,13 @@ class Navigation {
         currentActivity = activity;
     }
 
-    protected static void update(double deltaTime) {
+    protected static void update(double deltaMs) {
 
         if (currentActivity == null) {
             return;
         }
 
-        currentActivity.onUpdate(deltaTime);
+        currentActivity.onUpdate(deltaMs);
     }
 
     protected static void setOnActivityChangeListener(OnActivityChangeListener listener) {
