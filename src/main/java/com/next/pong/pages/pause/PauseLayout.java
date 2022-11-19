@@ -1,69 +1,54 @@
 package com.next.pong.pages.pause;
 
-
 import com.next.pong.framework.layout.Layout;
-
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
-
+import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-public class PauseLayout extends Layout{
-	public Button reprendre;
-	public Button recommencer;
-	public Button acceuil;
-	public Button option;
-	public Button quitter;
-	
-	Label lab = new Label("Pause");
-	
-	public PauseLayout() {
-		super(300,400);
-		
-		this.screen();
-		creaButton();
-		
-		this.style();
-		
-		position();
+public class PauseLayout extends Layout {
+
+    private Text t = new Text("Game Paused");
+    private  Button resume;
+    private  Button recommencer;
+    private  Button acceuil;
+    private  Button option;
+    private  Button exit;
+    private  Label lab;
+
+    public PauseLayout() {
+        //super(300,400);
+        creaButton();
+        this.position();
+        style();
+    }
+    
+
+	public void creaButton() {
+        lab = new Label("Game Pause");
+		resume = new Button("Reprendre");
+		recommencer = new Button("Recommencer");
+		acceuil = new Button("Acceuil");
+		option = new Button("Options");
+		exit = new Button("Quitter");
+		this.addElements(lab,resume,recommencer,acceuil,option,exit);
 	}
-	
+
+
 	public void screen() {
 		this.setPrefSize(300,400);
 		this.setMinSize(300, 400);
 		this.setMaxSize(300, 400);
 	}
-	
-	public void creaButton() {
-		reprendre = new Button("Reprendre");
-		recommencer = new Button("Recommencer");
-		acceuil = new Button("Acceuil");
-		option = new Button("Options");
-		quitter = new Button("Quitter");
-	
-		this.addElements(lab,reprendre,recommencer,acceuil,option,quitter);
-	}
-	
 
-	private void addBgPlay() {
-		Image back = new Image(getClass().getResource("image/fond.png").toExternalForm());
-		// possiblite de affecter le set dans imageView
-		this.getChildren().add(new ImageView(back));
-	}
-	
-	public void position() {
-		
+    public void position(){
+
 		lab.setTranslateX(90);
 		lab.setTranslateY(20);
 		
-		reprendre.setTranslateX(85);
-		reprendre.setTranslateY(100);
+		resume.setTranslateX(85);
+		resume.setTranslateY(100);
 		
 		recommencer.setTranslateX(70);
 		recommencer.setTranslateY(150);
@@ -74,13 +59,13 @@ public class PauseLayout extends Layout{
 		option.setTranslateX((95));
 		option.setTranslateY(250);
 		
-		quitter.setTranslateX(100);
-		quitter.setTranslateY(300);
-		
-	}
+		exit.setTranslateX(100);
+		exit.setTranslateY(300);
 	
-	public void style() {
-		String fond = "-fx-background-color:#001253; ";
+    }
+	
+    public void style(){
+String fond = "-fx-background-color:#001253; ";
 		this.setStyle(fond);
 		String style = "-fx-background-radius:20 20 20 20;"+
 		"-fx-font-family: \"Cambria\";"+
@@ -96,16 +81,36 @@ public class PauseLayout extends Layout{
 		
 		// assign css properties for the button
 		lab.setStyle(styleLab);
-		reprendre.setStyle(style);
+		resume.setStyle(style);
 		recommencer.setStyle(style);
 		acceuil.setStyle(style);
 		option.setStyle(style);
-		quitter.setStyle(style);
+		exit.setStyle(style);
 		
-	}
-
-	 public boolean onStop() {
-        return super.onStop();
     }
-	
+
+    public Button getResume() {
+        return resume;
+    }
+
+    public Button getOptions() {
+        return option;
+    }
+
+    public Button getExit() {
+        return exit;
+    }
+
+    public Button getRecommencer(){
+        return recommencer;
+    }
+
+    public Button getAcceuil(){
+        return acceuil;
+    }
+
+    @Override
+    public void onUpdate(double deltaT) {
+        super.onUpdate(deltaT);
+    }
 }

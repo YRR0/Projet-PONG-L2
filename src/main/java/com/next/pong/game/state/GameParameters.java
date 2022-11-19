@@ -14,8 +14,8 @@ public class GameParameters {
         this.width = width;
         this.racketA = height / 2;
         this.racketB = height / 2;
-        this.ballSpeedX = 200.0;
-        this.ballSpeedY = 200.0;
+        this.ballSpeedX = 400.0;
+        this.ballSpeedY = 400.0;
         this.ballX = width / 2;
         this.ballY = height / 2;
     }

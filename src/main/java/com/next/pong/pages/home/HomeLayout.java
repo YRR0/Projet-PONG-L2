@@ -12,7 +12,7 @@ public class HomeLayout extends Layout {
     public HomeLayout() {
         setBackground(Color.FIREBRICK);
 
-        mainButton = new Button("Click Me!");
+        mainButton = new Button("Play");
         exit = new Button("Quitter");
         exit.setTranslateY(30);
         addElements(mainButton,exit);

@@ -1,11 +1,12 @@
 package com.next.pong.game.state;
 
+import com.next.pong.Sound;
 import com.next.pong.game.player.RacketController;
 import com.next.pong.game.player.ai.AIPlayer;
 
 public class Court {
 
-    public static final double RACKET_SPEED = 300.0; // m/s
+    public static final double RACKET_SPEED = 600.0; // m/s
     public static final double RACKET_SIZE = 100.0; // m
     public static final double BALL_RADIUS = 10.0; // m
 
@@ -15,12 +16,14 @@ public class Court {
     private int scoreL = 0, scoreR = 0;
 
     private GameParameters gp;
+    private Sound se = new Sound();
+    private boolean pause = false;
 
-    public Court(RacketController playerA, RacketController playerB, double width, double height, GameParameters gp) {
+    public Court(RacketController playerA, RacketController playerB, GameParameters gp) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = width;
-        this.height = height;
+        this.width = gp.getWidth();
+        this.height = gp.getHeight();
         this.gp = gp;
     }
 
@@ -56,45 +59,53 @@ public class Court {
         this.gp = gp;
     }
 
-    public void update(double deltaT) {
-
-        var racketA = gp.getRacketA();
-        var racketB = gp.getRacketB();
-
-        switch (playerA.getState()) {
-            case GOING_UP:
-                gp.setRacketA(racketA - RACKET_SPEED * deltaT);
-                if (racketA < 0.0) gp.setRacketA(0.0);
-                break;
-            case IDLE:
-                break;
-            case GOING_DOWN:
-                gp.setRacketA(racketA + RACKET_SPEED * deltaT);
-                if (racketA + RACKET_SIZE > height) gp.setRacketA(height - RACKET_SIZE);
-                break;
-        }
-        switch (playerB.getState()) {
-            case GOING_UP:
-                gp.setRacketB(racketB - RACKET_SPEED * deltaT);
-                if (racketB < 0.0) gp.setRacketB(0.0);
-                break;
-            case IDLE:
-                break;
-            case GOING_DOWN:
-                gp.setRacketB(racketB + RACKET_SPEED * deltaT);
-                if (racketB + RACKET_SIZE > height) gp.setRacketB(height - RACKET_SIZE);
-                break;
-        }
-
-        if (updateBall(deltaT)) {
-            this.gp = new GameParameters(height, width);
-            if (playerB instanceof AIPlayer) {
-                ((AIPlayer) this.playerB).reset(gp);
-            }
-
-        }
+    public void setPause(boolean v) {
+        pause = v;
     }
 
+    public boolean getPause() {
+        return pause;
+    }
+
+    public void update(double deltaT) {
+        if(!pause) {
+            var racketA = gp.getRacketA();
+            var racketB = gp.getRacketB();
+
+            switch (playerA.getState()) {
+                case GOING_UP:
+                    gp.setRacketA(racketA - RACKET_SPEED * deltaT);
+                    if (racketA < 0.0) gp.setRacketA(0.0);
+                    break;
+                case IDLE:
+                    break;
+                case GOING_DOWN:
+                    gp.setRacketA(racketA + RACKET_SPEED * deltaT);
+                    if (racketA + RACKET_SIZE > height) gp.setRacketA(height - RACKET_SIZE);
+                    break;
+            }
+            switch (playerB.getState()) {
+                case GOING_UP:
+                    gp.setRacketB(racketB - RACKET_SPEED * deltaT);
+                    if (racketB < 0.0) gp.setRacketB(0.0);
+                    break;
+                case IDLE:
+                    break;
+                case GOING_DOWN:
+                    gp.setRacketB(racketB + RACKET_SPEED * deltaT);
+                    if (racketB + RACKET_SIZE > height) gp.setRacketB(height - RACKET_SIZE);
+                    break;
+            }
+
+            if (updateBall(deltaT)) {
+                this.gp = new GameParameters(height, width);
+                if (playerB instanceof AIPlayer) {
+                    ((AIPlayer) this.playerB).reset(gp, ((AIPlayer) playerB).getLevel());
+                }
+
+            }
+        }
+    }
 
     /**
      * @return true if a player lost
@@ -117,18 +128,22 @@ public class Court {
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             gp.setBallSpeedY(-ballSpeedY);
-            nextBallY = ballY + deltaT * ballSpeedY;
+            se.playSoundEffect(0);
+            nextBallY = ballY + deltaT * gp.getBallSpeedY();
         }
 
-        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + RACKET_SIZE + BALL_RADIUS / 2)
-                || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + RACKET_SIZE + BALL_RADIUS / 2)) {
+        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + RACKET_SIZE)
+                || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + RACKET_SIZE)) {
             gp.setBallSpeedX(-ballSpeedX);
-            nextBallX = ballX + deltaT * ballSpeedX;
+            nextBallX = ballX + deltaT * gp.getBallSpeedX();
+            se.playSoundEffect(1);
         } else if (nextBallX < 0) {
             scoreR++;
+            se.playSoundEffect(3);
             return true;
         } else if (nextBallX > width) {
             scoreL++;
+            se.playSoundEffect(3);
             return true;
         }
 
