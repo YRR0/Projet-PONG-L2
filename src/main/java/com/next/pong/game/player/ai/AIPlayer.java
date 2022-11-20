@@ -41,7 +41,7 @@ public class AIPlayer extends Player implements IAInterface {
 
         var ballX = gp.getBallX();
         var ballY = gp.getBallY();
-        var racketB = gp.getRacketB();
+        var racketB = gp.getRacketA();
 
         switch (this.level) {
             case EASY -> onLevel(width, ballX, ballY, racketB, 0.7);
@@ -51,12 +51,18 @@ public class AIPlayer extends Player implements IAInterface {
     }
 
     public void onLevel(double width, double ballX, double ballY, double racket, double f) {
-        if(ballX > f * width) {
+        System.out.println("ballX AIPlayer = " + gp.getBallX());
+        System.out.println("ballSpeedX AIPlayer = " + gp.getBallSpeedX() + "\n");
+        if(ballX <= (1-f) * width) {
+        // if(((ballX >= (f * width)) && (gp.getBallSpeedX() > 0)) || ((ballX <= ((1-f) * width)) && (gp.getBallSpeedX() < 0))) {
+            System.out.println("ici");
             if (ballY < racket) {
                 this.moveUp();
-            } else if (ballY + Court.BALL_RADIUS > racket + Court.RACKET_SIZE) {
+            } else if (ballY > racket + Court.RACKET_SIZE) {
                 this.moveDown();
             }
+        } else {
+            System.out.println("Pas ici");
         }
     }
 

@@ -26,17 +26,26 @@ public class GameActivity extends Activity<GameLayout> {
                 case ALT -> playerA.setState(RacketController.State.GOING_DOWN);
                 case UP -> playerB.setState(RacketController.State.GOING_UP);
                 case DOWN -> playerB.setState(RacketController.State.GOING_DOWN);
-                default -> throw new IllegalArgumentException("Unexpected value: " + ev.getCode());
             }
         });
 
-        final TimerTask task = new TimerTask() {
+        final TimerTask taskA = new TimerTask() {
+            public void run() {
+                ((AIPlayer)playerA).upOrDown();
+            }
+        };
+
+        final TimerTask taskB = new TimerTask() {
             public void run() {
                 ((AIPlayer)playerB).upOrDown();
             }
         };
         if(playerB instanceof AIPlayer) {
-            m.schedule(task, 0, 110);
+            m.schedule(taskB, 0, 100);
+        }
+
+        if(playerA instanceof AIPlayer) {
+            m.schedule(taskA, 0, 100);
         }
 
         gameScene.setOnKeyReleased(ev -> {
@@ -53,8 +62,9 @@ public class GameActivity extends Activity<GameLayout> {
         //generating the players
         Player playerA = new Player();
         Player playerB = new AIPlayer(gp, IAInterface.Level.MEDIUM);
+        Player playerC = new AIPlayer(gp, IAInterface.Level.HARD);
 
-        return new Court(playerA, playerB, gp);
+        return new Court(playerB, playerA, gp);
     }
 
     

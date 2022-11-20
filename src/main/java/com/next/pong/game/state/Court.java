@@ -6,7 +6,7 @@ import com.next.pong.game.player.ai.AIPlayer;
 
 public class Court {
 
-    public static final double RACKET_SPEED = 600.0; // m/s
+    public static final double RACKET_SPEED = 800.0; // m/s
     public static final double RACKET_SIZE = 100.0; // m
     public static final double BALL_RADIUS = 10.0; // m
 
@@ -90,7 +90,10 @@ public class Court {
 
         if (updateBall(deltaT)) {
             this.gp = new GameParameters(height, width);
-            if (playerB instanceof AIPlayer) {
+            if (playerA instanceof AIPlayer) {
+                ((AIPlayer) this.playerA).reset(gp, ((AIPlayer) playerA).getLevel());
+            }
+            if(playerB instanceof  AIPlayer) {
                 ((AIPlayer) this.playerB).reset(gp, ((AIPlayer) playerB).getLevel());
             }
 
