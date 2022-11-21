@@ -36,8 +36,8 @@ public abstract class Activity<T extends Layout> {
         return payload;
     }
 
-    public void onUpdate(double deltaTime) {
-        layout.onUpdate(deltaTime);
+    public void onUpdate(double deltaMs) {
+        layout.onUpdate(deltaMs);
     }
 
     public void onDestroy() {
