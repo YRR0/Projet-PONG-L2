@@ -1,6 +1,6 @@
 package com.next.pong.framework.layout;
 
-import com.next.pong.res.Resources;
+import com.next.pong.content.Resources;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
