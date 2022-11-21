@@ -1,5 +1,6 @@
 package com.next.pong.pages.game;
 
+import com.next.pong.GameTimer;
 import com.next.pong.framework.layout.Layout;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -59,7 +60,9 @@ public class GameLayout extends Layout {
 
         getStylesheets().add(String.valueOf(getClass().getResource("/com.next.pong/styles/basic_game_style.css")));
         //add the nodes into the layout
-        addElements(racketA, racketB, ball, text);
+
+
+        addElements(racketA, racketB, ball, text, time);
     }
 
     @Override
