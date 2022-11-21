@@ -1,16 +1,16 @@
 package com.next.pong.pages.game;
 
-import com.next.pong.GameTimer;
 import com.next.pong.framework.layout.Layout;
+import com.next.pong.game.state.Court;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import com.next.pong.game.state.Court;
-import javafx.scene.text.*;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 
 public class GameLayout extends Layout {
@@ -62,7 +62,7 @@ public class GameLayout extends Layout {
         //add the nodes into the layout
 
 
-        addElements(racketA, racketB, ball, text, time);
+        addElements(racketA, racketB, ball, text);
     }
 
     @Override
