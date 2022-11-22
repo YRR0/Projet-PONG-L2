@@ -20,8 +20,8 @@ public class GameActivity extends Activity<GameLayout> {
     }
 
     @Override
-    public void onUpdate(double deltaTime) {
-        super.onUpdate(deltaTime);
+    public void onUpdate(double deltaMs) {
+        super.onUpdate(deltaMs);
 
         ((AIPlayer) court.getPlayerB()).upOrDown();
     }
