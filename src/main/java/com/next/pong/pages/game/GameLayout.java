@@ -19,6 +19,8 @@ public class GameLayout extends Layout {
     private final Circle ball;
     private final Text text;
 
+    private static final double MS_TO_SEC = 0.001;
+
     public GameLayout(Court court, double scale) {
         super();
 
@@ -60,8 +62,8 @@ public class GameLayout extends Layout {
     }
 
     @Override
-    public void onUpdate(double deltaTime) {
-        court.update(deltaTime);
+    public void onUpdate(double deltaMs) {
+        court.update(deltaMs * MS_TO_SEC);
         racketA.setY(court.getGP().getRacketA() * scale);
         racketB.setY(court.getGP().getRacketB() * scale);
         ball.setCenterX(court.getGP().getBallX() * scale + X_MARGIN);
