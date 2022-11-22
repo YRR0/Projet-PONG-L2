@@ -14,7 +14,7 @@ class Navigation {
     protected static void goTo(Activity<?> activity) {
 
         if (currentActivity != null) {
-            currentActivity.onDestroy();
+            currentActivity.destroy();
         }
 
         if (onActivityChangeListener != null) {
@@ -30,7 +30,7 @@ class Navigation {
             return;
         }
 
-        currentActivity.onUpdate(deltaMs);
+        currentActivity.update(deltaMs);
     }
 
     protected static void setOnActivityChangeListener(OnActivityChangeListener listener) {
