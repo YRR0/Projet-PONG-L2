@@ -36,7 +36,7 @@ public abstract class Activity<T extends Layout> {
         return payload;
     }
 
-    public void update(double deltaMs) {
+    public final void update(double deltaMs) {
         layout.onUpdate(deltaMs);
         onUpdate(deltaMs);
     }
@@ -44,7 +44,7 @@ public abstract class Activity<T extends Layout> {
     public void onUpdate(double deltaMs) {
     }
 
-    public void destroy() {
+    public final void destroy() {
         layout.onDestroy();
         onDestroy();
     }
