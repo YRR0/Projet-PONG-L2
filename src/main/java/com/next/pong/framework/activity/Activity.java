@@ -6,9 +6,10 @@ import javafx.scene.Scene;
 
 public abstract class Activity<T extends Layout> {
 
-    private final ActivityPayload payload;
-    private final T layout;
+    protected final T layout;
+
     private final Scene scene;
+    private final ActivityPayload payload;
 
     protected Activity(T layout) {
         this(layout, null);
@@ -22,10 +23,6 @@ public abstract class Activity<T extends Layout> {
 
     public Scene getScene() {
         return scene;
-    }
-
-    public T getLayout() {
-        return layout;
     }
 
     public Node findElementById(String id) {
