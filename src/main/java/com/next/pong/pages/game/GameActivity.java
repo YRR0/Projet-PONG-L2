@@ -30,6 +30,20 @@ public class GameActivity extends Activity<GameLayout> {
 
         game = new Game(width, height, playerA, playerB);
 
+        setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case CONTROL -> playerA.goUp();
+                case ALT -> playerA.goDown();
+                case UP -> playerB.goUp();
+                case DOWN -> playerB.goDown();
+            }
+        });
+
+        setOnKeyReleased(event -> {
+            playerA.neutralise();
+            playerB.neutralise();
+        });
+
         game.setListener(new Game.Listener() {
             @Override
             public void onPlayerScored() {

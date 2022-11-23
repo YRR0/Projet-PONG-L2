@@ -38,6 +38,18 @@ public abstract class Player {
         return size;
     }
 
+    public void goUp() {
+        speed = new Vector2(0, -300);
+    }
+
+    public void goDown() {
+        speed = new Vector2(0, 300);
+    }
+
+    public void neutralise() {
+        speed = new Vector2(0, 0);
+    }
+
     public Collision.Boundary getBoundary() {
         return new Collision.Boundary(position, size);
     }
