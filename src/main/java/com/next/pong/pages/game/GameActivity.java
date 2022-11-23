@@ -32,8 +32,8 @@ public class GameActivity extends Activity<GameLayout> {
     }
 
     @Override
-    public void onUpdate(double deltaMs) {
-        game.update(deltaMs * 0.001);
+    public void onUpdate(double deltaTime) {
+        game.update(deltaTime);
 
         var ball = game.getBall();
         var ballPosition = ball.getPosition();

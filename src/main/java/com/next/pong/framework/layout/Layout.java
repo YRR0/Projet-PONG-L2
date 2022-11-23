@@ -47,7 +47,7 @@ public abstract class Layout extends Pane {
         this(layout.toString());
     }
 
-    public void onUpdate(double deltaMs) {
+    public void onUpdate(double deltaTime) {
     }
 
     public void onDestroy() {

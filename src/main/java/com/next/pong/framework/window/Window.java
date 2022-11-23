@@ -33,16 +33,16 @@ public class Window extends Navigation {
                     previousTimeNs = timeNs;
                 }
 
-                var deltaMs = TimeUtils.nsToMs(timeNs - previousTimeNs);
-                var fps = (int) (1000 / deltaMs);
+                var deltaTime = TimeUtils.nsToSec(timeNs - previousTimeNs);
+                var fps = (int) (1.0 / deltaTime);
 
                 previousTimeNs = timeNs;
 
                 long navUpdateTime = System.currentTimeMillis();
-                update(deltaMs);
+                update(deltaTime);
                 navUpdateTime = System.currentTimeMillis() - navUpdateTime;
 
-                System.out.println("Frame: " + deltaMs + "ms | " + fps + "fps");
+                System.out.println("Frame: " + (deltaTime * 1000) + "ms | " + fps + "fps");
                 System.out.println("Work: " + navUpdateTime + "ms");
                 System.out.println("------------------------------");
             }
