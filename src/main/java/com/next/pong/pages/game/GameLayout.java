@@ -31,7 +31,6 @@ public class GameLayout extends Layout {
     }
 
     public void setPlayerElementB(double x, double y, double width, double height) {
-        System.out.println(x);
         playerElementB.setPlayerProperties(x, y, width, height);
     }
 

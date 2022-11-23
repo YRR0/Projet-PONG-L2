@@ -19,13 +19,13 @@ public class GameActivity extends Activity<GameLayout> {
         var playerA = new HumanPlayer(
                 new Vector2(0.1 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
-                new Vector2(0.005 * width, 0.3 * height)
+                new Vector2(0.01 * width, 0.3 * height)
         );
 
         var playerB = new ComputerPlayer(
                 new Vector2(0.9 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
-                new Vector2(0.005 * width, 0.3 * height)
+                new Vector2(0.01 * width, 0.3 * height)
         );
 
         game = new Game(width, height, playerA, playerB);

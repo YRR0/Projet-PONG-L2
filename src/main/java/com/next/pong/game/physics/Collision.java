@@ -7,19 +7,19 @@ public class Collision {
     public record Boundary(Vector2 center, Vector2 size) {
 
         public double left() {
-            return center.x() - size.x();
+            return center.x() - 0.5 * size.x();
         }
 
         public double right() {
-            return center.x() + size.x();
+            return center.x() + 0.5 * size.x();
         }
 
         public double bottom() {
-            return center().y() - size.y();
+            return center.y() - 0.5 * size.y();
         }
 
         public double top() {
-            return center().y() + size.y();
+            return center.y() + 0.5 * size.y();
         }
 
     }

@@ -1,6 +1,7 @@
 package com.next.pong.game.court;
 
 import com.next.pong.game.ball.Ball;
+import com.next.pong.game.physics.Collision;
 import com.next.pong.game.player.Player;
 
 public class Court {
@@ -38,6 +39,7 @@ public class Court {
         playerB.integratePosition(deltaTime);
 
         ballWallCollision();
+        ballPlayerCollision();
     }
 
     private void ballWallCollision() {
@@ -50,6 +52,16 @@ public class Court {
 
         if (!(0 <= position.y() - radius && position.y() + radius <= height)) {
             ball.flipSpeedY();
+        }
+    }
+
+    private void ballPlayerCollision() {
+        var ballBoundary = ball.getBoundary();
+        boolean isInPlayerA = Collision.areColliding(ballBoundary, playerA.getBoundary());
+        boolean isInPlayerB = Collision.areColliding(ballBoundary, playerB.getBoundary());
+
+        if (isInPlayerA || isInPlayerB) {
+            ball.flipSpeedX();
         }
     }
 
