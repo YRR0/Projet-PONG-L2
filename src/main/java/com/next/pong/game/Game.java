@@ -7,6 +7,14 @@ import com.next.pong.utils.Vector2;
 
 public class Game {
 
+    public interface Listener {
+        void onPlayerScored();
+
+        void onBallVerticalWallCollision();
+    }
+
+    private Listener listener;
+
     private final Court court;
 
     private int scorePlayerA;
@@ -20,6 +28,36 @@ public class Game {
         );
 
         court = new Court(width, height, ball, playerA, playerB);
+
+        court.setListener(new Court.Listener() {
+            @Override
+            public void onPlayerScored(int id) {
+                if (id == playerA.getId()) {
+                    scorePlayerA++;
+                } else if (id == playerB.getId()) {
+                    scorePlayerB++;
+                } else {
+                    System.out.println("Warning: Unknown player in Court (" + id + ")");
+                }
+
+                court.resetBall();
+
+                if (listener != null) {
+                    listener.onPlayerScored();
+                }
+            }
+
+            @Override
+            public void onBallVerticalWallCollision() {
+                if (listener != null) {
+                    listener.onBallVerticalWallCollision();
+                }
+            }
+        });
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
     }
 
     public void update(double deltaTime) {
@@ -28,6 +66,14 @@ public class Game {
 
     public Ball getBall() {
         return court.getBall();
+    }
+
+    public int getScorePlayerA() {
+        return scorePlayerA;
+    }
+
+    public int getScorePlayerB() {
+        return scorePlayerB;
     }
 
     public Player getPlayerA() {

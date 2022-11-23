@@ -29,6 +29,18 @@ public class GameActivity extends Activity<GameLayout> {
         );
 
         game = new Game(width, height, playerA, playerB);
+
+        game.setListener(new Game.Listener() {
+            @Override
+            public void onPlayerScored() {
+
+            }
+
+            @Override
+            public void onBallVerticalWallCollision() {
+
+            }
+        });
     }
 
     @Override
