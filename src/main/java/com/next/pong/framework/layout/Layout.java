@@ -31,9 +31,8 @@ public abstract class Layout extends Pane {
 
     public Layout(String layoutName) {
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/next/pong/layout/" + layoutName + ".fxml")
-        );
+        var path = "com/next/pong/layout/" + layoutName + ".fxml";
+        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(path));
 
         try {
             Parent parent = loader.load();
