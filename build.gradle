@@ -4,11 +4,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
-configurations {
-  testCompile
-}
-
-group 'fr.u-paris.informatique.cproj'
+group 'com.next.pong'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -16,12 +12,11 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '5.9.0'
 }
 
 javafx {
     version = "17"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.base', 'javafx.media']
 }
 
 mainClassName = 'com.next.pong.App'
