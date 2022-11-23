@@ -14,7 +14,7 @@ public class Window extends Navigation {
         var startActivity = new HomeActivity();
 
         setOnActivityChangeListener((oldActivity, newActivity) -> {
-            stage.setScene(newActivity.getScene());
+            stage.setScene(newActivity);
             stage.show();
         });
 

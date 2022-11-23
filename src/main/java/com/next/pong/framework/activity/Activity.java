@@ -4,11 +4,10 @@ import com.next.pong.framework.layout.Layout;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 
-public abstract class Activity<T extends Layout> {
+public abstract class Activity<T extends Layout> extends Scene {
 
     protected final T layout;
 
-    private final Scene scene;
     private final ActivityPayload payload;
 
     protected Activity(T layout) {
@@ -16,17 +15,13 @@ public abstract class Activity<T extends Layout> {
     }
 
     protected Activity(T layout, ActivityPayload payload) {
+        super(layout);
         this.layout = layout;
         this.payload = payload;
-        this.scene = new Scene(layout);
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 
     public Node findElementById(String id) {
-        return scene.lookup('#' + id);
+        return lookup('#' + id);
     }
 
     public ActivityPayload getPayload() {
