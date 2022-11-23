@@ -16,8 +16,11 @@ import java.io.IOException;
 
 public abstract class Layout extends Pane {
 
+    public static final int DEFAULT_WIDTH = 853;
+    public static final int DEFAULT_HEIGHT = 480;
+
     public Layout() {
-        this(853, 480);
+        this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
     public Layout(int width, int height) {

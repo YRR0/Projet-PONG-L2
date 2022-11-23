@@ -1,78 +1,43 @@
 package com.next.pong.pages.game;
 
 import com.next.pong.framework.activity.Activity;
-import com.next.pong.game.player.Player;
-import com.next.pong.game.player.RacketController;
-import com.next.pong.game.player.ai.AIPlayer;
-import com.next.pong.game.state.Court;
-import com.next.pong.game.state.GameParameters;
-import javafx.scene.Scene;
+import com.next.pong.game.Game;
+import com.next.pong.game.player.ComputerPlayer;
+import com.next.pong.game.player.HumanPlayer;
+import com.next.pong.utils.Vector2;
 
 public class GameActivity extends Activity<GameLayout> {
 
-    private final Court court;
+    private final Game game;
 
     public GameActivity() {
-        super(new GameLayout(generateCourt(), 1.0));
+        super(new GameLayout());
 
-        court = getLayout().getCourt();
-        initScene(court.getPlayerA(), court.getPlayerB(), getScene());
+        int width = GameLayout.DEFAULT_WIDTH;
+        int height = GameLayout.DEFAULT_HEIGHT;
+
+        var playerA = new HumanPlayer(
+                new Vector2(0.1 * width, 0.5 * height),
+                new Vector2(0.0, 0.0),
+                new Vector2(0.05 * width, 0.3 * height)
+        );
+
+        var playerB = new ComputerPlayer(
+                new Vector2(0.9 * width, 0.5 * height),
+                new Vector2(0.0, 0.0),
+                new Vector2(0.05 * width, 0.3 * height)
+        );
+
+        game = new Game(width, height, playerA, playerB);
     }
 
     @Override
     public void onUpdate(double deltaMs) {
-        super.onUpdate(deltaMs);
+        game.update(deltaMs * 0.001);
 
-        ((AIPlayer) court.getPlayerB()).upOrDown();
-    }
-
-    private static void initScene(RacketController playerA, RacketController playerB, Scene gameScene) {
-
-        gameScene.setOnKeyPressed(ev -> {
-            switch (ev.getCode()) {
-                case CONTROL -> playerA.setState(RacketController.State.GOING_UP);
-                case ALT -> playerA.setState(RacketController.State.GOING_DOWN);
-                case UP -> playerB.setState(RacketController.State.GOING_UP);
-                case DOWN -> playerB.setState(RacketController.State.GOING_DOWN);
-                default -> throw new IllegalArgumentException("Unexpected value: " + ev.getCode());
-            }
-        });
-
-        gameScene.setOnKeyReleased(ev -> {
-            switch (ev.getCode()) {
-                case CONTROL:
-                    if (playerA.getState() == RacketController.State.GOING_UP) {
-                        playerA.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                case ALT:
-                    if (playerA.getState() == RacketController.State.GOING_DOWN) {
-                        playerA.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                case UP:
-                    if (playerB.getState() == RacketController.State.GOING_UP) {
-                        playerB.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                case DOWN:
-                    if (playerB.getState() == RacketController.State.GOING_DOWN) {
-                        playerB.setState(RacketController.State.IDLE);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        });
-    }
-
-    private static Court generateCourt() {
-        var gp = new GameParameters(1000, 600);
-
-        Player playerA = new Player();
-        Player playerB = new AIPlayer(gp);
-
-        return new Court(playerA, playerB, gp);
+        var ball = game.getBall();
+        var ballPosition = ball.getPosition();
+        layout.setBallProperties(ballPosition.x(), ballPosition.y(), ball.getRadius());
     }
 
 }
