@@ -19,13 +19,13 @@ public class GameActivity extends Activity<GameLayout> {
         var playerA = new HumanPlayer(
                 new Vector2(0.1 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
-                new Vector2(0.05 * width, 0.3 * height)
+                new Vector2(0.005 * width, 0.3 * height)
         );
 
         var playerB = new ComputerPlayer(
                 new Vector2(0.9 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
-                new Vector2(0.05 * width, 0.3 * height)
+                new Vector2(0.005 * width, 0.3 * height)
         );
 
         game = new Game(width, height, playerA, playerB);
@@ -38,6 +38,16 @@ public class GameActivity extends Activity<GameLayout> {
         var ball = game.getBall();
         var ballPosition = ball.getPosition();
         layout.setBallProperties(ballPosition.x(), ballPosition.y(), ball.getRadius());
+
+        var playerA = game.getPlayerA();
+        var positionA = playerA.getPosition();
+        var sizeA = playerA.getSize();
+        layout.setPlayerElementA(positionA.x(), positionA.y(), sizeA.x(), sizeA.y());
+
+        var playerB = game.getPlayerB();
+        var positionB = playerB.getPosition();
+        var sizeB = playerB.getSize();
+        layout.setPlayerElementB(positionB.x(), positionB.y(), sizeB.x(), sizeB.y());
     }
 
 }

@@ -1,13 +1,12 @@
 package com.next.pong.game.court;
 
 import com.next.pong.game.ball.Ball;
-import com.next.pong.game.physics.Collision;
 import com.next.pong.game.player.Player;
 
 public class Court {
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     private final Ball ball;
     private final Player playerA;
@@ -23,6 +22,14 @@ public class Court {
 
     public Ball getBall() {
         return ball;
+    }
+
+    public Player getPlayerA() {
+        return playerA;
+    }
+
+    public Player getPlayerB() {
+        return playerB;
     }
 
     public void update(double deltaTime) {

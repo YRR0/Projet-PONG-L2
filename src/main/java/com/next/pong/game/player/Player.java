@@ -30,6 +30,14 @@ public abstract class Player {
         position = Kinematic.position(deltaTime, position, speed);
     }
 
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public Vector2 getSize() {
+        return size;
+    }
+
     public Collision.Boundary getBoundary() {
         return new Collision.Boundary(position, size);
     }
