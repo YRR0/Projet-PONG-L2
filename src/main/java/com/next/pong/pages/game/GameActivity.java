@@ -61,6 +61,8 @@ public class GameActivity extends Activity<GameLayout> {
     public void onUpdate(double deltaTime) {
         game.update(deltaTime);
 
+        layout.setScore(game.getScorePlayerA(), game.getScorePlayerB());
+
         var ball = game.getBall();
         var ballPosition = ball.getPosition();
         layout.setBallProperties(ballPosition.x(), ballPosition.y(), ball.getRadius());
