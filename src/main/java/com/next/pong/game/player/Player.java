@@ -6,6 +6,8 @@ import com.next.pong.utils.Vector2;
 
 public abstract class Player {
 
+    private static final int VERTICAL_SPEED = 300;
+
     private static int instances = 0;
 
     private final int id;
@@ -34,16 +36,20 @@ public abstract class Player {
         return position;
     }
 
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
     public Vector2 getSize() {
         return size;
     }
 
     public void goUp() {
-        speed = new Vector2(0, -300);
+        speed = new Vector2(0, -VERTICAL_SPEED);
     }
 
     public void goDown() {
-        speed = new Vector2(0, 300);
+        speed = new Vector2(0, VERTICAL_SPEED);
     }
 
     public void neutralise() {

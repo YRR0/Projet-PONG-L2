@@ -3,6 +3,7 @@ package com.next.pong.game.court;
 import com.next.pong.game.ball.Ball;
 import com.next.pong.game.physics.Collision;
 import com.next.pong.game.player.Player;
+import com.next.pong.utils.MathUtils;
 import com.next.pong.utils.Vector2;
 
 public class Court {
@@ -55,8 +56,27 @@ public class Court {
         playerA.integratePosition(deltaTime);
         playerB.integratePosition(deltaTime);
 
+        clampPlayers();
         ballWallCollision();
         ballPlayerCollision();
+    }
+
+    private void clampPlayers() {
+        clampPlayer(playerA);
+        clampPlayer(playerB);
+    }
+
+    private void clampPlayer(Player player) {
+        var position = player.getPosition();
+        var size = player.getSize();
+
+        var offsetX = 0.5 * size.x();
+        var offsetY = 0.5 * size.y();
+
+        var x = MathUtils.clamp(offsetX, position.x(), width - offsetX);
+        var y = MathUtils.clamp(offsetY, position.y(), height - offsetY);
+
+        player.setPosition(new Vector2(x, y));
     }
 
     private void ballWallCollision() {
