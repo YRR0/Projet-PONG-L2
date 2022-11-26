@@ -64,12 +64,20 @@ public class Player {
         inputAcceleration = new Vector2(0, -INPUT_ACCELERATION);
     }
 
+    public boolean isForcingUp() {
+        return inputAcceleration.y() < 0;
+    }
+
     public void applyNeutralForce() {
         inputAcceleration = new Vector2(0, 0);
     }
 
     public void applyForceDown() {
         inputAcceleration = new Vector2(0, INPUT_ACCELERATION);
+    }
+
+    public boolean isForcingDown() {
+        return inputAcceleration.y() > 0;
     }
 
     public void neutraliseSpeed() {

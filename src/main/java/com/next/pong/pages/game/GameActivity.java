@@ -4,6 +4,7 @@ import com.next.pong.framework.activity.Activity;
 import com.next.pong.game.Game;
 import com.next.pong.game.player.Player;
 import com.next.pong.utils.Vector2;
+import javafx.scene.input.KeyCode;
 
 public class GameActivity extends Activity<GameLayout> {
 
@@ -29,29 +30,36 @@ public class GameActivity extends Activity<GameLayout> {
 
         game = new Game(width, height, playerA, playerB);
 
-        setOnKeyPressed(event -> {
-            switch (event.getCode()) {
-                case CONTROL -> playerA.applyForceUp();
-                case ALT -> playerA.applyForceDown();
-                case UP -> playerB.applyForceUp();
-                case DOWN -> playerB.applyForceDown();
-            }
-        });
+        setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
+        setupPlayerControl(playerB, KeyCode.UP, KeyCode.DOWN);
+    }
 
-        setOnKeyReleased(event -> {
-            playerA.applyNeutralForce();
-            playerB.applyNeutralForce();
-        });
-
-        game.setListener(new Game.Listener() {
+    private void setupPlayerControl(Player player, KeyCode up, KeyCode down) {
+        addKeyEventListener(up, new KeyEventListener() {
             @Override
-            public void onPlayerScored() {
-
+            public void onPressed() {
+                player.applyForceUp();
             }
 
             @Override
-            public void onBallVerticalWallCollision() {
+            public void onReleased() {
+                if(player.isForcingUp()) {
+                    player.applyNeutralForce();
+                }
+            }
+        });
 
+        addKeyEventListener(down, new KeyEventListener() {
+            @Override
+            public void onPressed() {
+                player.applyForceDown();
+            }
+
+            @Override
+            public void onReleased() {
+                if(player.isForcingDown()) {
+                    player.applyNeutralForce();
+                }
             }
         });
     }
