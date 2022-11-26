@@ -73,6 +73,13 @@ public class Court {
         var offsetX = 0.5 * size.x();
         var offsetY = 0.5 * size.y();
 
+        boolean isHittingWallX = !(offsetX <= position.x() && position.x() <= width - offsetX);
+        boolean isHittingWallY = !(offsetY <= position.y() && position.y() <= height - offsetY);
+
+        if(isHittingWallX || isHittingWallY) {
+            player.neutraliseSpeed();
+        }
+
         var x = MathUtils.clamp(offsetX, position.x(), width - offsetX);
         var y = MathUtils.clamp(offsetY, position.y(), height - offsetY);
 
