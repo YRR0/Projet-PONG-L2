@@ -5,7 +5,7 @@ import com.next.pong.game.physics.Kinematic;
 import com.next.pong.utils.MathUtils;
 import com.next.pong.utils.Vector2;
 
-public abstract class Player {
+public class Player {
 
     private static final int INPUT_ACCELERATION = 600;
     private static final double FRICTION_COEFFICIENT = 1;
