@@ -17,13 +17,13 @@ public class GameActivity extends Activity<GameLayout> {
         int height = GameLayout.DEFAULT_HEIGHT;
 
         var playerA = new HumanPlayer(
-                new Vector2(0.1 * width, 0.5 * height),
+                new Vector2(0.05 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
                 new Vector2(0.01 * width, 0.3 * height)
         );
 
         var playerB = new ComputerPlayer(
-                new Vector2(0.9 * width, 0.5 * height),
+                new Vector2(0.95 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
                 new Vector2(0.01 * width, 0.3 * height)
         );
@@ -32,16 +32,16 @@ public class GameActivity extends Activity<GameLayout> {
 
         setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case CONTROL -> playerA.goUp();
-                case ALT -> playerA.goDown();
-                case UP -> playerB.goUp();
-                case DOWN -> playerB.goDown();
+                case CONTROL -> playerA.applyForceUp();
+                case ALT -> playerA.applyForceDown();
+                case UP -> playerB.applyForceUp();
+                case DOWN -> playerB.applyForceDown();
             }
         });
 
         setOnKeyReleased(event -> {
-            playerA.neutralise();
-            playerB.neutralise();
+            playerA.applyNeutralForce();
+            playerB.applyNeutralForce();
         });
 
         game.setListener(new Game.Listener() {

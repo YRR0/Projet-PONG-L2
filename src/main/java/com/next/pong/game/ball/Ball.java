@@ -37,7 +37,7 @@ public class Ball {
     }
 
     public void integratePosition(double deltaTime) {
-        position = Kinematic.position(deltaTime, position, speed);
+        position = Kinematic.integrate(deltaTime, position, speed);
     }
 
     public Collision.Boundary getBoundary() {

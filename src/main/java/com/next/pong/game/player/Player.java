@@ -2,10 +2,13 @@ package com.next.pong.game.player;
 
 import com.next.pong.game.physics.Collision;
 import com.next.pong.game.physics.Kinematic;
+import com.next.pong.utils.MathUtils;
 import com.next.pong.utils.Vector2;
 
 public abstract class Player {
 
+    private static final int INPUT_ACCELERATION = 600;
+    private static final double FRICTION_COEFFICIENT = 1;
     private static final int VERTICAL_SPEED = 300;
 
     private static int instances = 0;
@@ -13,12 +16,14 @@ public abstract class Player {
     private final int id;
     private Vector2 position;
     private Vector2 speed;
+    private Vector2 inputAcceleration;
     private Vector2 size;
 
     public Player(Vector2 position, Vector2 speed, Vector2 size) {
         instances++;
         id = instances;
 
+        this.inputAcceleration = new Vector2(0, 0);
         this.position = position;
         this.speed = speed;
         this.size = size;
@@ -29,7 +34,18 @@ public abstract class Player {
     }
 
     public void integratePosition(double deltaTime) {
-        position = Kinematic.position(deltaTime, position, speed);
+        var netAcceleration = inputAcceleration.add(frictionAcceleration());
+        speed = Kinematic.integrate(deltaTime, speed, netAcceleration);
+        clampSpeed();
+        position = Kinematic.integrate(deltaTime, position, speed);
+    }
+
+    private void clampSpeed() {
+        speed = new Vector2(speed.x(), MathUtils.clamp(-VERTICAL_SPEED, speed.y(), VERTICAL_SPEED));
+    }
+
+    private Vector2 frictionAcceleration() {
+        return new Vector2(0.0, -speed.y() * FRICTION_COEFFICIENT);
     }
 
     public Vector2 getPosition() {
@@ -44,15 +60,19 @@ public abstract class Player {
         return size;
     }
 
-    public void goUp() {
-        speed = new Vector2(0, -VERTICAL_SPEED);
+    public void applyForceUp() {
+        inputAcceleration = new Vector2(0, -INPUT_ACCELERATION);
     }
 
-    public void goDown() {
-        speed = new Vector2(0, VERTICAL_SPEED);
+    public void applyNeutralForce() {
+        inputAcceleration = new Vector2(0, 0);
     }
 
-    public void neutralise() {
+    public void applyForceDown() {
+        inputAcceleration = new Vector2(0, INPUT_ACCELERATION);
+    }
+
+    public void neutraliseSpeed() {
         speed = new Vector2(0, 0);
     }
 
