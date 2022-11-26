@@ -2,8 +2,7 @@ package com.next.pong.pages.game;
 
 import com.next.pong.framework.activity.Activity;
 import com.next.pong.game.Game;
-import com.next.pong.game.player.ComputerPlayer;
-import com.next.pong.game.player.HumanPlayer;
+import com.next.pong.game.player.Player;
 import com.next.pong.utils.Vector2;
 
 public class GameActivity extends Activity<GameLayout> {
@@ -16,13 +15,13 @@ public class GameActivity extends Activity<GameLayout> {
         int width = GameLayout.DEFAULT_WIDTH;
         int height = GameLayout.DEFAULT_HEIGHT;
 
-        var playerA = new HumanPlayer(
+        var playerA = new Player(
                 new Vector2(0.05 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
                 new Vector2(0.01 * width, 0.3 * height)
         );
 
-        var playerB = new ComputerPlayer(
+        var playerB = new Player(
                 new Vector2(0.95 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
                 new Vector2(0.01 * width, 0.3 * height)
