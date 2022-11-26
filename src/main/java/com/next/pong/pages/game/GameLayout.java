@@ -1,78 +1,57 @@
 package com.next.pong.pages.game;
 
 import com.next.pong.framework.layout.Layout;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import com.next.pong.game.state.Court;
-import javafx.scene.text.*;
+import com.next.pong.pages.game.elements.BallElement;
+import com.next.pong.pages.game.elements.PlayerElement;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 public class GameLayout extends Layout {
 
-    private final Court court;
-    private final double scale;
-
-    private static final double X_MARGIN = 50.0; // px
-    private static final double RACKET_THICKNESS = 10.0; // px
-
-    private final Rectangle racketA, racketB;
-    private final Circle ball;
     private final Text text;
 
-    private static final double MS_TO_SEC = 0.001;
+    private final PlayerElement playerElementA;
+    private final PlayerElement playerElementB;
 
-    public GameLayout(Court court, double scale) {
+    private final BallElement ballElement;
+
+    public GameLayout() {
         super();
 
-        this.scale = scale;
-        this.court = court;
-
-        setMinWidth((int) (court.getWidth() * scale + 2 * X_MARGIN));
-        setMinHeight((int) (court.getHeight() * scale));
-
-        racketA = new Rectangle();
-        racketA.setHeight(Court.RACKET_SIZE * scale);
-        racketA.setWidth(RACKET_THICKNESS);
-        racketA.setFill(Color.BLACK);
-
-        racketA.setX(X_MARGIN - RACKET_THICKNESS);
-        racketA.setY(court.getGP().getRacketA() * scale);
-
-        racketB = new Rectangle();
-        racketB.setHeight(Court.RACKET_SIZE * scale);
-        racketB.setWidth(RACKET_THICKNESS);
-        racketB.setFill(Color.BLACK);
-
-        racketB.setX(court.getWidth() * scale + X_MARGIN);
-        racketB.setY(court.getGP().getRacketB() * scale);
-
-        ball = new Circle();
-        ball.setRadius(Court.BALL_RADIUS);
-        ball.setFill(Color.BLACK);
-
-        ball.setCenterX(court.getGP().getBallX() * scale + X_MARGIN);
-        ball.setCenterY(court.getGP().getBallY() * scale);
-
-        text = new Text();
-        text.setX(court.getWidth() / 2);
+        text = new Text("0 : 0");
         text.setY(70);
-        text.setFont(Font.font("Times new Roman", FontWeight.BOLD, 50));
+        text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 50));
+        addElements(text);
 
-        addElements(racketA, racketB, ball, text);
+        playerElementA = new PlayerElement();
+        playerElementB = new PlayerElement();
+        addElements(playerElementA, playerElementB);
+
+        ballElement = new BallElement();
+        addElements(ballElement);
     }
 
-    @Override
-    public void onUpdate(double deltaMs) {
-        court.update(deltaMs * MS_TO_SEC);
-        racketA.setY(court.getGP().getRacketA() * scale);
-        racketB.setY(court.getGP().getRacketB() * scale);
-        ball.setCenterX(court.getGP().getBallX() * scale + X_MARGIN);
-        ball.setCenterY(court.getGP().getBallY() * scale);
-        text.setText(court.getScoreL() + " : " + court.getScoreR());
+    public void setScore(int x, int y) {
+        text.setText(x + " : " + y);
+        center(text);
     }
 
-    public Court getCourt() {
-        return court;
+    public void setBallProperties(double x, double y, double radius) {
+        ballElement.setBallProperties(x, y, radius);
+    }
+
+    public void setPlayerElementA(double x, double y, double width, double height) {
+        playerElementA.setPlayerProperties(x, y, width, height);
+    }
+
+    public void setPlayerElementB(double x, double y, double width, double height) {
+        playerElementB.setPlayerProperties(x, y, width, height);
+    }
+
+    private void center(Text text) {
+        var width = text.getLayoutBounds().getWidth();
+        text.setX(0.5 * DEFAULT_WIDTH - 0.5 * width);
     }
 
 }

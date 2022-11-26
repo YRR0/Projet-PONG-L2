@@ -3,45 +3,77 @@ package com.next.pong.framework.activity;
 import com.next.pong.framework.layout.Layout;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 
-public abstract class Activity<T extends Layout> {
+import java.util.ArrayList;
+import java.util.List;
 
+public abstract class Activity<T extends Layout> extends Scene {
+
+    private record KeyEvent(KeyCode keyCode, KeyEventListener listener) {
+    }
+
+    public interface KeyEventListener {
+        void onPressed();
+
+        void onReleased();
+    }
+
+    protected final T layout;
     private final ActivityPayload payload;
-    private final T layout;
-    private final Scene scene;
+
+    private final List<KeyEvent> listeners;
 
     protected Activity(T layout) {
         this(layout, null);
     }
 
     protected Activity(T layout, ActivityPayload payload) {
+        super(layout);
         this.layout = layout;
         this.payload = payload;
-        this.scene = new Scene(layout);
+        this.listeners = new ArrayList<>();
+
+        setOnKeyPressed(event -> {
+            var registered = listeners.stream()
+                    .filter(registeredEvent -> event.getCode() == registeredEvent.keyCode);
+            registered.forEach(l -> l.listener.onPressed());
+        });
+
+        setOnKeyReleased(event -> {
+            var registered = listeners.stream()
+                    .filter(registeredEvent -> event.getCode() == registeredEvent.keyCode);
+            registered.forEach(l -> l.listener.onReleased());
+        });
+
     }
 
-    public Scene getScene() {
-        return scene;
-    }
-
-    public T getLayout() {
-        return layout;
+    public void addKeyEventListener(KeyCode keyCode, KeyEventListener listener) {
+        listeners.add(new KeyEvent(keyCode, listener));
     }
 
     public Node findElementById(String id) {
-        return scene.lookup('#' + id);
+        return lookup('#' + id);
     }
 
     public ActivityPayload getPayload() {
         return payload;
     }
 
-    public void onUpdate(double deltaMs) {
-        layout.onUpdate(deltaMs);
+    public final void update(double deltaTime) {
+        layout.onUpdate(deltaTime);
+        onUpdate(deltaTime);
+    }
+
+    public void onUpdate(double deltaTime) {
+    }
+
+    public final void destroy() {
+        layout.onDestroy();
+        onDestroy();
     }
 
     public void onDestroy() {
-        layout.onDestroy();
     }
 
 }

@@ -16,8 +16,11 @@ import java.io.IOException;
 
 public abstract class Layout extends Pane {
 
+    public static final int DEFAULT_WIDTH = 853;
+    public static final int DEFAULT_HEIGHT = 480;
+
     public Layout() {
-        this(853, 480);
+        this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
     public Layout(int width, int height) {
@@ -28,9 +31,8 @@ public abstract class Layout extends Pane {
 
     public Layout(String layoutName) {
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/next/pong/layout/" + layoutName + ".fxml")
-        );
+        var path = "com/next/pong/layout/" + layoutName + ".fxml";
+        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(path));
 
         try {
             Parent parent = loader.load();
@@ -44,7 +46,7 @@ public abstract class Layout extends Pane {
         this(layout.toString());
     }
 
-    public void onUpdate(double deltaMs) {
+    public void onUpdate(double deltaTime) {
     }
 
     public void onDestroy() {
