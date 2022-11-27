@@ -3,7 +3,8 @@ package com.next.pong.content;
 public class Resources {
 
     public enum Layout {
-        HOME("home");
+        HOME("home"),
+        SETTINGS("settings");
 
         private final String text;
 
