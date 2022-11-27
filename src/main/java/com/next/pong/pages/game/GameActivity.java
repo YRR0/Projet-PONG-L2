@@ -1,8 +1,10 @@
 package com.next.pong.pages.game;
 
 import com.next.pong.framework.activity.Activity;
+import com.next.pong.framework.window.Window;
 import com.next.pong.game.Game;
 import com.next.pong.game.player.Player;
+import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.utils.Vector2;
 import javafx.scene.input.KeyCode;
 
@@ -32,8 +34,55 @@ public class GameActivity extends Activity<GameLayout> {
 
         setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
         setupPlayerControl(playerB, KeyCode.UP, KeyCode.DOWN);
+        
+       // ------------------------------------------------------------------------------------
+       
+       setUpPause(KeyCode.ESCAPE,game,this);
+       GameLayout g = this.layout;
+       
+       g.reprendre.setOnMouseClicked(e ->{
+       	this.layout.restoreOpa();
+        this.layout.buttonConfigPauseStop();
+        game.getCourt().pause = false; 
+       });
+       g.recommencer.setOnMouseClicked(e -> {
+       	Window.goTo( new GameActivity() );
+       });
+       g.acceuil.setOnMouseClicked(e -> {
+       	Window.goTo(new HomeActivity());
+       });
+       g.options.setOnMouseClicked(e -> {
+       	Window.goTo(new HomeActivity());
+       });
+       g.quitter.setOnMouseClicked(e -> {
+       	Window.goTo(new HomeActivity());
+       });
+       
     }
-
+    
+    private void setUpPause(KeyCode pause,Game ga,GameActivity gaAc) {
+    	addKeyEventListener(pause , new KeyEventListener() {
+    		@Override
+    		public void onPressed() {
+    			if(ga.getCourt().pause) {
+    				ga.getCourt().pause = false;
+    				gaAc.layout.restoreOpa();
+    				gaAc.layout.buttonConfigPauseStop();
+    			}
+    			else {
+    				ga.getCourt().pause  = true;
+    				gaAc.layout.pauseOpacity();
+                    gaAc.layout.buttonConfigPause();;
+    			}
+    		}
+    		
+    		@Override
+    		public void onReleased() {
+    			System.out.println("Pause");
+    		}
+    	});
+    }
+    
     private void setupPlayerControl(Player player, KeyCode up, KeyCode down) {
         addKeyEventListener(up, new KeyEventListener() {
             @Override

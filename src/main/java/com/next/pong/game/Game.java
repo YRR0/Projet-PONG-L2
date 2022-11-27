@@ -61,7 +61,13 @@ public class Game {
     }
 
     public void update(double deltaTime) {
-        court.update(deltaTime);
+        if(!court.pause) {
+        	court.update(deltaTime);
+        }
+    }
+    
+    public Court getCourt() {
+    	return court;
     }
 
     public Ball getBall() {

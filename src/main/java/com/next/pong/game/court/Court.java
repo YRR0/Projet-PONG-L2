@@ -15,7 +15,9 @@ public class Court {
     }
 
     private Listener listener;
-
+    
+    public boolean pause=false;
+    
     private final int width;
     private final int height;
 

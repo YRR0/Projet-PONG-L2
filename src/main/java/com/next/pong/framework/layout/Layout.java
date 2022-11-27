@@ -21,6 +21,8 @@ public abstract class Layout extends Pane {
 
     public Layout() {
         this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        this.setMaxHeight(DEFAULT_HEIGHT);
+        this.setMaxWidth(DEFAULT_WIDTH);
     }
 
     public Layout(int width, int height) {
