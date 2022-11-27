@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,32 +20,22 @@
                   <Font name="Lato Regular" size="22.0" />
                </font>
             </Label>
-            <Slider fx:id="buttonSpeed" layoutX="367.0" layoutY="70.0" />
+            <Slider fx:id="buttonSpeed" layoutX="367.0" layoutY="70.0" showTickLabels="true" showTickMarks="true" />
             <Label layoutX="394.0" layoutY="122.0" text="Sound">
                <font>
                   <Font name="Lato Regular" size="22.0" />
                </font>
             </Label>
-            <CheckBox layoutX="402.0" layoutY="162.0" mnemonicParsing="false" text="Yes" />
             <Label layoutX="377.0" layoutY="206.0" text="AI or 1vs 1">
                <font>
                   <Font name="Lato Regular" size="22.0" />
-               </font></Label>
-            <Label layoutX="367.0" layoutY="89.0" text="0%">
-               <font>
-                  <Font name="Lato Regular" size="13.0" />
                </font></Label>
             <Button fx:id="backButton" layoutX="391.0" layoutY="321.0" mnemonicParsing="false" text="Back" AnchorPane.bottomAnchor="21.0">
                <font>
                   <Font name="Lato Regular" size="22.0" />
                </font>
             </Button>
-            <Label layoutX="472.0" layoutY="89.0" text="100%">
-               <font>
-                  <Font name="Lato Regular" size="13.0" />
-               </font>
-            </Label>
-            <ToggleButton layoutX="376.0" layoutY="255.0" mnemonicParsing="false" text="ToggleButton" />
+            <Slider fx:id="buttonSpeed1" layoutX="367.0" layoutY="158.0" showTickLabels="true" showTickMarks="true" />
          </children>
       </AnchorPane>
       <Label layoutX="391.0" layoutY="32.0" prefHeight="60.0" prefWidth="138.0" text="Settings" textAlignment="CENTER">
