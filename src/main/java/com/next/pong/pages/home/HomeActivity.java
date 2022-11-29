@@ -34,5 +34,6 @@ public class HomeActivity extends Activity<HomeLayout> {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        sound.stop();
     }
 }

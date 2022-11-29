@@ -6,6 +6,7 @@ import com.next.pong.framework.audio.Sound;
 import com.next.pong.framework.window.Window;
 import com.next.pong.game.Game;
 import com.next.pong.game.ball.Ball;
+import com.next.pong.game.player.ComputerPlayer;
 import com.next.pong.game.player.Player;
 import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.utils.Vector2;
@@ -23,26 +24,34 @@ public class GameActivity extends Activity<GameLayout> {
 
         var ball = new Ball(
                 new Vector2(0.5 * width, 0.5 * height),
-                new Vector2(200, 300),
+                new Vector2(150, 100),
                 10
         );
 
-        var playerA = new Player(
+        var playerA = new ComputerPlayer(
                 new Vector2(0.05 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
-                new Vector2(0.01 * width, 0.25 * height)
+                new Vector2(0.01 * width, 0.25 * height),
+                ball
         );
 
-        var playerB = new Player(
+        /*var playerB = new Player(
                 new Vector2(0.95 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
                 new Vector2(0.01 * width, 0.25 * height)
+        );*/
+
+        var playerB = new ComputerPlayer(
+                new Vector2(0.95 * width, 0.5 * height),
+                new Vector2(0.0, 0.0),
+                new Vector2(0.01 * width, 0.25 * height),
+                ball
         );
 
         game = new Game(width, height, ball, playerA, playerB);
 
-        setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
-        setupPlayerControl(playerB, KeyCode.UP, KeyCode.DOWN);
+        if(!(playerA instanceof ComputerPlayer)) setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
+        if(!(playerB instanceof ComputerPlayer)) setupPlayerControl(playerB, KeyCode.UP, KeyCode.DOWN);
         
        // ------------------------------------------------------------------------------------
        
@@ -117,7 +126,7 @@ public class GameActivity extends Activity<GameLayout> {
     }
     
     private void setupPlayerControl(Player player, KeyCode up, KeyCode down) {
-        addKeyEventListener(up, new KeyEventListener() {
+        addKeyEventListener(up, player.setKeyEventListener(new KeyEventListener() {
             @Override
             public void onPressed() {
                 player.applyForceUp();
@@ -129,9 +138,9 @@ public class GameActivity extends Activity<GameLayout> {
                     player.applyNeutralForce();
                 }
             }
-        });
+        }));
 
-        addKeyEventListener(down, new KeyEventListener() {
+        addKeyEventListener(down, player.setKeyEventListener(new KeyEventListener() {
             @Override
             public void onPressed() {
                 player.applyForceDown();
@@ -143,7 +152,7 @@ public class GameActivity extends Activity<GameLayout> {
                     player.applyNeutralForce();
                 }
             }
-        });
+        }));
     }
 
     @Override
