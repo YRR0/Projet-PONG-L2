@@ -87,29 +87,11 @@ public class GameLayout extends Layout {
      // One line transition
         line = new Line(50 , 0 , Layout.DEFAULT_WIDTH-50, 0);
      	line.setStrokeWidth(10);
-    	/*StrokeTransition stroke2 = new StrokeTransition();
-     	stroke2.setAutoReverse(true);
-     	stroke2.setCycleCount(1000);
-     	stroke2.setDuration(Duration.millis(3000));
-     	stroke2.setFromValue(Color.DARKGRAY);
-     	stroke2.setToValue(Color.DARKSLATEGREY);
-     	stroke2.setShape(line);
-     	stroke2.play();
-     	line.setFill(Color.BLACK);*/
      			
      // Seconde line style
      	line2 = new Line(50 , Layout.DEFAULT_HEIGHT, Layout.DEFAULT_WIDTH-50 , Layout.DEFAULT_HEIGHT);
      	line2.setStrokeWidth(10);
-     	/*StrokeTransition stroke3 = new StrokeTransition();
-     	stroke3.setAutoReverse(true);
-     	stroke3.setCycleCount(1000);
-     	stroke3.setDuration(Duration.millis(1000));
-     	stroke3.setFromValue(Color.DARKGRAY);
-     	stroke3.setToValue(Color.DARKSLATEGREY);
-     	stroke3.setShape(line2);
-     	stroke3.play();
-     	line2.setFill(Color.BLACK);*/
-     			
+
         buttonStyle();
         animationBlock();
         addElements(sun,c2,line,line2,reprendre,recommencer,acceuil,quitter,options);
@@ -263,6 +245,4 @@ public class GameLayout extends Layout {
 		
 		return Color.rgb(r,g, b);
 	}
-	
-    
 }

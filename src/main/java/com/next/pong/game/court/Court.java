@@ -2,6 +2,7 @@ package com.next.pong.game.court;
 
 import com.next.pong.game.ball.Ball;
 import com.next.pong.game.physics.Collision;
+import com.next.pong.game.player.ComputerPlayer;
 import com.next.pong.game.player.Player;
 import com.next.pong.utils.MathUtils;
 import com.next.pong.utils.Vector2;
@@ -10,7 +11,6 @@ public class Court {
 
     public interface Listener {
         void onPlayerScored(int id);
-
         void onBallVerticalWallCollision(int id);
         void onBallPlayerCollision(int id);
     }
@@ -57,7 +57,13 @@ public class Court {
 
     public void update(double deltaTime) {
         ball.integratePosition(deltaTime);
+        if(playerA.getKeyEventListener() == null) {
+            ((ComputerPlayer)playerA).move();
+        }
         playerA.integratePosition(deltaTime);
+        if(playerB.getKeyEventListener() == null) {
+            ((ComputerPlayer)playerB).move();
+        }
         playerB.integratePosition(deltaTime);
 
         clampPlayers();
