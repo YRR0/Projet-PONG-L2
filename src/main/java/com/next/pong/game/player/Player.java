@@ -7,9 +7,9 @@ import com.next.pong.utils.Vector2;
 
 public class Player {
 
-    private static final int INPUT_ACCELERATION = 600;
+    private static final int INPUT_ACCELERATION = 800;
     private static final double FRICTION_COEFFICIENT = 1;
-    private static final int VERTICAL_SPEED = 300;
+    private static final int VERTICAL_SPEED = 500;
 
     private static int instances = 0;
 

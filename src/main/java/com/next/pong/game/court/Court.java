@@ -49,6 +49,7 @@ public class Court {
     public void setListener(Listener listener) {
         this.listener = listener;
     }
+    public Listener getListener() {return listener;}
 
     public void resetBall() {
         ball.setPosition(new Vector2(0.5 * width, 0.5 * height));
@@ -76,8 +77,8 @@ public class Court {
         var offsetX = 0.5 * size.x();
         var offsetY = 0.5 * size.y();
 
-        boolean isHittingWallX = !(offsetX <= position.x() && position.x() <= width - offsetX);
-        boolean isHittingWallY = !(offsetY <= position.y() && position.y() <= height - offsetY);
+        boolean isHittingWallX = (offsetX > position.x() || position.x() > width - offsetX);
+        boolean isHittingWallY = (offsetY > position.y() || position.y() > height - offsetY);
 
         if(isHittingWallX || isHittingWallY) {
             player.neutraliseSpeed();
@@ -98,12 +99,10 @@ public class Court {
 
         if (isTooFarLeft && listener != null) {
             listener.onPlayerScored(playerB.getId());
-            resetBall();
         }
 
         if (isTooFarRight && listener != null) {
             listener.onPlayerScored(playerA.getId());
-            resetBall();
         }
 
         if ((position.y() - radius < 0 || position.y() + radius > height)) {

@@ -8,7 +8,6 @@ public class Game {
 
     public interface Listener {
         void onPlayerScored();
-
         void onBallVerticalWallCollision(int id);
         void onBallPlayerCollision(int id);
     }

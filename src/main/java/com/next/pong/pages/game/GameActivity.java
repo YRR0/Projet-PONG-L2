@@ -6,7 +6,6 @@ import com.next.pong.framework.audio.Sound;
 import com.next.pong.framework.window.Window;
 import com.next.pong.game.Game;
 import com.next.pong.game.ball.Ball;
-import com.next.pong.game.court.Court;
 import com.next.pong.game.player.Player;
 import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.utils.Vector2;
@@ -69,11 +68,10 @@ public class GameActivity extends Activity<GameLayout> {
        });
 
        sound = new Sound();
-
-       game.getCourt().setListener(new Court.Listener() {
+       game.setListener(new Game.Listener() {
            @Override
-           public void onPlayerScored(int id) {
-                sound.playSoundEffect(Resources.Music.UPDATE);
+           public void onPlayerScored() {
+               sound.playSoundEffect(Resources.Music.UPDATE);
            }
            @Override
            public void onBallVerticalWallCollision(int id) {
