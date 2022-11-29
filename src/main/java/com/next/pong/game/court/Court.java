@@ -11,7 +11,8 @@ public class Court {
     public interface Listener {
         void onPlayerScored(int id);
 
-        void onBallVerticalWallCollision();
+        void onBallVerticalWallCollision(int id);
+        void onBallPlayerCollision(int id);
     }
 
     private Listener listener;
@@ -92,26 +93,25 @@ public class Court {
         var position = ball.getPosition();
         var radius = ball.getRadius();
 
-        var isTooFarLeft = 0 > position.x() - radius;
+        var isTooFarLeft = position.x() - radius < 0;
         var isTooFarRight = position.x() + radius > width;
-
-        if (isTooFarLeft || isTooFarRight) {
-            ball.flipSpeedX();
-        }
 
         if (isTooFarLeft && listener != null) {
             listener.onPlayerScored(playerB.getId());
+            resetBall();
         }
 
         if (isTooFarRight && listener != null) {
             listener.onPlayerScored(playerA.getId());
+            resetBall();
         }
 
-        if (!(0 <= position.y() - radius && position.y() + radius <= height)) {
+        if ((position.y() - radius < 0 || position.y() + radius > height)) {
             ball.flipSpeedY();
 
             if (listener != null) {
-                listener.onBallVerticalWallCollision();
+                if(position.y() - radius < 0) listener.onBallVerticalWallCollision(1);
+                else listener.onBallVerticalWallCollision(2);
             }
         }
     }
@@ -123,6 +123,10 @@ public class Court {
 
         if (isInPlayerA || isInPlayerB) {
             ball.flipSpeedX();
+
+            if(listener != null) {
+                listener.onBallPlayerCollision(isInPlayerA?1:2);
+            }
         }
     }
 

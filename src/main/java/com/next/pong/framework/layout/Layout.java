@@ -77,4 +77,8 @@ public abstract class Layout extends Pane {
                 )
         );
     }
+
+    protected  void addStyleSheet(Resources.Style style) {
+        getStylesheets().add("com/next/pong/css/" + style + ".css");
+    }
 }

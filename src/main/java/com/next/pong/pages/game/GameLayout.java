@@ -1,12 +1,9 @@
 package com.next.pong.pages.game;
 
-import java.util.Random;
-
+import com.next.pong.content.Resources;
 import com.next.pong.framework.layout.Layout;
 import com.next.pong.pages.game.elements.BallElement;
-import com.next.pong.pages.game.elements.PlayerElement;
-
-import javafx.animation.StrokeTransition;
+import com.next.pong.pages.game.elements.Racket;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -18,12 +15,14 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import java.util.Random;
+
 public class GameLayout extends Layout {
 
     private final Text text;
 
-    private final PlayerElement playerElementA;
-    private final PlayerElement playerElementB;
+    private final Racket playerElementA;
+    private final Racket playerElementB;
 
     private final BallElement ballElement;
     
@@ -47,8 +46,8 @@ public class GameLayout extends Layout {
         text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 50));
         addElements(text);
 
-        playerElementA = new PlayerElement();
-        playerElementB = new PlayerElement();
+        playerElementA = new Racket();
+        playerElementB = new Racket();
         addElements(playerElementA, playerElementB);
 
         ballElement = new BallElement();
@@ -88,7 +87,7 @@ public class GameLayout extends Layout {
      // One line transition
         line = new Line(50 , 0 , Layout.DEFAULT_WIDTH-50, 0);
      	line.setStrokeWidth(10);
-    	StrokeTransition stroke2 = new StrokeTransition();
+    	/*StrokeTransition stroke2 = new StrokeTransition();
      	stroke2.setAutoReverse(true);
      	stroke2.setCycleCount(1000);
      	stroke2.setDuration(Duration.millis(3000));
@@ -96,12 +95,12 @@ public class GameLayout extends Layout {
      	stroke2.setToValue(Color.DARKSLATEGREY);
      	stroke2.setShape(line);
      	stroke2.play();
-     	line.setFill(Color.BLACK);
+     	line.setFill(Color.BLACK);*/
      			
      // Seconde line style
      	line2 = new Line(50 , Layout.DEFAULT_HEIGHT, Layout.DEFAULT_WIDTH-50 , Layout.DEFAULT_HEIGHT);
      	line2.setStrokeWidth(10);
-     	StrokeTransition stroke3 = new StrokeTransition();
+     	/*StrokeTransition stroke3 = new StrokeTransition();
      	stroke3.setAutoReverse(true);
      	stroke3.setCycleCount(1000);
      	stroke3.setDuration(Duration.millis(1000));
@@ -109,7 +108,7 @@ public class GameLayout extends Layout {
      	stroke3.setToValue(Color.DARKSLATEGREY);
      	stroke3.setShape(line2);
      	stroke3.play();
-     	line2.setFill(Color.BLACK);
+     	line2.setFill(Color.BLACK);*/
      			
         buttonStyle();
         animationBlock();
@@ -123,6 +122,10 @@ public class GameLayout extends Layout {
      	ballElement.setEffect(ds1);
         addElements(ballElement);
         this.setBackground(Color.CHOCOLATE);
+
+		addStyleSheet(Resources.Style.FIELD_STYLE);
+		line.getStyleClass().add("line");
+		line2.getStyleClass().add("line");
     }
 
     public void setScore(int x, int y) {
@@ -203,24 +206,13 @@ public class GameLayout extends Layout {
     }
     
     public void buttonStyle() {
-    		String fond = "-fx-background-color:#001253; ";
-    		String style = "-fx-background-radius:20 20 20 20;"+
-    		"-fx-font-family: \"Cambria\";"+
-    		/*-fx-text-color:#FAF7F0;*/
-    		"-fx-text-fill:#f8f8ff;"+
-    		"-fx-background-color:#808080;"+
-    		"-fx-font-size:20px;"+
-    		"-fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 5 , 5 );";
-    		
-    		String styleLab = "-fx-alignment: center;"
-    						  + "-fx-font-size:40px;"+
-    						  "-fx-text-fill:#f8f8ff";
     		// assign css properties for the button
-    		reprendre.setStyle(style);
-    		recommencer.setStyle(style);
-    		acceuil.setStyle(style);
-    		options.setStyle(style);
-    		quitter.setStyle(style);
+			addStyleSheet(Resources.Style.BUTTON_STYLE);
+			reprendre.getStyleClass().add("btn");
+			recommencer.getStyleClass().add("btn");
+			acceuil.getStyleClass().add("btn");
+			options.getStyleClass().add("btn");
+			quitter.getStyleClass().add("btn");
     }
     
     public void buttonConfigPause(){

@@ -1,0 +1,8 @@
+.line {
+    -fx-stroke: #F9F871;
+    -fx-opacity: 0.7;
+}
+
+.line-ball-collision {
+    -fx-opacity: 1;
+}

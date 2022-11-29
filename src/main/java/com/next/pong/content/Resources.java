@@ -19,8 +19,12 @@ public class Resources {
     }
 
     public enum Music {
-        IMPERIAL_MARCH("imperial_march");
-
+        IMPERIAL_MARCH("imperial_march"),
+        GAME("game"),
+        KICK("kick"),
+        UPDATE("update"),
+        COIN("coin"),
+        BOUNCE("bounce");
         private final String text;
 
         Music(String value) {
@@ -39,6 +43,22 @@ public class Resources {
         private final String text;
 
         Clip(String value) {
+            this.text = value;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
+
+    public enum Style {
+        BUTTON_STYLE("buttonStyle"),
+        FIELD_STYLE("field");
+
+        private final String text;
+
+        Style(String value) {
             this.text = value;
         }
 

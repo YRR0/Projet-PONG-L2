@@ -2,7 +2,7 @@ package com.next.pong.pages.home;
 
 import com.next.pong.content.Resources;
 import com.next.pong.framework.activity.Activity;
-import com.next.pong.framework.audio.Music;
+import com.next.pong.framework.audio.Sound;
 import com.next.pong.framework.window.Window;
 import com.next.pong.pages.game.GameActivity;
 import com.next.pong.pages.settings.SettingsActivity;
@@ -10,16 +10,19 @@ import javafx.scene.Node;
 
 public class HomeActivity extends Activity<HomeLayout> {
 
-    private final Music audio;
+    private final Sound sound;
 
     public HomeActivity() {
         super(new HomeLayout());
 
-        audio = new Music(Resources.Music.IMPERIAL_MARCH);
-        audio.play();
+        sound = new Sound();
+        sound.playMusic(Resources.Music.GAME);
 
         Node playButton = findElementById("newGameButton");
-        playButton.setOnMouseClicked(event -> Window.goTo(new GameActivity()));
+        playButton.setOnMouseClicked(event -> {
+            sound.playSoundEffect(Resources.Music.COIN);
+            Window.goTo(new GameActivity());
+        });
 
         Node settingsOfGame = findElementById("settingsOfGame");
         settingsOfGame.setOnMouseClicked(event -> Window.goTo(new SettingsActivity()));
@@ -31,6 +34,5 @@ public class HomeActivity extends Activity<HomeLayout> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        audio.dispose();
     }
 }

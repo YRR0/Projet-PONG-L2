@@ -1,0 +1,15 @@
+.btn {
+    /* -fx-background-color: #001253; */
+    -fx-background-radius: 20 20 20 20;
+    -fx-font-family: "Cambria";
+    -fx-text-fill: #f8f8ff;
+    -fx-background-color:#808080;
+    -fx-font-size:20px;
+    -fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 5 , 5 );
+    -fx-opacity: 0.7;
+}
+
+.btn:hover {
+    -fx-background-color: #595959;
+    -fx-opacity: 1;
+}

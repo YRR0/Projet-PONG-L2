@@ -3,14 +3,14 @@ package com.next.pong.game;
 import com.next.pong.game.ball.Ball;
 import com.next.pong.game.court.Court;
 import com.next.pong.game.player.Player;
-import com.next.pong.utils.Vector2;
 
 public class Game {
 
     public interface Listener {
         void onPlayerScored();
 
-        void onBallVerticalWallCollision();
+        void onBallVerticalWallCollision(int id);
+        void onBallPlayerCollision(int id);
     }
 
     private Listener listener;
@@ -20,12 +20,7 @@ public class Game {
     private int scorePlayerA;
     private int scorePlayerB;
 
-    public Game(int width, int height, Player playerA, Player playerB) {
-        var ball = new Ball(
-                new Vector2(0.5 * width, 0.5 * height),
-                new Vector2(200, 300),
-                10
-        );
+    public Game(int width, int height, Ball ball, Player playerA, Player playerB) {
 
         court = new Court(width, height, ball, playerA, playerB);
 
@@ -48,9 +43,16 @@ public class Game {
             }
 
             @Override
-            public void onBallVerticalWallCollision() {
+            public void onBallVerticalWallCollision(int id) {
                 if (listener != null) {
-                    listener.onBallVerticalWallCollision();
+                    listener.onBallVerticalWallCollision(id);
+                }
+            }
+
+            @Override
+            public void onBallPlayerCollision(int id) {
+                if(listener != null) {
+                    listener.onBallPlayerCollision(id);
                 }
             }
         });
