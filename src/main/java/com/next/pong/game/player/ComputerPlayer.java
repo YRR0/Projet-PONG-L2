@@ -1,5 +1,6 @@
 package com.next.pong.game.player;
 
+import com.next.pong.framework.layout.Layout;
 import com.next.pong.game.ball.Ball;
 import com.next.pong.utils.Vector2;
 
@@ -21,11 +22,17 @@ public class ComputerPlayer extends Player {
     }
 
     public void move() {
-        if(ball.getPosition().y() < getPosition().y()) {
-            moveUp();
-        } else if(ball.getPosition().y() > getPosition().y() + getSize().y()) {
-            moveDown();
+        Vector2 RacketPosition = this.getPosition();
+        Vector2 BallPosition   = ball.getPosition();
+        double screenMid = Layout.DEFAULT_WIDTH / 2;
+        if((RacketPosition.x() > screenMid && BallPosition.x() > screenMid) || (RacketPosition.x() < screenMid && BallPosition.x() < screenMid)) {
+            if(BallPosition.y() < RacketPosition.y()) {
+                moveUp();
+            } else if(BallPosition.y() > RacketPosition.y()) {
+                moveDown();
+            }
         }
+
     }
 
 }
