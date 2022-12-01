@@ -6,3 +6,10 @@
 .line-ball-collision {
     -fx-opacity: 1;
 }
+
+#score {
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: #400D51;
+    -fx-font-weight: bold;
+    -fx-font-size: 50;
+}

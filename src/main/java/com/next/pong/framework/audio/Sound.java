@@ -37,15 +37,15 @@ public class Sound {
 
     }
 
-    public void play() {
+    private void play() {
         clip.start();
     }
 
-    public void loop() {
+    private void loop() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public void stop() {
+    private void stop() {
         clip.stop();
     }
 

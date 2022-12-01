@@ -10,8 +10,6 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -43,7 +41,7 @@ public class GameLayout extends Layout {
 
         text = new Text("0 : 0");
         text.setY(70);
-        text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 50));
+        text.setId("score");
         addElements(text);
 
         playerElementA = new Racket();
@@ -59,29 +57,34 @@ public class GameLayout extends Layout {
         // Configuration des buttons de pause;
         
         reprendre = new Button("Reprendre");
+        reprendre.setId("reprendre");
         recommencer = new Button("Recommencer");
+        recommencer.setId("recommencer");
         acceuil = new Button("Acceuil");
+        acceuil.setId("accueil");
         quitter = new Button("Quitter");
+        quitter.setId("quitter");
         options = new Button("Options");
+        options.setId("options");
         
-        reprendre.setTranslateX(Layout.DEFAULT_WIDTH/2-50);
-        reprendre.setTranslateY(Layout.DEFAULT_HEIGHT/2 - 100);
+        reprendre.setTranslateX(167.0);
+        reprendre.setTranslateY(124.0);
         reprendre.setVisible(false);
         
-        recommencer.setTranslateX(Layout.DEFAULT_WIDTH/2 - 65);
-        recommencer.setTranslateY(Layout.DEFAULT_HEIGHT/2 - 50 );
+        recommencer.setTranslateX(362.0);
+        recommencer.setTranslateY(124.0);
         recommencer.setVisible(false);
         
-        options.setTranslateX(Layout.DEFAULT_WIDTH/2 -35 );
-        options.setTranslateY(Layout.DEFAULT_HEIGHT/2);
+        options.setTranslateX(362.0);
+        options.setTranslateY(224.0);
         options.setVisible(false);
         
-        acceuil.setTranslateX(Layout.DEFAULT_WIDTH/2 -35);
-        acceuil.setTranslateY(Layout.DEFAULT_HEIGHT/2 + 50);
+        acceuil.setTranslateX(512.0);
+        acceuil.setTranslateY(224.0);
         acceuil.setVisible(false);
         
-        quitter.setTranslateX(Layout.DEFAULT_WIDTH/2 -35);
-        quitter.setTranslateY(Layout.DEFAULT_HEIGHT/2 + 100);
+        quitter.setTranslateX(512.0);
+        quitter.setTranslateY(336.0);
         quitter.setVisible(false);
         
      // One line transition
@@ -222,7 +225,7 @@ public class GameLayout extends Layout {
     public void pauseOpacity() {
     	playerElementA.setOpacity(0.3);
     	playerElementB.setOpacity(0.3);
-    	text.setOpacity(0.3);
+    	text.setOpacity(1);
     	ballElement.setOpacity(0.3);
     	line.setOpacity(0.3);
     	line2.setOpacity(0.3);

@@ -11,16 +11,18 @@ import javafx.scene.Node;
 public class HomeActivity extends Activity<HomeLayout> {
 
     private final Sound sound;
+    private final Sound se;
 
     public HomeActivity() {
         super(new HomeLayout());
 
         sound = new Sound();
+        se    = new Sound();
         sound.playMusic(Resources.Music.GAME);
 
         Node playButton = findElementById("newGameButton");
         playButton.setOnMouseClicked(event -> {
-            sound.playSoundEffect(Resources.Music.COIN);
+            se.playSoundEffect(Resources.Music.COIN);
             Window.goTo(new GameActivity());
         });
 
@@ -34,6 +36,6 @@ public class HomeActivity extends Activity<HomeLayout> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        sound.stop();
+        if(sound != null) sound.stopMusic();
     }
 }

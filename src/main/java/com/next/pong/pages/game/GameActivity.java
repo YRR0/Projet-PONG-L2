@@ -15,7 +15,8 @@ import javafx.scene.input.KeyCode;
 public class GameActivity extends Activity<GameLayout> {
 
     private final Game game;
-    private final Sound sound;
+    private final Sound music;
+    private final Sound se;
     public GameActivity() {
         super(new GameLayout());
 
@@ -24,7 +25,7 @@ public class GameActivity extends Activity<GameLayout> {
 
         var ball = new Ball(
                 new Vector2(0.5 * width, 0.5 * height),
-                new Vector2(150, 100),
+                new Vector2(150, 150),
                 10
         );
 
@@ -59,32 +60,34 @@ public class GameActivity extends Activity<GameLayout> {
        GameLayout g = this.layout;
        
        g.reprendre.setOnMouseClicked(e ->{
-       	this.layout.restoreOpa();
-        this.layout.buttonConfigPauseStop();
-        game.getCourt().pause = false; 
+            this.layout.restoreOpa();
+            this.layout.buttonConfigPauseStop();
+            game.getCourt().pause = false;
        });
        g.recommencer.setOnMouseClicked(e -> {
-       	Window.goTo( new GameActivity() );
+       	    Window.goTo( new GameActivity() );
        });
        g.acceuil.setOnMouseClicked(e -> {
-       	Window.goTo(new HomeActivity());
+       	    Window.goTo(new HomeActivity());
        });
        g.options.setOnMouseClicked(e -> {
-       	Window.goTo(new HomeActivity());
+            Window.goTo(new HomeActivity());
        });
        g.quitter.setOnMouseClicked(e -> {
-       	Window.goTo(new HomeActivity());
+       	    Window.goTo(new HomeActivity());
        });
 
-       sound = new Sound();
+       music = new Sound();
+       music.playMusic(Resources.Music.GAME);
+       se = new Sound();
        game.setListener(new Game.Listener() {
            @Override
            public void onPlayerScored() {
-               sound.playSoundEffect(Resources.Music.UPDATE);
+               se.playSoundEffect(Resources.Music.UPDATE);
            }
            @Override
            public void onBallVerticalWallCollision(int id) {
-               sound.playSoundEffect(Resources.Music.BOUNCE);
+               se.playSoundEffect(Resources.Music.BOUNCE);
                 if(id == 1) {
                     g.line.getStyleClass().add("line-ball-collision");
                     g.line2.getStyleClass().remove("line-ball-collision");
@@ -96,7 +99,7 @@ public class GameActivity extends Activity<GameLayout> {
 
            @Override
            public void onBallPlayerCollision(int id) {
-                sound.playSoundEffect(Resources.Music.KICK);
+               se.playSoundEffect(Resources.Music.KICK);
            }
        });
        
@@ -179,6 +182,6 @@ public class GameActivity extends Activity<GameLayout> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        sound.stop();
+        if(music != null) music.stopMusic();
     }
 }

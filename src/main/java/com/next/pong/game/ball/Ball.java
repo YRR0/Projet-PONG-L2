@@ -23,6 +23,13 @@ public class Ball {
     public Vector2 getPosition() {
         return position;
     }
+    public double getSpeedX() {
+        return speed.x();
+    }
+
+    public double getSpeedY() {
+        return speed.y();
+    }
 
     public void setPosition(Vector2 position) {
         this.position = position;
@@ -34,6 +41,10 @@ public class Ball {
 
     public void flipSpeedY() {
         speed = new Vector2(speed.x(), -speed.y());
+    }
+
+    public void setSpeed(Vector2 speed) {
+        this.speed = speed;
     }
 
     public void integratePosition(double deltaTime) {

@@ -6,10 +6,88 @@
     -fx-background-color:#808080;
     -fx-font-size:20px;
     -fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 5 , 5 );
-    -fx-opacity: 0.7;
+    -fx-opacity: 0.4;
 }
 
 .btn:hover {
-    -fx-background-color: #595959;
+    -fx-background-color: #141426;
     -fx-opacity: 1;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-radius: 0 0 0 0;
+}
+
+#reprendre {
+    -fx-pref-height: 312.0;
+    -fx-pref-width: 180.0;
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "Comfortaa";
+}
+
+#reprendre:hover {
+    -fx-background-image: url("/com/next/pong/img/reprendre.png");
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#recommencer {
+    -fx-pref-height: 84.0;
+    -fx-pref-width: 316.0;
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "Comfortaa";
+}
+
+#recommencer:hover {
+    -fx-background-image: url("/com/next/pong/img/recommencer.png");
+    -fx-background-size: 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right;
+}
+
+#quitter {
+    -fx-pref-height: 96.0;
+    -fx-pref-width: 166.0;
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "Comfortaa";
+}
+
+#quitter:hover {
+    -fx-background-image: url("/com/next/pong/img/quitter.png");
+    -fx-background-size: 50%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right;
+}
+
+#accueil {
+    -fx-pref-height: 96.0;
+    -fx-pref-width: 166.0;
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "Comfortaa";
+}
+
+#accueil:hover {
+    -fx-background-image: url("/com/next/pong/img/acceuil.png");
+    -fx-background-size: 50%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right;
+}
+
+#options {
+    -fx-pref-height: 208.0;
+    -fx-pref-width: 140.0;
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "Comfortaa";
+}
+
+#options:hover {
+    -fx-background-image: url("/com/next/pong/img/options.png");
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: bottom;
 }

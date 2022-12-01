@@ -128,9 +128,9 @@ public class Court {
 
         if (isInPlayerA || isInPlayerB) {
             ball.flipSpeedX();
-
             if(listener != null) {
-                listener.onBallPlayerCollision(isInPlayerA?1:2);
+                if(isInPlayerA) listener.onBallPlayerCollision(1);
+                else listener.onBallPlayerCollision(2);
             }
         }
     }
