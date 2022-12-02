@@ -11,12 +11,71 @@ import com.next.pong.game.player.Player;
 import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.utils.Vector2;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Text;
+
+import javax.swing.*;
+import java.text.DecimalFormat;
 
 public class GameActivity extends Activity<GameLayout> {
+
+    private class GameTimer {
+
+        Timer timer;
+        private int seconds;
+        private int minutes;
+        private Text text;
+        private DecimalFormat df = new DecimalFormat("00");
+
+        private GameTimer(int m, int s) {
+            this.minutes = m;
+            this.seconds = s;
+            text = new Text(df.format(minutes) + ":" + df.format(seconds));
+            timer = new Timer(1000, e -> {
+                    seconds--;
+                    String formatedSeconds = df.format(seconds);
+                    String formatedMinutes = df.format(minutes);
+                    if(seconds == -1) {
+                        seconds = 59;
+                        minutes--;
+                        formatedSeconds = df.format(seconds);
+                        formatedMinutes = df.format(minutes);
+                    }
+                    if(minutes == 0 && seconds == 3) se.playSoundEffect(Resources.Music.COUNTDOWN);
+                    this.text.setText(formatedMinutes + ":" + formatedSeconds);
+                    if(seconds == 0 && minutes == 0) {
+                       getWinner();
+                    }
+            });
+        }
+        public Text getTime() {
+            return text;
+        }
+
+        public void startGameTimer() {
+            timer.start();
+        }
+        public void stopGameTimer() {
+            timer.stop();
+        }
+
+        private void getWinner() {
+            timer.stop();
+            Game game = GameActivity.this.game;
+            int scoreA = game.getScorePlayerA(), scoreB = game.getScorePlayerB();
+            if(scoreA > scoreB) {
+                text.setText("PlayerA wins");
+            } else if(scoreA == scoreB) {
+                text.setText("Draw");
+            } else {
+                text.setText("PlayerB wins");
+            }
+        }
+    }
 
     private final Game game;
     private final Sound music;
     private final Sound se;
+    private final GameTimer gt = new GameTimer(0, 30);
     public GameActivity() {
         super(new GameLayout());
 
@@ -63,6 +122,7 @@ public class GameActivity extends Activity<GameLayout> {
             this.layout.restoreOpa();
             this.layout.buttonConfigPauseStop();
             game.getCourt().pause = false;
+            if(gt.minutes > 0 || gt.seconds > 0) gt.startGameTimer();
        });
        g.recommencer.setOnMouseClicked(e -> {
        	    Window.goTo( new GameActivity() );
@@ -102,7 +162,9 @@ public class GameActivity extends Activity<GameLayout> {
                se.playSoundEffect(Resources.Music.KICK);
            }
        });
-       
+
+       // Timer mode
+        gt.startGameTimer();
     }
     
     private void setUpPause(KeyCode pause,Game ga,GameActivity gaAc) {
@@ -113,11 +175,13 @@ public class GameActivity extends Activity<GameLayout> {
     				ga.getCourt().pause = false;
     				gaAc.layout.restoreOpa();
     				gaAc.layout.buttonConfigPauseStop();
+                    gt.startGameTimer();
     			}
     			else {
     				ga.getCourt().pause  = true;
     				gaAc.layout.pauseOpacity();
-                    gaAc.layout.buttonConfigPause();;
+                    gaAc.layout.buttonConfigPause();
+                    gt.stopGameTimer();
     			}
     		}
     		
@@ -163,6 +227,7 @@ public class GameActivity extends Activity<GameLayout> {
         game.update(deltaTime);
 
         layout.setScore(game.getScorePlayerA(), game.getScorePlayerB());
+        layout.setTime(gt.getTime());
 
         var ball = game.getBall();
         var ballPosition = ball.getPosition();
@@ -182,6 +247,7 @@ public class GameActivity extends Activity<GameLayout> {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if(gt != null) gt.stopGameTimer();
         if(music != null) music.stopMusic();
     }
 }

@@ -17,7 +17,8 @@ import java.util.Random;
 
 public class GameLayout extends Layout {
 
-    private final Text text;
+    private final Text score;
+    private Text time;
 
     private final Racket playerElementA;
     private final Racket playerElementB;
@@ -39,10 +40,16 @@ public class GameLayout extends Layout {
     public GameLayout() {
         super();
 
-        text = new Text("0 : 0");
-        text.setY(70);
-        text.setId("score");
-        addElements(text);
+        score = new Text("0 : 0");
+        score.setY(70);
+        score.setId("score");
+        addElements(score);
+
+        time = new Text(); // Pour le score
+        time.setY(460);
+        time.setId("time");
+        addElements(time);
+
 
         playerElementA = new Racket();
         playerElementB = new Racket();
@@ -56,13 +63,13 @@ public class GameLayout extends Layout {
         
         // Configuration des buttons de pause;
         
-        reprendre = new Button("Reprendre");
+        reprendre = new Button("Resume");
         reprendre.setId("reprendre");
-        recommencer = new Button("Recommencer");
+        recommencer = new Button("Restart");
         recommencer.setId("recommencer");
-        acceuil = new Button("Acceuil");
+        acceuil = new Button("Home");
         acceuil.setId("accueil");
-        quitter = new Button("Quitter");
+        quitter = new Button("Exit");
         quitter.setId("quitter");
         options = new Button("Options");
         options.setId("options");
@@ -114,8 +121,8 @@ public class GameLayout extends Layout {
     }
 
     public void setScore(int x, int y) {
-        text.setText(x + " : " + y);
-        center(text);
+        score.setText(x + " : " + y);
+        center(score);
     }
 
     public void setBallProperties(double x, double y, double radius) {
@@ -130,7 +137,7 @@ public class GameLayout extends Layout {
         playerElementB.setPlayerProperties(x, y, width, height);
     }
 
-    private void center(Text text) {
+    public static void center(Text text) {
         var width = text.getLayoutBounds().getWidth();
         text.setX(0.5 * DEFAULT_WIDTH - 0.5 * width);
     }
@@ -138,6 +145,11 @@ public class GameLayout extends Layout {
     
     //-------------------------------------------------------------------------------------------
 
+
+    public void setTime(Text time) {
+        this.time.setText(time.getText());
+        center(this.time);
+    }
     
     public void animationBlock() {
     	// Create a sun transition
@@ -225,19 +237,20 @@ public class GameLayout extends Layout {
     public void pauseOpacity() {
     	playerElementA.setOpacity(0.3);
     	playerElementB.setOpacity(0.3);
-    	text.setOpacity(1);
+    	score.setOpacity(1);
     	ballElement.setOpacity(0.3);
     	line.setOpacity(0.3);
     	line2.setOpacity(0.3);
+        time.setOpacity(0.3);
     }
     public void restoreOpa() {
     	playerElementA.setOpacity(0.9);
     	playerElementB.setOpacity(0.9);
-    	text.setOpacity(0.9);
+    	score.setOpacity(0.9);
     	ballElement.setOpacity(0.9);
      	line.setOpacity(0.9);
     	line2.setOpacity(0.9);
-   
+        time.setOpacity(0.9);
     }
     
     public static Color foncAlea() {

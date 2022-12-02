@@ -13,7 +13,6 @@ public class Sound {
 
     Clip clip;
     HashMap<String, URL> sounds = new HashMap<>();
-    //ArrayList<URL> sounds = new ArrayList<URL>();
 
     public Sound() {
         sounds.put("game", getClass().getResource("/com/next/pong/audio/game.wav"));
@@ -21,7 +20,7 @@ public class Sound {
         sounds.put("bounce", getClass().getResource("/com/next/pong/audio/bounce.wav"));
         sounds.put("update",getClass().getResource("/com/next/pong/audio/update.wav"));
         sounds.put("coin", getClass().getResource("/com/next/pong/audio/coin.wav"));
-       // sounds.add(getClass().getResource("/com/next/pong/audio/coin.wav"));
+        sounds.put("countdown", getClass().getResource("/com/next/pong/audio/countdown.wav"));
     }
 
     public void setSound(String s) {

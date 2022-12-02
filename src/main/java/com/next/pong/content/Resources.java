@@ -24,7 +24,8 @@ public class Resources {
         KICK("kick"),
         UPDATE("update"),
         COIN("coin"),
-        BOUNCE("bounce");
+        BOUNCE("bounce"),
+        COUNTDOWN("countdown");
         private final String text;
 
         Music(String value) {
