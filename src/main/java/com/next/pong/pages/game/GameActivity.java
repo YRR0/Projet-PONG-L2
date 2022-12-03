@@ -8,6 +8,7 @@ import com.next.pong.game.Game;
 import com.next.pong.game.ball.Ball;
 import com.next.pong.game.player.ComputerPlayer;
 import com.next.pong.game.player.Player;
+import com.next.pong.pages.game.ModeTournoi.Joueur;
 import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.utils.Vector2;
 import javafx.scene.input.KeyCode;
@@ -58,6 +59,7 @@ public class GameActivity extends Activity<GameLayout> {
             timer.stop();
         }
 
+        public boolean vtimer=false;
         private void getWinner() {
             timer.stop();
             Game game = GameActivity.this.game;
@@ -69,13 +71,15 @@ public class GameActivity extends Activity<GameLayout> {
             } else {
                 text.setText("PlayerB wins");
             }
+            game.getCourt().pause = true;
+            vtimer = game.getCourt().pause;
         }
     }
 
     private final Game game;
     private final Sound music;
     private final Sound se;
-    private final GameTimer gt = new GameTimer(0, 30);
+    private final GameTimer gt = new GameTimer(0, 10);
     public GameActivity() {
         super(new GameLayout());
 
@@ -87,14 +91,15 @@ public class GameActivity extends Activity<GameLayout> {
                 new Vector2(150, 150),
                 10
         );
-
-        var playerA = new ComputerPlayer(
+        
+        
+        var playerA = new Player(
                 new Vector2(0.05 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
-                new Vector2(0.01 * width, 0.25 * height),
-                ball
+                new Vector2(0.01 * width, 0.25 * height)//,
+                //ball
         );
-
+        
         /*var playerB = new Player(
                 new Vector2(0.95 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
@@ -165,6 +170,7 @@ public class GameActivity extends Activity<GameLayout> {
 
        // Timer mode
         gt.startGameTimer();
+       
     }
     
     private void setUpPause(KeyCode pause,Game ga,GameActivity gaAc) {
@@ -221,7 +227,9 @@ public class GameActivity extends Activity<GameLayout> {
             }
         }));
     }
-
+    
+    ModeTournoi gerer = new ModeTournoi();
+    
     @Override
     public void onUpdate(double deltaTime) {
         game.update(deltaTime);
@@ -242,12 +250,110 @@ public class GameActivity extends Activity<GameLayout> {
         var positionB = playerB.getPosition();
         var sizeB = playerB.getSize();
         layout.setPlayerElementB(positionB.x(), positionB.y(), sizeB.x(), sizeB.y());
-    }
 
+         if(gt.vtimer && ModeTournoi.partie > 0){
+        	// Mis a jour des scores 
+        	this.gestionnTournoi();  
+         }else {
+        	 gt.vtimer = false;
+         }
+    }
+    
     @Override
     public void onDestroy() {
         super.onDestroy();
         if(gt != null) gt.stopGameTimer();
         if(music != null) music.stopMusic();
     }
+    
+  boolean last=true;int n=0;
+  public void gestionnTournoi() {
+    	if(ModeTournoi.partie == 4) {
+    		System.out.println("Partie 1");
+    		String sc1 = String.valueOf(game.getScorePlayerA());
+        	String sc2 = String.valueOf(game.getScorePlayerB());
+        	
+        	if(game.getScorePlayerA() > game.getScorePlayerB()) {
+        		gerer.data.set(4, gerer.new Joueur("Le gagnant est  Joueur 1"," ! "));
+        	}
+        	else {
+        		String mess = gerer.data.get(4).getNom();
+        		gerer.data.set(4, gerer.new Joueur("Le gagnant est Joueur 2"," ! "));
+        	}
+            gerer.data.set(0, gerer.new Joueur("Joueur 1",sc1));
+            gerer.data.set(1, gerer.new Joueur("Joueur 2",sc2));
+            //System.out.println(game.getScorePlayerA());
+            //System.out.println(game.getScorePlayerB());
+            this.layout.sun.setVisible(false);
+            this.layout.c2.setVisible(false); 
+            gerer.afficherTournoi();
+    	}
+    	if(ModeTournoi.partie == 3) {
+    		System.out.println("Partie 2");
+    		String sc1 = String.valueOf(game.getScorePlayerA());
+        	String sc2 = String.valueOf(game.getScorePlayerB());
+        	
+        	if(game.getScorePlayerA() > game.getScorePlayerB()) {
+        		gerer.data.set(4, gerer.new Joueur("Le gagnant est JOUEUR 3"," ! "));
+        	}
+        	else {
+        		gerer.data.set(4, gerer.new Joueur("Le gagnant est JOUEUR 4"," ! "));
+        	}
+            gerer.data.set(2, gerer.new Joueur("Joueur 3",sc1));
+            gerer.data.set(3, gerer.new Joueur("Joueur 4",sc2));
+            //System.out.println(game.getScorePlayerA());
+            //System.out.println(game.getScorePlayerB());
+            this.layout.sun.setVisible(false);
+            this.layout.c2.setVisible(false); 
+            gerer.afficherTournoi();
+            
+    	}
+    	if(ModeTournoi.partie == 2 ) {
+    		System.out.println("Partie 3");
+    		if(game.getScorePlayerA() > game.getScorePlayerB()) {
+        		gerer.data.set(4, gerer.new Joueur("Le gagnant est JOUEUR 1"," ! "));
+        	}
+        	else {
+        		gerer.data.set(4, gerer.new Joueur("Le gagnat est JOUEUR 3"," ! "));
+        	}
+    		if(n==0) {
+    			int reelSC = Integer.valueOf(gerer.data.get(0).getScore())+game.getScorePlayerA();
+        		System.out.println(reelSC);
+    			int reelSC2 = Integer.valueOf(gerer.data.get(2).getScore())+game.getScorePlayerB();
+                System.out.println(reelSC2);
+    			gerer.data.set(0, gerer.new Joueur("Joueur 1",String.valueOf(reelSC)));
+                gerer.data.set(2, gerer.new Joueur("Joueur 3",String.valueOf(reelSC2)));
+                //System.out.println(game.getScorePlayerA());
+                //System.out.println(game.getScorePlayerB());
+                this.layout.sun.setVisible(false);
+                this.layout.c2.setVisible(false); 
+                gerer.afficherTournoi();	
+           }
+    		n++;
+    	}
+    	if(ModeTournoi.partie == 1){
+    		System.out.println("Partie 4");
+    		if(game.getScorePlayerA() > game.getScorePlayerB()) {
+        		gerer.data.set(4, gerer.new Joueur("Le gagnant est JOUEUR 2"," "));
+        	}
+        	else {
+        		gerer.data.set(4, gerer.new Joueur("Le gagnat est JOUEUR 4"," "));
+        	}
+    		
+    		if(last) {
+    			int reelSC = Integer.valueOf(gerer.data.get(1).getScore())+game.getScorePlayerA();
+        		int reelSC2 = Integer.valueOf(gerer.data.get(3).getScore())+game.getScorePlayerB();
+                gerer.data.set(1, gerer.new Joueur("Joueur 2",String.valueOf(reelSC)));
+                gerer.data.set(3, gerer.new Joueur("Joueur 4",String.valueOf(reelSC2)));
+                //System.out.println(game.getScorePlayerA());
+                //System.out.println(game.getScorePlayerB());
+                this.layout.sun.setVisible(false);
+                this.layout.c2.setVisible(false); 
+                gerer.afficherTournoi();	
+                last = false;
+    		}
+    		
+    	}
+    }
+    
 }
