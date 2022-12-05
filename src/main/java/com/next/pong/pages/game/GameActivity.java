@@ -70,7 +70,7 @@ public class GameActivity extends Activity<GameLayout> {
             game.getCourt().pause = false;
 
             if (gameTimer.getMinutes() > 0 || gameTimer.getSeconds() > 0) {
-                gameTimer.startGameTimer();
+                gameTimer.start();
             }
         });
 
@@ -111,7 +111,7 @@ public class GameActivity extends Activity<GameLayout> {
         });
 
         // Timer mode
-        gameTimer.startGameTimer();
+        gameTimer.start();
     }
 
     private void setUpPause(KeyCode pause, Game ga, GameActivity gaAc) {
@@ -122,12 +122,12 @@ public class GameActivity extends Activity<GameLayout> {
                     ga.getCourt().pause = false;
                     gaAc.layout.restoreOpa();
                     gaAc.layout.buttonConfigPauseStop();
-                    gameTimer.startGameTimer();
+                    gameTimer.start();
                 } else {
                     ga.getCourt().pause = true;
                     gaAc.layout.pauseOpacity();
                     gaAc.layout.buttonConfigPause();
-                    gameTimer.stopGameTimer();
+                    gameTimer.stop();
                 }
             }
 
@@ -195,6 +195,8 @@ public class GameActivity extends Activity<GameLayout> {
             player.update(ball, Layout.DEFAULT_WIDTH);
         }
 
+        gameTimer.update(deltaTime);
+
         if (gameTimer.getVTimer() && ModeTournoi.partie > 0) {
             // Mis a jour des scores
             gestionTournoi();
@@ -208,7 +210,7 @@ public class GameActivity extends Activity<GameLayout> {
         super.onDestroy();
 
         if (gameTimer != null) {
-            gameTimer.stopGameTimer();
+            gameTimer.stop();
         }
 
         if (music != null) {
