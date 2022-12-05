@@ -22,6 +22,8 @@ public class Court {
     private final int height;
 
     private final Ball ball;
+    private boolean isBallInCollisionSpeed;
+
     private final Player playerA;
     private final Player playerB;
 
@@ -103,14 +105,22 @@ public class Court {
             listener.onPlayerScored(playerA.getId());
         }
 
-        if ((position.y() - radius < 0 || position.y() + radius > height)) {
+        var isTooFarBottom = position.y() - radius < 0;
+        var isTooFarTop = position.y() + radius > height;
+
+        if ((isTooFarBottom || isTooFarTop) && !isBallInCollisionSpeed) {
             ball.flipSpeedY();
 
             if (listener != null) {
-                if(position.y() - radius < 0) listener.onBallVerticalWallCollision(1);
-                else listener.onBallVerticalWallCollision(2);
+                if(position.y() - radius < 0) {
+                    listener.onBallVerticalWallCollision(playerA.getId());
+                } else {
+                    listener.onBallVerticalWallCollision(playerB.getId());
+                }
             }
         }
+
+        isBallInCollisionSpeed = isTooFarBottom || isTooFarTop;
     }
 
     private void ballPlayerCollision() {
@@ -119,7 +129,7 @@ public class Court {
         boolean isInPlayerA = Collision.areColliding(ballBoundary, playerA.getBoundary());
         boolean isInPlayerB = Collision.areColliding(ballBoundary, playerB.getBoundary());
 
-        if (isInPlayerA || isInPlayerB) {
+        if ((isInPlayerA || isInPlayerB) && !isBallInCollisionSpeed) {
             ball.flipSpeedX();
             if(listener != null) {
                 if(isInPlayerA) {
@@ -129,6 +139,8 @@ public class Court {
                 }
             }
         }
+
+        isBallInCollisionSpeed = isInPlayerA || isInPlayerB;
     }
 
 }
