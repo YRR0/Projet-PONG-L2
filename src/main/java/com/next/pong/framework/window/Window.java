@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 
 public class Window extends Navigation {
 
-    public static void init(Stage stage) {
+    private static boolean debug;
+
+    public static void init(Stage stage, boolean debug) {
+        Window.debug = debug;
         stage.setResizable(false);
 
         var startActivity = new HomeActivity();
@@ -42,9 +45,11 @@ public class Window extends Navigation {
                 update(deltaTime);
                 navUpdateTime = System.currentTimeMillis() - navUpdateTime;
 
-                /*System.out.println("Frame: " + (deltaTime * 1000) + "ms | " + fps + "fps");
-                System.out.println("Work: " + navUpdateTime + "ms");
-                System.out.println("------------------------------");*/
+                if(debug) {
+                    System.out.println("Frame: " + (deltaTime * 1000) + "ms | " + fps + "fps");
+                    System.out.println("Work: " + navUpdateTime + "ms");
+                    System.out.println("------------------------------");
+                }
             }
 
         }.start();
@@ -53,4 +58,5 @@ public class Window extends Navigation {
     public static void goTo(Activity<?> activity) {
         Navigation.goTo(activity);
     }
+
 }

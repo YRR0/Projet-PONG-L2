@@ -8,7 +8,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Window.init(primaryStage);
+        Window.init(primaryStage, false);
         Window.startLoop();
     }
 
