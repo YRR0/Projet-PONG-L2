@@ -9,14 +9,12 @@ public class GameTimer {
 
     private int seconds;
     private int minutes;
-    private Text text;
-    private DecimalFormat df = new DecimalFormat("00");
-    private Game game;
+    private final Text text;
+    private final DecimalFormat df = new DecimalFormat("00");
 
-    public GameTimer(Game game, int m, int s) {
+    public GameTimer(int m, int s) {
         this.minutes = m;
         this.seconds = s;
-        this.game = game;
 
         text = new Text(df.format(minutes) + ":" + df.format(seconds));
         text.setId("chrono");
@@ -34,7 +32,7 @@ public class GameTimer {
 
     private double accTime;
 
-    public void update(double deltaTime) {
+    public void update(double deltaTime, Game game) {
         accTime += deltaTime;
 
         // execute update every 1 second
@@ -62,7 +60,7 @@ public class GameTimer {
         text.setText(formatedMinutes + ":" + formatedSeconds);
 
         if (seconds == 0 && minutes == 0) {
-            getWinner();
+            getWinner(game);
         }
     }
 
@@ -89,7 +87,7 @@ public class GameTimer {
         this.vtimer = vtimer;
     }
 
-    private void getWinner() {
+    private void getWinner(Game game) {
         int scoreA = game.getScorePlayerA(), scoreB = game.getScorePlayerB();
 
         if (scoreA > scoreB) {

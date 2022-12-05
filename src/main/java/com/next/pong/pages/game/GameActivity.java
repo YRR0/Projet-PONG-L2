@@ -51,7 +51,7 @@ public class GameActivity extends Activity<GameLayout> {
                 new Player(positionB, speedB, sizeB);
 
         game = new Game(width, height, ball, playerA, playerB);
-        gameTimer = new GameTimer(game, 0, 30);
+        gameTimer = new GameTimer(0, 30);
 
         setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
 
@@ -191,7 +191,7 @@ public class GameActivity extends Activity<GameLayout> {
             player.update(ball, Layout.DEFAULT_WIDTH);
         }
 
-        gameTimer.update(deltaTime);
+        gameTimer.update(deltaTime, game);
 
         if (gameTimer.getVTimer() && ModeTournoi.partie > 0) {
             // Mis a jour des scores
