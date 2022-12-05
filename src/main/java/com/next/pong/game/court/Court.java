@@ -115,14 +115,18 @@ public class Court {
 
     private void ballPlayerCollision() {
         var ballBoundary = ball.getBoundary();
+
         boolean isInPlayerA = Collision.areColliding(ballBoundary, playerA.getBoundary());
         boolean isInPlayerB = Collision.areColliding(ballBoundary, playerB.getBoundary());
 
         if (isInPlayerA || isInPlayerB) {
             ball.flipSpeedX();
             if(listener != null) {
-                if(isInPlayerA) listener.onBallPlayerCollision(1);
-                else listener.onBallPlayerCollision(2);
+                if(isInPlayerA) {
+                    listener.onBallPlayerCollision(playerA.getId());
+                } else {
+                    listener.onBallPlayerCollision(playerB.getId());
+                }
             }
         }
     }
