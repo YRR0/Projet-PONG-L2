@@ -14,8 +14,6 @@ import com.next.pong.pages.settings.SettingsActivity;
 import com.next.pong.utils.Vector2;
 import javafx.scene.input.KeyCode;
 
-import javax.swing.*;
-
 public class GameActivity extends Activity<GameLayout> {
 
     private final Game game;
