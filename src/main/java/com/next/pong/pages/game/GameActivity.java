@@ -3,6 +3,7 @@ package com.next.pong.pages.game;
 import com.next.pong.content.Resources;
 import com.next.pong.framework.activity.Activity;
 import com.next.pong.framework.audio.Sound;
+import com.next.pong.framework.layout.Layout;
 import com.next.pong.framework.window.Window;
 import com.next.pong.game.Game;
 import com.next.pong.game.ball.Ball;
@@ -44,20 +45,12 @@ public class GameActivity extends Activity<GameLayout> {
                 //ball
         );
 
-        var playerB = new Player(
-                new Vector2(0.95 * width, 0.5 * height),
-                new Vector2(0.0, 0.0),
-                new Vector2(0.01 * width, 0.25 * height)
-        );
+        var positionB = new Vector2(0.95 * width, 0.5 * height);
+        var speedB = new Vector2(0.0, 0.0);
+        var sizeB = new Vector2(0.01 * width, 0.25 * height);
 
-        if (AI) {
-            playerB = new ComputerPlayer(
-                    new Vector2(0.95 * width, 0.5 * height),
-                    new Vector2(0.0, 0.0),
-                    new Vector2(0.01 * width, 0.25 * height),
-                    ball
-            );
-        }
+        var playerB = AI ? new ComputerPlayer(positionB, speedB, sizeB) :
+                new Player(positionB, speedB, sizeB);
 
         game = new Game(width, height, ball, playerA, playerB);
         gameTimer = new GameTimer(game, 0, 30);
@@ -199,7 +192,7 @@ public class GameActivity extends Activity<GameLayout> {
         layout.setPlayerElementB(positionB.x(), positionB.y(), sizeB.x(), sizeB.y());
 
         if (playerB instanceof ComputerPlayer player) {
-            player.move();
+            player.update(ball, Layout.DEFAULT_WIDTH);
         }
 
         if (gameTimer.getVTimer() && ModeTournoi.partie > 0) {
