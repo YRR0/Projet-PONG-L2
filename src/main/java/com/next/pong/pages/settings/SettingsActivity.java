@@ -10,7 +10,7 @@ public class SettingsActivity extends Activity<SettingsLayout> {
     public SettingsActivity() {
         super(new SettingsLayout());
 
-        Node backButton = findElementById("backButton");
+        Node backButton = findElementById("backToMenu");
         backButton.setOnMouseClicked(event -> Window.goTo(new HomeActivity()));
     }
 

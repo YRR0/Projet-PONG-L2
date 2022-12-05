@@ -10,8 +10,10 @@ import com.next.pong.game.player.ComputerPlayer;
 import com.next.pong.game.player.Player;
 import com.next.pong.pages.game.ModeTournoi.Joueur;
 import com.next.pong.pages.home.HomeActivity;
+import com.next.pong.pages.settings.SettingsActivity;
 import com.next.pong.utils.Vector2;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import javax.swing.*;
@@ -31,6 +33,7 @@ public class GameActivity extends Activity<GameLayout> {
             this.minutes = m;
             this.seconds = s;
             text = new Text(df.format(minutes) + ":" + df.format(seconds));
+            text.setId("chrono");
             timer = new Timer(1000, e -> {
                     seconds--;
                     String formatedSeconds = df.format(seconds);
@@ -79,10 +82,11 @@ public class GameActivity extends Activity<GameLayout> {
     private final Game game;
     private final Sound music;
     private final Sound se;
-    private final GameTimer gt = new GameTimer(0, 10);
-    public GameActivity() {
+    private final GameTimer gt = new GameTimer(0, 30);
+    private boolean ordi;
+    public GameActivity(boolean AI) {
         super(new GameLayout());
-
+        ordi = AI;
         int width = GameLayout.DEFAULT_WIDTH;
         int height = GameLayout.DEFAULT_HEIGHT;
 
@@ -99,19 +103,21 @@ public class GameActivity extends Activity<GameLayout> {
                 new Vector2(0.01 * width, 0.25 * height)//,
                 //ball
         );
-        
-        /*var playerB = new Player(
+
+        var playerB = new Player(
                 new Vector2(0.95 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
                 new Vector2(0.01 * width, 0.25 * height)
-        );*/
-
-        var playerB = new ComputerPlayer(
-                new Vector2(0.95 * width, 0.5 * height),
-                new Vector2(0.0, 0.0),
-                new Vector2(0.01 * width, 0.25 * height),
-                ball
         );
+
+        if (AI) {
+            playerB = new ComputerPlayer(
+                    new Vector2(0.95 * width, 0.5 * height),
+                    new Vector2(0.0, 0.0),
+                    new Vector2(0.01 * width, 0.25 * height),
+                    ball
+            );
+        }
 
         game = new Game(width, height, ball, playerA, playerB);
 
@@ -130,16 +136,16 @@ public class GameActivity extends Activity<GameLayout> {
             if(gt.minutes > 0 || gt.seconds > 0) gt.startGameTimer();
        });
        g.recommencer.setOnMouseClicked(e -> {
-       	    Window.goTo( new GameActivity() );
+       	    Window.goTo( new GameActivity(AI) );
        });
        g.acceuil.setOnMouseClicked(e -> {
        	    Window.goTo(new HomeActivity());
        });
        g.options.setOnMouseClicked(e -> {
-            Window.goTo(new HomeActivity());
+            Window.goTo(new SettingsActivity());
        });
        g.quitter.setOnMouseClicked(e -> {
-       	    Window.goTo(new HomeActivity());
+       	    System.exit(0);
        });
 
        music = new Sound();
@@ -228,7 +234,7 @@ public class GameActivity extends Activity<GameLayout> {
         }));
     }
     
-    ModeTournoi gerer = new ModeTournoi();
+    ModeTournoi gerer = new ModeTournoi(this.ordi);
     
     @Override
     public void onUpdate(double deltaTime) {

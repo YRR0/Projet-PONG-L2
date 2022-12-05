@@ -6,6 +6,7 @@ import com.next.pong.pages.game.elements.BallElement;
 import com.next.pong.pages.game.elements.Racket;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -42,6 +43,7 @@ public class GameLayout extends Layout {
 
         score = new Text("0 : 0");
         score.setY(70);
+        score.setFill(Color.WHITE);
         score.setId("score");
         addElements(score);
 
@@ -113,7 +115,7 @@ public class GameLayout extends Layout {
      	
      	ballElement.setEffect(ds1);
         addElements(ballElement);
-        this.setBackground(Color.CHOCOLATE);
+        this.setBackground(Color.BLACK);
 
 		addStyleSheet(Resources.Style.FIELD_STYLE);
 		line.getStyleClass().add("line");
@@ -159,7 +161,7 @@ public class GameLayout extends Layout {
 		sun.setOpacity(0.3);
 	    c2.setOpacity(0.3);
 		c2.setRadius(40);
-		c2.setFill(Color.BLACK);
+		c2.setFill(Color.LIGHTGREEN);
 		//c2.setOpacity(0.5);
 		sun.setRadius(40);
 		sun.setFill(Color.CADETBLUE);

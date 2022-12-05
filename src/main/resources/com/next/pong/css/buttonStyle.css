@@ -1,10 +1,15 @@
+@font-face {
+    font-family: 'QuinqueFive';
+    src: url('../fonts/Quinquefive-K7qep.ttf');
+}
+
 .btn {
     /* -fx-background-color: #001253; */
-    -fx-background-radius: 20 20 20 20;
-    -fx-font-family: "Cambria";
+    /*-fx-background-radius: 20 20 20 20;*/
+    -fx-font-family: "QuinqueFive";
     -fx-text-fill: #f8f8ff;
     -fx-background-color:#808080;
-    -fx-font-size:20px;
+    -fx-font-size:10px;
     -fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 5 , 5 );
     -fx-opacity: 0.4;
 }
@@ -22,11 +27,11 @@
     -fx-pref-width: 180.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
-    -fx-font-family: "Comfortaa";
+    -fx-font-family: "QuinqueFive";
 }
 
 #reprendre:hover {
-    -fx-background-image: url("/com/next/pong/img/reprendre.png");
+    -fx-background-image: url("/com/next/pong/img/resume.png");
     -fx-background-size: 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -37,11 +42,11 @@
     -fx-pref-width: 316.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
-    -fx-font-family: "Comfortaa";
+    -fx-font-family: "QuinqueFive";
 }
 
 #recommencer:hover {
-    -fx-background-image: url("/com/next/pong/img/recommencer.png");
+    -fx-background-image: url("/com/next/pong/img/restart.png");
     -fx-background-size: 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
@@ -52,11 +57,11 @@
     -fx-pref-width: 166.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
-    -fx-font-family: "Comfortaa";
+    -fx-font-family: "QuinqueFive";
 }
 
 #quitter:hover {
-    -fx-background-image: url("/com/next/pong/img/quitter.png");
+    -fx-background-image: url("/com/next/pong/img/exit.png");
     -fx-background-size: 50%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
@@ -67,11 +72,11 @@
     -fx-pref-width: 166.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
-    -fx-font-family: "Comfortaa";
+    -fx-font-family: "QuinqueFive";
 }
 
 #accueil:hover {
-    -fx-background-image: url("/com/next/pong/img/acceuil.png");
+    -fx-background-image: url("/com/next/pong/img/home.png");
     -fx-background-size: 50%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
@@ -82,11 +87,11 @@
     -fx-pref-width: 140.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
-    -fx-font-family: "Comfortaa";
+    -fx-font-family: "QuinqueFive";
 }
 
 #options:hover {
-    -fx-background-image: url("/com/next/pong/img/options.png");
+    -fx-background-image: url("/com/next/pong/img/settings.png");
     -fx-background-size: 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: bottom;

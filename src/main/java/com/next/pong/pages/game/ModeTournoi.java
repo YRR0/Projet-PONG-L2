@@ -58,7 +58,7 @@ public class Joueur{
 	TableView<Joueur> table;
 	TableColumn<Joueur,String> colNom;
 	TableColumn<Joueur,String> colScore;
-	public ModeTournoi() {
+	public ModeTournoi(boolean AI) {
 	BorderPane root = new BorderPane();
 	
 	table = new TableView<Joueur>();
@@ -92,7 +92,7 @@ public class Joueur{
 	modeTournoiStage.setTitle("--Table View--");
 	modeTournoiStage.setScene(scene);
 	modeTournoiStage.setOnCloseRequest(event -> {
-		Window.goTo(new GameActivity());
+		Window.goTo(new GameActivity(AI));
 		partie --;
 	});
 	}

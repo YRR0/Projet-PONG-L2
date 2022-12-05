@@ -3,21 +3,10 @@
     src: url('../fonts/Quinquefive-K7qep.ttf');
 }
 
-.line {
-    -fx-stroke: #F9F871;
-    -fx-opacity: 0.7;
-}
-
-.line-ball-collision {
-    -fx-opacity: 1;
-}
-
-#score {
+.text {
     -fx-font-family: "QuinqueFive";
-    -fx-font-size: 50;
 }
 
-#chrono {
+#titleGame {
     -fx-font-family: "QuinqueFive";
-    -fx-font-size: 50;
 }

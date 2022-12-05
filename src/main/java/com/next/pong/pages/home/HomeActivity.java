@@ -23,7 +23,13 @@ public class HomeActivity extends Activity<HomeLayout> {
         Node playButton = findElementById("newGameButton");
         playButton.setOnMouseClicked(event -> {
             se.playSoundEffect(Resources.Music.COIN);
-            Window.goTo(new GameActivity());
+            Window.goTo(new GameActivity(false));
+        });
+
+        Node playButtonAI = findElementById("newGameButtonAI");
+        playButtonAI.setOnMouseClicked(event -> {
+            se.playSoundEffect(Resources.Music.COIN);
+            Window.goTo(new GameActivity(true));
         });
 
         Node settingsOfGame = findElementById("settingsOfGame");
