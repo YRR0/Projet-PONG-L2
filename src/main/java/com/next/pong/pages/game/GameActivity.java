@@ -8,16 +8,12 @@ import com.next.pong.game.Game;
 import com.next.pong.game.ball.Ball;
 import com.next.pong.game.player.ComputerPlayer;
 import com.next.pong.game.player.Player;
-import com.next.pong.pages.game.ModeTournoi.Joueur;
 import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.pages.settings.SettingsActivity;
 import com.next.pong.utils.Vector2;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 import javax.swing.*;
-import java.text.DecimalFormat;
 
 public class GameActivity extends Activity<GameLayout> {
 
@@ -231,27 +227,31 @@ public class GameActivity extends Activity<GameLayout> {
     int n = 0;
 
     public void gestionTournoi() {
+
         if (ModeTournoi.partie == 4) {
             System.out.println("Partie 1");
+
             String sc1 = String.valueOf(game.getScorePlayerA());
             String sc2 = String.valueOf(game.getScorePlayerB());
 
             if (game.getScorePlayerA() > game.getScorePlayerB()) {
                 gerer.data.set(4, gerer.new Joueur("Le gagnant est  Joueur 1", " ! "));
             } else {
-                String mess = gerer.data.get(4).getNom();
                 gerer.data.set(4, gerer.new Joueur("Le gagnant est Joueur 2", " ! "));
             }
+
             gerer.data.set(0, gerer.new Joueur("Joueur 1", sc1));
             gerer.data.set(1, gerer.new Joueur("Joueur 2", sc2));
-            //System.out.println(game.getScorePlayerA());
-            //System.out.println(game.getScorePlayerB());
+
             this.layout.sun.setVisible(false);
             this.layout.c2.setVisible(false);
+
             gerer.afficherTournoi();
         }
+
         if (ModeTournoi.partie == 3) {
             System.out.println("Partie 2");
+
             String sc1 = String.valueOf(game.getScorePlayerA());
             String sc2 = String.valueOf(game.getScorePlayerB());
 
@@ -262,37 +262,43 @@ public class GameActivity extends Activity<GameLayout> {
             }
             gerer.data.set(2, gerer.new Joueur("Joueur 3", sc1));
             gerer.data.set(3, gerer.new Joueur("Joueur 4", sc2));
-            //System.out.println(game.getScorePlayerA());
-            //System.out.println(game.getScorePlayerB());
+
             this.layout.sun.setVisible(false);
             this.layout.c2.setVisible(false);
-            gerer.afficherTournoi();
 
+            gerer.afficherTournoi();
         }
+
         if (ModeTournoi.partie == 2) {
             System.out.println("Partie 3");
+
             if (game.getScorePlayerA() > game.getScorePlayerB()) {
                 gerer.data.set(4, gerer.new Joueur("Le gagnant est JOUEUR 1", " ! "));
             } else {
                 gerer.data.set(4, gerer.new Joueur("Le gagnat est JOUEUR 3", " ! "));
             }
+
             if (n == 0) {
-                int reelSC = Integer.valueOf(gerer.data.get(0).getScore()) + game.getScorePlayerA();
+                int reelSC = Integer.parseInt(gerer.data.get(0).getScore()) + game.getScorePlayerA();
                 System.out.println(reelSC);
-                int reelSC2 = Integer.valueOf(gerer.data.get(2).getScore()) + game.getScorePlayerB();
+                int reelSC2 = Integer.parseInt(gerer.data.get(2).getScore()) + game.getScorePlayerB();
                 System.out.println(reelSC2);
+
                 gerer.data.set(0, gerer.new Joueur("Joueur 1", String.valueOf(reelSC)));
                 gerer.data.set(2, gerer.new Joueur("Joueur 3", String.valueOf(reelSC2)));
-                //System.out.println(game.getScorePlayerA());
-                //System.out.println(game.getScorePlayerB());
+
                 this.layout.sun.setVisible(false);
                 this.layout.c2.setVisible(false);
+
                 gerer.afficherTournoi();
             }
+
             n++;
         }
+
         if (ModeTournoi.partie == 1) {
             System.out.println("Partie 4");
+
             if (game.getScorePlayerA() > game.getScorePlayerB()) {
                 gerer.data.set(4, gerer.new Joueur("Le gagnant est JOUEUR 2", " "));
             } else {
@@ -300,14 +306,15 @@ public class GameActivity extends Activity<GameLayout> {
             }
 
             if (last) {
-                int reelSC = Integer.valueOf(gerer.data.get(1).getScore()) + game.getScorePlayerA();
-                int reelSC2 = Integer.valueOf(gerer.data.get(3).getScore()) + game.getScorePlayerB();
+                int reelSC = Integer.parseInt(gerer.data.get(1).getScore()) + game.getScorePlayerA();
+                int reelSC2 = Integer.parseInt(gerer.data.get(3).getScore()) + game.getScorePlayerB();
+
                 gerer.data.set(1, gerer.new Joueur("Joueur 2", String.valueOf(reelSC)));
                 gerer.data.set(3, gerer.new Joueur("Joueur 4", String.valueOf(reelSC2)));
-                //System.out.println(game.getScorePlayerA());
-                //System.out.println(game.getScorePlayerB());
-                this.layout.sun.setVisible(false);
-                this.layout.c2.setVisible(false);
+
+                layout.sun.setVisible(false);
+                layout.c2.setVisible(false);
+
                 gerer.afficherTournoi();
                 last = false;
             }
