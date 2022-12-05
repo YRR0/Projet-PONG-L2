@@ -49,7 +49,6 @@ public class Court {
     public void setListener(Listener listener) {
         this.listener = listener;
     }
-    public Listener getListener() {return listener;}
 
     public void resetBall() {
         ball.setPosition(new Vector2(0.5 * width, 0.5 * height));
@@ -57,13 +56,7 @@ public class Court {
 
     public void update(double deltaTime) {
         ball.integratePosition(deltaTime);
-        if(playerA.getKeyEventListener() == null) {
-            ((ComputerPlayer)playerA).move();
-        }
         playerA.integratePosition(deltaTime);
-        if(playerB.getKeyEventListener() == null) {
-            ((ComputerPlayer)playerB).move();
-        }
         playerB.integratePosition(deltaTime);
 
         clampPlayers();

@@ -20,9 +20,6 @@ public class Player {
     private Vector2 inputAcceleration;
     private Vector2 size;
 
-    //
-    protected Activity.KeyEventListener keyEventListener;
-
     public Player(Vector2 position, Vector2 speed, Vector2 size) {
         instances++;
         id = instances;
@@ -31,31 +28,10 @@ public class Player {
         this.position = position;
         this.speed = speed;
         this.size = size;
-
-        keyEventListener = new Activity.KeyEventListener() {
-            @Override
-            public void onPressed() {
-
-            }
-
-            @Override
-            public void onReleased() {
-
-            }
-        };
     }
 
     public int getId() {
         return id;
-    }
-
-    public Activity.KeyEventListener getKeyEventListener() {
-        return keyEventListener;
-    }
-
-    public Activity.KeyEventListener setKeyEventListener(Activity.KeyEventListener keyEventListener) {
-        this.keyEventListener = keyEventListener;
-        return this.keyEventListener;
     }
 
     public void integratePosition(double deltaTime) {

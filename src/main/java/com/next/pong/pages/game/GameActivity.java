@@ -121,11 +121,12 @@ public class GameActivity extends Activity<GameLayout> {
 
         game = new Game(width, height, ball, playerA, playerB);
 
-        if(!(playerA instanceof ComputerPlayer)) setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
-        if(!(playerB instanceof ComputerPlayer)) setupPlayerControl(playerB, KeyCode.UP, KeyCode.DOWN);
-        
-       // ------------------------------------------------------------------------------------
-       
+        setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
+
+        if(!(playerB instanceof ComputerPlayer)) {
+            setupPlayerControl(playerB, KeyCode.UP, KeyCode.DOWN);
+        }
+
        setUpPause(KeyCode.ESCAPE,game,this);
        GameLayout g = this.layout;
        
@@ -205,7 +206,7 @@ public class GameActivity extends Activity<GameLayout> {
     }
     
     private void setupPlayerControl(Player player, KeyCode up, KeyCode down) {
-        addKeyEventListener(up, player.setKeyEventListener(new KeyEventListener() {
+        addKeyEventListener(up, new KeyEventListener() {
             @Override
             public void onPressed() {
                 player.applyForceUp();
@@ -217,9 +218,9 @@ public class GameActivity extends Activity<GameLayout> {
                     player.applyNeutralForce();
                 }
             }
-        }));
+        });
 
-        addKeyEventListener(down, player.setKeyEventListener(new KeyEventListener() {
+        addKeyEventListener(down, new KeyEventListener() {
             @Override
             public void onPressed() {
                 player.applyForceDown();
@@ -231,7 +232,7 @@ public class GameActivity extends Activity<GameLayout> {
                     player.applyNeutralForce();
                 }
             }
-        }));
+        });
     }
     
     ModeTournoi gerer = new ModeTournoi(this.ordi);
@@ -256,6 +257,10 @@ public class GameActivity extends Activity<GameLayout> {
         var positionB = playerB.getPosition();
         var sizeB = playerB.getSize();
         layout.setPlayerElementB(positionB.x(), positionB.y(), sizeB.x(), sizeB.y());
+
+        if(playerB instanceof ComputerPlayer player) {
+            player.move();
+        }
 
          if(gt.vtimer && ModeTournoi.partie > 0){
         	// Mis a jour des scores 
