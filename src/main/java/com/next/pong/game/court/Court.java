@@ -16,7 +16,7 @@ public class Court {
 
     private Listener listener;
     
-    public boolean pause=false;
+    public boolean pause = false;
     
     private final int width;
     private final int height;
@@ -26,6 +26,8 @@ public class Court {
 
     private final Player playerA;
     private final Player playerB;
+
+    private static final double MAX_PLAYER_BALL_DEFLECTION = 0.2 * Math.PI;
 
     public Court(int width, int height, Ball ball, Player playerA, Player playerB) {
         this.width = width;
@@ -130,7 +132,11 @@ public class Court {
         boolean isInPlayerB = Collision.areColliding(ballBoundary, playerB.getBoundary());
 
         if ((isInPlayerA || isInPlayerB) && !isBallInCollisionSpeed) {
+
             ball.flipSpeedX();
+            var offsetParam = playerBallOffsetParam(isInPlayerA ? playerA : playerB);
+            ball.setSpeed(ball.getSpeedAngle() + offsetParam * MAX_PLAYER_BALL_DEFLECTION);
+
             if(listener != null) {
                 if(isInPlayerA) {
                     listener.onBallPlayerCollision(playerA.getId());
@@ -141,6 +147,11 @@ public class Court {
         }
 
         isBallInCollisionSpeed = isInPlayerA || isInPlayerB;
+    }
+
+    private double playerBallOffsetParam(Player player) {
+        var offset = ball.getPosition().y() - player.getPosition().y();
+        return 2 * offset / player.getSize().y();
     }
 
 }

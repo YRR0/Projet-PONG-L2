@@ -28,6 +28,14 @@ public class Ball {
         this.position = position;
     }
 
+    public void setSpeed(double angle) {
+        speed = new Vector2(Math.cos(angle), Math.sin(angle)).scalar(speed.norm());
+    }
+
+    public double getSpeedAngle() {
+        return Math.atan2(speed.y(), speed.x()) + 2 * Math.PI;
+    }
+
     public void flipSpeedX() {
         speed = new Vector2(-speed.x(), speed.y());
     }

@@ -10,4 +10,8 @@ public record Vector2(double x, double y) {
         return new Vector2(scalar * x, scalar * y);
     }
 
+    public double norm() {
+        return Math.sqrt(x * x + y * y);
+    }
+
 }
