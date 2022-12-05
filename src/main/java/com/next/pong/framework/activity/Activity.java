@@ -20,18 +20,12 @@ public abstract class Activity<T extends Layout> extends Scene {
     }
 
     protected final T layout;
-    private final ActivityPayload payload;
 
     private final List<KeyEvent> listeners;
 
     protected Activity(T layout) {
-        this(layout, null);
-    }
-
-    protected Activity(T layout, ActivityPayload payload) {
         super(layout);
         this.layout = layout;
-        this.payload = payload;
         this.listeners = new ArrayList<>();
 
         setOnKeyPressed(event -> {
@@ -54,10 +48,6 @@ public abstract class Activity<T extends Layout> extends Scene {
 
     public Node findElementById(String id) {
         return lookup('#' + id);
-    }
-
-    public ActivityPayload getPayload() {
-        return payload;
     }
 
     public final void update(double deltaTime) {

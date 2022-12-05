@@ -50,7 +50,7 @@ public class Window extends Navigation {
         }.start();
     }
 
-    public static void goTo(Activity activity) {
+    public static void goTo(Activity<?> activity) {
         Navigation.goTo(activity);
     }
 }
