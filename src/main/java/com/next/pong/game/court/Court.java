@@ -2,7 +2,6 @@ package com.next.pong.game.court;
 
 import com.next.pong.game.ball.Ball;
 import com.next.pong.game.physics.Collision;
-import com.next.pong.game.player.ComputerPlayer;
 import com.next.pong.game.player.Player;
 import com.next.pong.utils.MathUtils;
 import com.next.pong.utils.Vector2;
