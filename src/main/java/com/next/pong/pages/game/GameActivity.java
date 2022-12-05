@@ -21,76 +21,16 @@ import java.text.DecimalFormat;
 
 public class GameActivity extends Activity<GameLayout> {
 
-    private class GameTimer {
-
-        Timer timer;
-        private int seconds;
-        private int minutes;
-        private Text text;
-        private DecimalFormat df = new DecimalFormat("00");
-
-        private GameTimer(int m, int s) {
-            this.minutes = m;
-            this.seconds = s;
-            text = new Text(df.format(minutes) + ":" + df.format(seconds));
-            text.setId("chrono");
-            timer = new Timer(1000, e -> {
-                seconds--;
-                String formatedSeconds = df.format(seconds);
-                String formatedMinutes = df.format(minutes);
-                if (seconds == -1) {
-                    seconds = 59;
-                    minutes--;
-                    formatedSeconds = df.format(seconds);
-                    formatedMinutes = df.format(minutes);
-                }
-                if (minutes == 0 && seconds == 3) se.playSoundEffect(Resources.Music.COUNTDOWN);
-                this.text.setText(formatedMinutes + ":" + formatedSeconds);
-                if (seconds == 0 && minutes == 0) {
-                    getWinner();
-                }
-            });
-        }
-
-        public Text getTime() {
-            return text;
-        }
-
-        public void startGameTimer() {
-            timer.start();
-        }
-
-        public void stopGameTimer() {
-            timer.stop();
-        }
-
-        public boolean vtimer = false;
-
-        private void getWinner() {
-            timer.stop();
-            Game game = GameActivity.this.game;
-            int scoreA = game.getScorePlayerA(), scoreB = game.getScorePlayerB();
-            if (scoreA > scoreB) {
-                text.setText("PlayerA wins");
-            } else if (scoreA == scoreB) {
-                text.setText("Draw");
-            } else {
-                text.setText("PlayerB wins");
-            }
-            game.getCourt().pause = true;
-            vtimer = game.getCourt().pause;
-        }
-    }
-
     private final Game game;
     private final Sound music;
     private final Sound se;
-    private final GameTimer gt = new GameTimer(0, 30);
-    private boolean ordi;
+    private final GameTimer gameTimer;
+    private boolean isComputerPlayerB;
 
     public GameActivity(boolean AI) {
         super(new GameLayout());
-        ordi = AI;
+
+        isComputerPlayerB = AI;
         int width = GameLayout.DEFAULT_WIDTH;
         int height = GameLayout.DEFAULT_HEIGHT;
 
@@ -124,6 +64,7 @@ public class GameActivity extends Activity<GameLayout> {
         }
 
         game = new Game(width, height, ball, playerA, playerB);
+        gameTimer = new GameTimer(game, 0, 30);
 
         setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
 
@@ -135,27 +76,27 @@ public class GameActivity extends Activity<GameLayout> {
         GameLayout g = this.layout;
 
         g.reprendre.setOnMouseClicked(e -> {
-            this.layout.restoreOpa();
-            this.layout.buttonConfigPauseStop();
+            layout.restoreOpa();
+            layout.buttonConfigPauseStop();
             game.getCourt().pause = false;
-            if (gt.minutes > 0 || gt.seconds > 0) gt.startGameTimer();
+
+            if (gameTimer.getMinutes() > 0 || gameTimer.getSeconds() > 0) {
+                gameTimer.startGameTimer();
+            }
         });
-        g.recommencer.setOnMouseClicked(e -> {
-            Window.goTo(new GameActivity(AI));
-        });
-        g.acceuil.setOnMouseClicked(e -> {
-            Window.goTo(new HomeActivity());
-        });
-        g.options.setOnMouseClicked(e -> {
-            Window.goTo(new SettingsActivity());
-        });
-        g.quitter.setOnMouseClicked(e -> {
-            System.exit(0);
-        });
+
+        g.recommencer.setOnMouseClicked(e -> Window.goTo(new GameActivity(AI)));
+
+        g.acceuil.setOnMouseClicked(e -> Window.goTo(new HomeActivity()));
+
+        g.options.setOnMouseClicked(e -> Window.goTo(new SettingsActivity()));
+
+        g.quitter.setOnMouseClicked(e -> System.exit(0));
 
         music = new Sound();
         music.playMusic(Resources.Music.GAME);
         se = new Sound();
+
         game.setListener(new Game.Listener() {
             @Override
             public void onPlayerScored() {
@@ -181,8 +122,7 @@ public class GameActivity extends Activity<GameLayout> {
         });
 
         // Timer mode
-        gt.startGameTimer();
-
+        gameTimer.startGameTimer();
     }
 
     private void setUpPause(KeyCode pause, Game ga, GameActivity gaAc) {
@@ -193,12 +133,12 @@ public class GameActivity extends Activity<GameLayout> {
                     ga.getCourt().pause = false;
                     gaAc.layout.restoreOpa();
                     gaAc.layout.buttonConfigPauseStop();
-                    gt.startGameTimer();
+                    gameTimer.startGameTimer();
                 } else {
                     ga.getCourt().pause = true;
                     gaAc.layout.pauseOpacity();
                     gaAc.layout.buttonConfigPause();
-                    gt.stopGameTimer();
+                    gameTimer.stopGameTimer();
                 }
             }
 
@@ -239,14 +179,14 @@ public class GameActivity extends Activity<GameLayout> {
         });
     }
 
-    ModeTournoi gerer = new ModeTournoi(this.ordi);
+    ModeTournoi gerer = new ModeTournoi(isComputerPlayerB);
 
     @Override
     public void onUpdate(double deltaTime) {
         game.update(deltaTime);
 
         layout.setScore(game.getScorePlayerA(), game.getScorePlayerB());
-        layout.setTime(gt.getTime());
+        layout.setTime(gameTimer.getTime());
 
         var ball = game.getBall();
         var ballPosition = ball.getPosition();
@@ -266,25 +206,31 @@ public class GameActivity extends Activity<GameLayout> {
             player.move();
         }
 
-        if (gt.vtimer && ModeTournoi.partie > 0) {
+        if (gameTimer.getVTimer() && ModeTournoi.partie > 0) {
             // Mis a jour des scores
-            this.gestionnTournoi();
+            gestionTournoi();
         } else {
-            gt.vtimer = false;
+            gameTimer.setVtimer(false);
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (gt != null) gt.stopGameTimer();
-        if (music != null) music.stopMusic();
+
+        if (gameTimer != null) {
+            gameTimer.stopGameTimer();
+        }
+
+        if (music != null) {
+            music.stopMusic();
+        }
     }
 
     boolean last = true;
     int n = 0;
 
-    public void gestionnTournoi() {
+    public void gestionTournoi() {
         if (ModeTournoi.partie == 4) {
             System.out.println("Partie 1");
             String sc1 = String.valueOf(game.getScorePlayerA());
