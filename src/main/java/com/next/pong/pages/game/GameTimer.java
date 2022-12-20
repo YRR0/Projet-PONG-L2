@@ -36,7 +36,7 @@ public class GameTimer {
         accTime += deltaTime;
 
         // execute update every 1 second
-        if(accTime < 1 && isAlive) {
+        if(accTime < 1 || !isAlive) {
             return;
         }
 
