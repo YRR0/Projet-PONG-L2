@@ -1,5 +1,7 @@
 package com.next.pong.pages.game;
 
+import com.next.pong.content.Resources;
+import com.next.pong.framework.audio.Sound;
 import com.next.pong.game.Game;
 import javafx.scene.text.Text;
 
@@ -54,7 +56,7 @@ public class GameTimer {
         }
 
         if (minutes == 0 && seconds == 3) {
-            // se.playSoundEffect(Resources.Music.COUNTDOWN); TODO: Sound effect
+            new Sound().playSoundEffect(Resources.Music.COUNTDOWN);
         }
 
         text.setText(formatedMinutes + ":" + formatedSeconds);
