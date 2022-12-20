@@ -6,7 +6,6 @@ import com.next.pong.pages.game.elements.BallElement;
 import com.next.pong.pages.game.elements.Racket;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Button;
-import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -41,14 +40,17 @@ public class GameLayout extends Layout {
     public GameLayout() {
         super();
 
+        // Pour le score
         score = new Text("0 : 0");
         score.setY(70);
         score.setFill(Color.WHITE);
         score.setId("score");
         addElements(score);
 
-        time = new Text(); // Pour le score
-        time.setY(460);
+        // Pour le timer
+        time = new Text();
+        time.setY(450);
+        time.setFill(Color.LIGHTPINK);
         time.setId("time");
         addElements(time);
 

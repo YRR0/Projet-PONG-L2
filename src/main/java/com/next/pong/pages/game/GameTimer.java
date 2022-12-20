@@ -19,7 +19,6 @@ public class GameTimer {
         this.seconds = s;
 
         text = new Text(df.format(minutes) + ":" + df.format(seconds));
-        text.setId("chrono");
     }
 
     private boolean isAlive;
