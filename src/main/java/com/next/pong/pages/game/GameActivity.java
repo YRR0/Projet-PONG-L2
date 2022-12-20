@@ -17,8 +17,6 @@ import javafx.scene.input.KeyCode;
 public class GameActivity extends Activity<GameLayout> {
 
     private final Game game;
-    private final ModeTournoi tournoi;
-
     private final Sound music;
     private final Sound soundEffect;
     private final GameTimer gameTimer;
@@ -28,8 +26,6 @@ public class GameActivity extends Activity<GameLayout> {
 
         int width = GameLayout.DEFAULT_WIDTH;
         int height = GameLayout.DEFAULT_HEIGHT;
-
-        tournoi = new ModeTournoi(AI);
 
         var ball = new Ball(
                 new Vector2(0.5 * width, 0.5 * height),
@@ -192,13 +188,6 @@ public class GameActivity extends Activity<GameLayout> {
         }
 
         gameTimer.update(deltaTime, game);
-
-        if (gameTimer.getVTimer() && ModeTournoi.partie > 0) {
-            // Mis a jour des scores
-            gestionTournoi();
-        } else {
-            gameTimer.setVtimer(false);
-        }
     }
 
     @Override
@@ -211,105 +200,6 @@ public class GameActivity extends Activity<GameLayout> {
 
         if (music != null) {
             music.stopMusic();
-        }
-    }
-
-    boolean last = true;
-    int n = 0;
-
-    public void gestionTournoi() {
-
-        if (ModeTournoi.partie == 4) {
-            System.out.println("Partie 1");
-
-            String sc1 = String.valueOf(game.getScorePlayerA());
-            String sc2 = String.valueOf(game.getScorePlayerB());
-
-            if (game.getScorePlayerA() > game.getScorePlayerB()) {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnant est  Joueur 1", " ! "));
-            } else {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnant est Joueur 2", " ! "));
-            }
-
-            tournoi.data.set(0, tournoi.new Joueur("Joueur 1", sc1));
-            tournoi.data.set(1, tournoi.new Joueur("Joueur 2", sc2));
-
-            this.layout.sun.setVisible(false);
-            this.layout.c2.setVisible(false);
-
-            tournoi.afficherTournoi();
-        }
-
-        if (ModeTournoi.partie == 3) {
-            System.out.println("Partie 2");
-
-            String sc1 = String.valueOf(game.getScorePlayerA());
-            String sc2 = String.valueOf(game.getScorePlayerB());
-
-            if (game.getScorePlayerA() > game.getScorePlayerB()) {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnant est JOUEUR 3", " ! "));
-            } else {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnant est JOUEUR 4", " ! "));
-            }
-            tournoi.data.set(2, tournoi.new Joueur("Joueur 3", sc1));
-            tournoi.data.set(3, tournoi.new Joueur("Joueur 4", sc2));
-
-            this.layout.sun.setVisible(false);
-            this.layout.c2.setVisible(false);
-
-            tournoi.afficherTournoi();
-        }
-
-        if (ModeTournoi.partie == 2) {
-            System.out.println("Partie 3");
-
-            if (game.getScorePlayerA() > game.getScorePlayerB()) {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnant est JOUEUR 1", " ! "));
-            } else {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnat est JOUEUR 3", " ! "));
-            }
-
-            if (n == 0) {
-                int reelSC = Integer.parseInt(tournoi.data.get(0).getScore()) + game.getScorePlayerA();
-                System.out.println(reelSC);
-                int reelSC2 = Integer.parseInt(tournoi.data.get(2).getScore()) + game.getScorePlayerB();
-                System.out.println(reelSC2);
-
-                tournoi.data.set(0, tournoi.new Joueur("Joueur 1", String.valueOf(reelSC)));
-                tournoi.data.set(2, tournoi.new Joueur("Joueur 3", String.valueOf(reelSC2)));
-
-                this.layout.sun.setVisible(false);
-                this.layout.c2.setVisible(false);
-
-                tournoi.afficherTournoi();
-            }
-
-            n++;
-        }
-
-        if (ModeTournoi.partie == 1) {
-            System.out.println("Partie 4");
-
-            if (game.getScorePlayerA() > game.getScorePlayerB()) {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnant est JOUEUR 2", " "));
-            } else {
-                tournoi.data.set(4, tournoi.new Joueur("Le gagnat est JOUEUR 4", " "));
-            }
-
-            if (last) {
-                int reelSC = Integer.parseInt(tournoi.data.get(1).getScore()) + game.getScorePlayerA();
-                int reelSC2 = Integer.parseInt(tournoi.data.get(3).getScore()) + game.getScorePlayerB();
-
-                tournoi.data.set(1, tournoi.new Joueur("Joueur 2", String.valueOf(reelSC)));
-                tournoi.data.set(3, tournoi.new Joueur("Joueur 4", String.valueOf(reelSC2)));
-
-                layout.sun.setVisible(false);
-                layout.c2.setVisible(false);
-
-                tournoi.afficherTournoi();
-                last = false;
-            }
-
         }
     }
 

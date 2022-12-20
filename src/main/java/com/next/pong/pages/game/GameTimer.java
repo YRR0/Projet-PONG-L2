@@ -76,17 +76,6 @@ public class GameTimer {
         return seconds;
     }
 
-    // TODO: What????
-    private boolean vtimer = false;
-
-    public boolean getVTimer() {
-        return vtimer;
-    }
-
-    public void setVtimer(boolean vtimer) {
-        this.vtimer = vtimer;
-    }
-
     private void getWinner(Game game) {
         int scoreA = game.getScorePlayerA(), scoreB = game.getScorePlayerB();
 
@@ -97,9 +86,7 @@ public class GameTimer {
         } else {
             text.setText("PlayerB wins");
         }
-
         game.getCourt().pause = true;
-        vtimer = game.getCourt().pause;
     }
 }
 
