@@ -41,6 +41,10 @@ public abstract class Layout extends Pane {
 
         try {
             Parent parent = loader.load();
+            parent.setLayoutX(0);
+            parent.setLayoutY(0);
+            ((Pane) parent).setPrefWidth(DEFAULT_WIDTH);
+            ((Pane) parent).setPrefHeight(DEFAULT_HEIGHT);
             addElements(parent);
         } catch (IOException e) {
             e.printStackTrace();
