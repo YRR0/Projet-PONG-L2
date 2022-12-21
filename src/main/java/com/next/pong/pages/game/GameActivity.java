@@ -63,7 +63,7 @@ public class GameActivity extends Activity<GameLayout> {
             g.gamePause.buttonConfigPauseStop();
             game.getCourt().pause = false;
 
-            if (gameTimer.getMinutes() > 0 || gameTimer.getSeconds() > 0) {
+            if (gameTimer.getMinutes() > 0 && gameTimer.getSeconds() > 0) {
                 gameTimer.start();
             }
         });
