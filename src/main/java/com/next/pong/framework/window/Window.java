@@ -4,6 +4,7 @@ import com.next.pong.framework.activity.Activity;
 import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.utils.TimeUtils;
 import javafx.animation.AnimationTimer;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 public class Window extends Navigation {
@@ -18,6 +19,11 @@ public class Window extends Navigation {
 
         setOnActivityChangeListener((oldActivity, newActivity) -> {
             stage.setScene(newActivity);
+            stage.setX(0);
+            stage.setY(0);
+            stage.setFullScreen(true);
+            stage.setMaximized(true);
+            stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             stage.show();
         });
 
