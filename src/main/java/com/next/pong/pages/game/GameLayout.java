@@ -5,7 +5,6 @@ import com.next.pong.framework.layout.Layout;
 import com.next.pong.pages.game.elements.BallElement;
 import com.next.pong.pages.game.elements.Racket;
 import javafx.animation.TranslateTransition;
-import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -13,120 +12,72 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import java.util.Random;
-
 public class GameLayout extends Layout {
 
-    private final Text score;
-    private Text time;
-
-    private final Racket playerElementA;
-    private final Racket playerElementB;
-
-    private final BallElement ballElement;
-
-    public Button reprendre;
-    public Button recommencer;
-    public Button acceuil;
-    public Button options;
-    public Button quitter;
-
-    Circle sun;
-    Circle c2;
-
-    Line line;
-    Line line2;
+    private Text score, time;
+    private Racket playerElementA, playerElementB;
+    private BallElement ballElement;
+    public final GamePause gamePause;
+    private Circle sun, c2;
+    Line line, line2;
 
     public GameLayout() {
         super();
+        this.setBackground(Color.BLACK);
+        initScore();
+        initTimer();
+        initElements();
+        // Configuration des buttons de pause;
+        gamePause = new GamePause();
+        gamePause.buttonStyle();
+        addStyleSheet(Resources.Style.BUTTON_STYLE);
+        // Animations
+        line = new Line(50, 0, Layout.DEFAULT_WIDTH - 50, 0);
+        line.setStrokeWidth(20);
+        line2 = new Line(50, Layout.DEFAULT_HEIGHT, Layout.DEFAULT_WIDTH - 50, Layout.DEFAULT_HEIGHT);
+        line2.setStrokeWidth(20);
+        animationBlock();
+        ballAnimation();
+        addElements(sun, c2, line, line2, gamePause);
+        line.getStyleClass().add("line");
+        line2.getStyleClass().add("line");
+        addStyleSheet(Resources.Style.FIELD_STYLE);
+    }
 
-        // Pour le score
+    private void initScore() { // Pour le score
         score = new Text("0 : 0");
-        score.setY(70);
+        score.setY(100);
         score.setFill(Color.WHITE);
         score.setId("score");
         addElements(score);
+    }
 
-        // Pour le timer
+    private void initTimer() { // Pour le timer
         time = new Text();
-        time.setY(450);
+        time.setY(Layout.DEFAULT_HEIGHT - 70);
         time.setFill(Color.LIGHTPINK);
         time.setId("time");
         addElements(time);
+    }
 
-
+    private void initElements() {
         playerElementA = new Racket();
         playerElementB = new Racket();
         addElements(playerElementA, playerElementB);
-
         ballElement = new BallElement();
-
-        // --------------------------------------------------------------------------------------------------------------
         playerElementA.setFill(Color.LIGHTCYAN);
         playerElementB.setFill(Color.LIGHTCYAN);
-
-        // Configuration des buttons de pause;
-
-        reprendre = new Button("Resume");
-        reprendre.setId("reprendre");
-        recommencer = new Button("Restart");
-        recommencer.setId("recommencer");
-        acceuil = new Button("Home");
-        acceuil.setId("accueil");
-        quitter = new Button("Exit");
-        quitter.setId("quitter");
-        options = new Button("Options");
-        options.setId("options");
-
-        reprendre.setTranslateX(167.0);
-        reprendre.setTranslateY(124.0);
-        reprendre.setVisible(false);
-
-        recommencer.setTranslateX(362.0);
-        recommencer.setTranslateY(124.0);
-        recommencer.setVisible(false);
-
-        options.setTranslateX(362.0);
-        options.setTranslateY(224.0);
-        options.setVisible(false);
-
-        acceuil.setTranslateX(512.0);
-        acceuil.setTranslateY(224.0);
-        acceuil.setVisible(false);
-
-        quitter.setTranslateX(512.0);
-        quitter.setTranslateY(336.0);
-        quitter.setVisible(false);
-
-        // One line transition
-        line = new Line(50, 0, Layout.DEFAULT_WIDTH - 50, 0);
-        line.setStrokeWidth(10);
-
-        // Seconde line style
-        line2 = new Line(50, Layout.DEFAULT_HEIGHT, Layout.DEFAULT_WIDTH - 50, Layout.DEFAULT_HEIGHT);
-        line2.setStrokeWidth(10);
-
-        buttonStyle();
-        animationBlock();
-        addElements(sun, c2, line, line2, reprendre, recommencer, acceuil, quitter, options);
-
-        DropShadow ds1 = new DropShadow();
-        ds1.setOffsetY(1.0f);
-        ds1.setOffsetX(1.0f);
-        ds1.setColor(Color.WHITESMOKE);
-
-        ballElement.setEffect(ds1);
         addElements(ballElement);
-        this.setBackground(Color.BLACK);
-
-        addStyleSheet(Resources.Style.FIELD_STYLE);
-        line.getStyleClass().add("line");
-        line2.getStyleClass().add("line");
     }
 
     public void setScore(int x, int y) {
         score.setText(x + " : " + y);
         center(score);
+    }
+
+    public void setTime(Text time) {
+        this.time.setText(time.getText());
+        center(this.time);
     }
 
     public void setBallProperties(double x, double y, double radius) {
@@ -146,15 +97,6 @@ public class GameLayout extends Layout {
         text.setX(0.5 * DEFAULT_WIDTH - 0.5 * width);
     }
 
-
-    //-------------------------------------------------------------------------------------------
-
-
-    public void setTime(Text time) {
-        this.time.setText(time.getText());
-        center(this.time);
-    }
-
     public void animationBlock() {
         // Create a sun transition
         //Creation of the sun using the circle shape
@@ -162,16 +104,16 @@ public class GameLayout extends Layout {
         c2 = new Circle();
         sun.setOpacity(0.3);
         c2.setOpacity(0.3);
-        c2.setRadius(40);
+        c2.setRadius(DEFAULT_HEIGHT * 0.1);
         c2.setFill(Color.LIGHTGREEN);
         //c2.setOpacity(0.5);
-        sun.setRadius(40);
+        sun.setRadius(DEFAULT_HEIGHT * 0.1);
         sun.setFill(Color.CADETBLUE);
 
         //Set the sun position
-        sun.setCenterX(Layout.DEFAULT_WIDTH / 2 - 200);
+        sun.setCenterX(Layout.DEFAULT_WIDTH / 2 - DEFAULT_WIDTH * 0.2);
         sun.setCenterY(10);
-        c2.setCenterX(Layout.DEFAULT_WIDTH / 2 + 200);
+        c2.setCenterX(Layout.DEFAULT_WIDTH / 2 + DEFAULT_WIDTH * 0.2);
         c2.setCenterY(Layout.DEFAULT_HEIGHT - 10);
 
         // Create a translate transition
@@ -206,37 +148,6 @@ public class GameLayout extends Layout {
         movement2.play();
     }
 
-    public void buttonStyle() {
-        // assign css properties for the button
-        addStyleSheet(Resources.Style.BUTTON_STYLE);
-        reprendre.getStyleClass().add("btn");
-        recommencer.getStyleClass().add("btn");
-        acceuil.getStyleClass().add("btn");
-        options.getStyleClass().add("btn");
-        quitter.getStyleClass().add("btn");
-    }
-
-    public void buttonConfigPause() {
-        reprendre.setVisible(true);
-        recommencer.setVisible(true);
-        acceuil.setVisible(true);
-        options.setVisible(true);
-        quitter.setVisible(true);
-
-        sun.setVisible(false);
-        c2.setVisible(false);
-    }
-
-    public void buttonConfigPauseStop() {
-        reprendre.setVisible(false);
-        recommencer.setVisible(false);
-        acceuil.setVisible(false);
-        options.setVisible(false);
-        quitter.setVisible(false);
-
-        sun.setVisible(true);
-        c2.setVisible(true);
-    }
 
 
     public void pauseOpacity() {
@@ -259,12 +170,11 @@ public class GameLayout extends Layout {
         time.setOpacity(0.9);
     }
 
-    public static Color foncAlea() {
-        Random a = new Random();
-        int r = a.nextInt(0, 256);
-        int g = a.nextInt(0, 256);
-        int b = a.nextInt(0, 256);
-
-        return Color.rgb(r, g, b);
+    private void ballAnimation() {
+        DropShadow ds1 = new DropShadow();
+        ds1.setOffsetY(1.0f);
+        ds1.setOffsetX(1.0f);
+        ds1.setColor(Color.WHITESMOKE);
+        ballElement.setEffect(ds1);
     }
 }

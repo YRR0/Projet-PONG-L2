@@ -29,19 +29,19 @@ public class GameActivity extends Activity<GameLayout> {
 
         var ball = new Ball(
                 new Vector2(0.5 * width, 0.5 * height),
-                new Vector2(150, 150),
+                new Vector2(0.2 * width, 0.3 * height),
                 10
         );
 
         var playerA = new Player(
                 new Vector2(0.05 * width, 0.5 * height),
                 new Vector2(0.0, 0.0),
-                new Vector2(0.01 * width, 0.25 * height)
+                new Vector2(0.01 * width, 0.2 * height)
         );
 
         var positionB = new Vector2(0.95 * width, 0.5 * height);
         var speedB = new Vector2(0.0, 0.0);
-        var sizeB = new Vector2(0.01 * width, 0.25 * height);
+        var sizeB = new Vector2(0.01 * width, 0.2 * height);
 
         var playerB = AI ? new ComputerPlayer(positionB, speedB, sizeB) :
                 new Player(positionB, speedB, sizeB);
@@ -58,9 +58,9 @@ public class GameActivity extends Activity<GameLayout> {
         setUpPause(KeyCode.ESCAPE, game, this);
         GameLayout g = this.layout;
 
-        g.reprendre.setOnMouseClicked(e -> {
-            layout.restoreOpa();
-            layout.buttonConfigPauseStop();
+        g.gamePause.reprendre.setOnMouseClicked(e -> {
+            g.restoreOpa();
+            g.gamePause.buttonConfigPauseStop();
             game.getCourt().pause = false;
 
             if (gameTimer.getMinutes() > 0 || gameTimer.getSeconds() > 0) {
@@ -68,13 +68,13 @@ public class GameActivity extends Activity<GameLayout> {
             }
         });
 
-        g.recommencer.setOnMouseClicked(e -> Window.goTo(new GameActivity(AI)));
+        g.gamePause.recommencer.setOnMouseClicked(e -> Window.goTo(new GameActivity(AI)));
 
-        g.acceuil.setOnMouseClicked(e -> Window.goTo(new HomeActivity()));
+        g.gamePause.acceuil.setOnMouseClicked(e -> Window.goTo(new HomeActivity()));
 
-        g.options.setOnMouseClicked(e -> Window.goTo(new SettingsActivity()));
+        g.gamePause.options.setOnMouseClicked(e -> Window.goTo(new SettingsActivity()));
 
-        g.quitter.setOnMouseClicked(e -> System.exit(0));
+        g.gamePause.quitter.setOnMouseClicked(e -> System.exit(0));
 
         music = new Sound();
         music.playMusic(Resources.Music.GAME);
@@ -115,12 +115,12 @@ public class GameActivity extends Activity<GameLayout> {
                 if (ga.getCourt().pause) {
                     ga.getCourt().pause = false;
                     gaAc.layout.restoreOpa();
-                    gaAc.layout.buttonConfigPauseStop();
+                    gaAc.layout.gamePause.buttonConfigPauseStop();
                     gameTimer.start();
                 } else {
                     ga.getCourt().pause = true;
                     gaAc.layout.pauseOpacity();
-                    gaAc.layout.buttonConfigPause();
+                    gaAc.layout.gamePause.buttonConfigPause();
                     gameTimer.stop();
                 }
             }

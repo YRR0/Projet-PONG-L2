@@ -8,5 +8,4 @@ public class HomeLayout extends Layout {
     public HomeLayout() {
         super(Resources.Layout.HOME);
     }
-
 }

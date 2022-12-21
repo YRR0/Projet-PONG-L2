@@ -14,10 +14,10 @@
 
 #score {
     -fx-font-family: "QuinqueFive";
-    -fx-font-size: 50;
+    -fx-font-size: 70px;
 }
 
 #time {
     -fx-font-family: "QuinqueFive";
-    -fx-font-size: 35;
+    -fx-font-size: 50px;
 }

@@ -4,12 +4,10 @@
 }
 
 .btn {
-    /* -fx-background-color: #001253; */
-    /*-fx-background-radius: 20 20 20 20;*/
     -fx-font-family: "QuinqueFive";
     -fx-text-fill: #f8f8ff;
     -fx-background-color:#808080;
-    -fx-font-size:10px;
+    -fx-font-size: 20px;
     -fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 5 , 5 );
     -fx-opacity: 0.4;
 }
@@ -23,8 +21,6 @@
 }
 
 #reprendre {
-    -fx-pref-height: 312.0;
-    -fx-pref-width: 180.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
     -fx-font-family: "QuinqueFive";
@@ -38,8 +34,6 @@
 }
 
 #recommencer {
-    -fx-pref-height: 84.0;
-    -fx-pref-width: 316.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
     -fx-font-family: "QuinqueFive";
@@ -53,8 +47,6 @@
 }
 
 #quitter {
-    -fx-pref-height: 96.0;
-    -fx-pref-width: 166.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
     -fx-font-family: "QuinqueFive";
@@ -68,8 +60,6 @@
 }
 
 #accueil {
-    -fx-pref-height: 96.0;
-    -fx-pref-width: 166.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
     -fx-font-family: "QuinqueFive";
@@ -83,8 +73,6 @@
 }
 
 #options {
-    -fx-pref-height: 208.0;
-    -fx-pref-width: 140.0;
     -fx-text-alignment: center;
     -fx-alignment: top-left;
     -fx-font-family: "QuinqueFive";
