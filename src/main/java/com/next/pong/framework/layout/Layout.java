@@ -3,6 +3,7 @@ package com.next.pong.framework.layout;
 import com.next.pong.content.Resources;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.Background;
@@ -10,14 +11,16 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 
 import java.io.IOException;
 
 
 public abstract class Layout extends Pane {
 
-    public static final int DEFAULT_WIDTH = 853;
-    public static final int DEFAULT_HEIGHT = 480;
+    private static final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+    public static final int DEFAULT_WIDTH = (int) screenBounds.getWidth();
+    public static final int DEFAULT_HEIGHT = (int) screenBounds.getHeight();
 
     public Layout() {
         this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
