@@ -116,7 +116,7 @@ public class GameActivity extends Activity<GameLayout> {
                     ga.getCourt().pause = false;
                     gaAc.layout.restoreOpa();
                     gaAc.layout.gamePause.buttonConfigPauseStop();
-                    gameTimer.start();
+                    if(gameTimer.getSeconds() > 0 && gameTimer.getMinutes() > 0) gameTimer.start();
                 } else {
                     ga.getCourt().pause = true;
                     gaAc.layout.pauseOpacity();

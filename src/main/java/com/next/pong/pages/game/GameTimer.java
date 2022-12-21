@@ -88,6 +88,7 @@ public class GameTimer {
             text.setText("PlayerB wins");
         }
         game.getCourt().pause = true;
+        stop();
     }
 }
 
