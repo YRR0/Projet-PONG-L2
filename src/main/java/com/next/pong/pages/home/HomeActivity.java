@@ -9,8 +9,7 @@ import com.next.pong.pages.game.GameActivity;
 import com.next.pong.pages.settings.SettingsActivity;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-
-import static com.next.pong.utils.StyleUtils.center;
+import javafx.scene.text.Text;
 
 public class HomeActivity extends Activity<HomeLayout> {
 
@@ -46,14 +45,14 @@ public class HomeActivity extends Activity<HomeLayout> {
     }
 
     private void repositionElements() {
-        Node title = findElementById("titleGame");
+        Text title = (Text) findElementById("titleGame");
         Button playButton = (Button) findElementById("newGameButton");
         Button playButtonAI = (Button) findElementById("newGameButtonAI");
         Button settingsOfGame = (Button) findElementById("settingsOfGame");
         Button quitTheGame = (Button) findElementById("quitTheGame");
         int width = Layout.DEFAULT_WIDTH, height = Layout.DEFAULT_HEIGHT;
 
-        center(title);
+        title.setLayoutX(0.5 * width - 0.12 * width);
         title.setLayoutY(0.2 * height);
 
         playButton.setPrefSize(0.3 * width, 0.1 * height);

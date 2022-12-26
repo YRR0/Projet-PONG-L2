@@ -193,9 +193,9 @@ public class GameActivity extends Activity<GameLayout> {
             game.getCourt().pause = true;
             int scoreA = game.getScorePlayerA();
             int scoreB = game.getScorePlayerB();
-            if(scoreA > scoreB) this.layout.setWinner("Left");
-            else if(scoreB > scoreA) this.layout.setWinner("Right");
-            else this.layout.setWinner("No");
+            if(scoreA > scoreB) this.layout.setWinner("Left Player has won the game");
+            else if(scoreB > scoreA) this.layout.setWinner("Right Player has won the game");
+            else this.layout.setWinner("Draw; No one has won the game");
         }
     }
 

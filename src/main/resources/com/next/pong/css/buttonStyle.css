@@ -27,7 +27,7 @@
 }
 
 #reprendre:hover {
-    -fx-background-image: url("/com/next/pong/img/resume.png");
+    -fx-background-image: url("/com/next/pong/img/pause.png");
     -fx-background-size: 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -40,7 +40,7 @@
 }
 
 #recommencer:hover {
-    -fx-background-image: url("/com/next/pong/img/restart.png");
+    -fx-background-image: url("/com/next/pong/img/recommencer.png");
     -fx-background-size: 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
@@ -53,7 +53,7 @@
 }
 
 #quitter:hover {
-    -fx-background-image: url("/com/next/pong/img/exit.png");
+    -fx-background-image: url("/com/next/pong/img/quitter.png");
     -fx-background-size: 50%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
@@ -66,7 +66,7 @@
 }
 
 #accueil:hover {
-    -fx-background-image: url("/com/next/pong/img/home.png");
+    -fx-background-image: url("/com/next/pong/img/acceuil.png");
     -fx-background-size: 50%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
@@ -79,7 +79,7 @@
 }
 
 #options:hover {
-    -fx-background-image: url("/com/next/pong/img/settings.png");
+    -fx-background-image: url("/com/next/pong/img/options.png");
     -fx-background-size: 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: bottom;

@@ -13,8 +13,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static com.next.pong.utils.StyleUtils.center;
-
 public class GameLayout extends Layout {
 
     private Text score, time, winner;
@@ -108,7 +106,7 @@ public class GameLayout extends Layout {
 
     public void setWinner(String winner) {
         this.winner.setText(winner);
-        center(this.winner);
+        this.winner.setX(0.5 * Layout.DEFAULT_WIDTH - 0.5 * this.winner.getLayoutBounds().getWidth());
         endGame();
     }
 
@@ -116,6 +114,11 @@ public class GameLayout extends Layout {
         this.removeElements(time, gamePause, playerElementA, playerElementB, ballElement);
         winner.setVisible(true);
         nextGame.setVisible(true);
+    }
+
+    public static void center(Text text) {
+        var width = text.getLayoutBounds().getWidth();
+        text.setLayoutX(0.5 * Layout.DEFAULT_WIDTH - 0.5 * width);
     }
 
     public void setBallProperties(double x, double y, double radius) {
