@@ -5,6 +5,7 @@ import com.next.pong.framework.layout.Layout;
 import com.next.pong.pages.game.elements.BallElement;
 import com.next.pong.pages.game.elements.Racket;
 import javafx.animation.TranslateTransition;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -12,9 +13,12 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import static com.next.pong.utils.StyleUtils.center;
+
 public class GameLayout extends Layout {
 
-    private Text score, time;
+    private Text score, time, winner;
+    public Button nextGame;
     private Racket playerElementA, playerElementB;
     private BallElement ballElement;
     public final GamePause gamePause;
@@ -27,6 +31,7 @@ public class GameLayout extends Layout {
         initScore();
         initTimer();
         initElements();
+        initEndGame();
         // Configuration des buttons de pause;
         gamePause = new GamePause();
         gamePause.buttonStyle();
@@ -60,6 +65,27 @@ public class GameLayout extends Layout {
         addElements(time);
     }
 
+    private void initEndGame() {
+        winner = new Text("Left player has won the game");
+        winner.setX(Layout.DEFAULT_WIDTH / 2);
+        winner.setY(Layout.DEFAULT_HEIGHT / 2);
+        winner.setFill(Color.LIGHTGREEN);
+        winner.setId("winner");
+        winner.setVisible(false);
+        addElements(winner);
+
+        nextGame = new Button("Next Game");
+        nextGame.setId("nextGame");
+        int btnWidth = (int) (0.25 * Layout.DEFAULT_WIDTH);
+        int btnHeight= (int) (0.225 * Layout.DEFAULT_HEIGHT);
+        nextGame.setPrefWidth(btnWidth);
+        nextGame.setPrefHeight(btnHeight);
+        nextGame.setLayoutX(Layout.DEFAULT_WIDTH / 2 - btnWidth / 2);
+        nextGame.setLayoutY(Layout.DEFAULT_HEIGHT - btnHeight - 70);
+        nextGame.setVisible(false);
+        addElements(nextGame);
+    }
+
     private void initElements() {
         playerElementA = new Racket();
         playerElementB = new Racket();
@@ -80,6 +106,18 @@ public class GameLayout extends Layout {
         center(this.time);
     }
 
+    public void setWinner(String winner) {
+        this.winner.setText(winner);
+        center(this.winner);
+        endGame();
+    }
+
+    private void endGame() {
+        this.removeElements(time, gamePause, playerElementA, playerElementB, ballElement);
+        winner.setVisible(true);
+        nextGame.setVisible(true);
+    }
+
     public void setBallProperties(double x, double y, double radius) {
         ballElement.setBallProperties(x, y, radius);
     }
@@ -90,11 +128,6 @@ public class GameLayout extends Layout {
 
     public void setPlayerElementB(double x, double y, double width, double height) {
         playerElementB.setPlayerProperties(x, y, width, height);
-    }
-
-    public static void center(Text text) {
-        var width = text.getLayoutBounds().getWidth();
-        text.setX(0.5 * DEFAULT_WIDTH - 0.5 * width);
     }
 
     public void animationBlock() {

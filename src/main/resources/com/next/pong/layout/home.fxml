@@ -7,17 +7,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="853.0" style="-fx-background-color: black;" stylesheets="@../css/font.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="899.0" prefWidth="1273.0" style="-fx-background-color: black;" stylesheets="@../css/font.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fx:id="titleGame" fill="WHITE" layoutX="316.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PONG">
+      <Text fx:id="titleGame" fill="WHITE" layoutX="422.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PONG" wrappingWidth="464.4375">
          <font>
-            <Font name="QuinqueFive" size="48.0" />
+            <Font name="URWBookman-Demi" size="96.0" />
          </font>
          <effect>
             <Bloom />
          </effect>
       </Text>
-      <Button fx:id="newGameButton" layoutX="327.0" layoutY="133.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="94.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="PLAY &#10;1v1" textFill="WHITE">
+      <Button fx:id="newGameButton" layoutX="422.0" layoutY="342.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="211.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="PLAY &#10;1v1" textFill="WHITE">
          <font>
             <Font name="QuinqueFive" size="12.0" />
          </font>
@@ -28,7 +28,7 @@
             <Bloom />
          </effect>
       </Button>
-      <Button fx:id="settingsOfGame" layoutX="327.0" layoutY="230.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Settings" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="settingsOfGame" layoutX="418.0" layoutY="561.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="454.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Settings" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="QuinqueFive" size="12.0" />
          </font>
@@ -39,7 +39,7 @@
             <Bloom />
          </effect>
       </Button>
-      <Button fx:id="quitTheGame" layoutX="327.0" layoutY="329.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Quit" textFill="WHITE">
+      <Button fx:id="quitTheGame" layoutX="418.0" layoutY="680.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="454.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Quit" textFill="WHITE">
          <font>
             <Font name="QuinqueFive" size="12.0" />
          </font>
@@ -50,7 +50,7 @@
             <Bloom />
          </effect>
       </Button>
-      <Button fx:id="newGameButtonAI" layoutX="433.0" layoutY="133.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="94.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="PLAY&#10;1VSAI" textAlignment="RIGHT" textFill="WHITE">
+      <Button fx:id="newGameButtonAI" layoutX="648.0" layoutY="342.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="224.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="PLAY&#10;1VSAI" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="QuinqueFive" size="12.0" />
          </font>

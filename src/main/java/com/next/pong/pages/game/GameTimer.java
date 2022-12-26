@@ -2,7 +2,6 @@ package com.next.pong.pages.game;
 
 import com.next.pong.content.Resources;
 import com.next.pong.framework.audio.Sound;
-import com.next.pong.game.Game;
 import javafx.scene.text.Text;
 
 import java.text.DecimalFormat;
@@ -33,12 +32,17 @@ public class GameTimer {
 
     private double accTime;
 
-    public void update(double deltaTime, Game game) {
+    /**
+     *
+     * @param deltaTime
+     * @return true if the timer has reached 00:00 and false either
+     */
+    public boolean update(double deltaTime) {
         accTime += deltaTime;
 
         // execute update every 1 second
         if(accTime < 1 || !isAlive) {
-            return;
+            return false;
         }
 
         accTime = 0;
@@ -61,8 +65,9 @@ public class GameTimer {
         text.setText(formatedMinutes + ":" + formatedSeconds);
 
         if (seconds == 0 && minutes == 0) {
-            getWinner(game);
+            return true;
         }
+        return false;
     }
 
     public Text getTime() {
@@ -77,18 +82,5 @@ public class GameTimer {
         return seconds;
     }
 
-    private void getWinner(Game game) {
-        int scoreA = game.getScorePlayerA(), scoreB = game.getScorePlayerB();
-
-        if (scoreA > scoreB) {
-            text.setText("PlayerA wins");
-        } else if (scoreA == scoreB) {
-            text.setText("Draw");
-        } else {
-            text.setText("PlayerB wins");
-        }
-        game.getCourt().pause = true;
-        stop();
-    }
 }
 
