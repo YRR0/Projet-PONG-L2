@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'QuinqueFive';
+    src: url('../fonts/Quinquefive-K7qep.ttf');
+}
+
+.btn {
+    -fx-font-family: "QuinqueFive";
+    -fx-text-fill: #f8f8ff;
+    -fx-background-color:#808080;
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 5 , 5 );
+    -fx-opacity: 0.4;
+}
+
+.btn:hover {
+    -fx-background-color: #141426;
+    -fx-opacity: 1;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-radius: 0 0 0 0;
+}
+
+#reprendre {
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "QuinqueFive";
+}
+
+#reprendre:hover {
+    -fx-background-image: url("/com/next/pong/img/pause.png");
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#recommencer {
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "QuinqueFive";
+}
+
+#recommencer:hover {
+    -fx-background-image: url("/com/next/pong/img/recommencer.png");
+    -fx-background-size: 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right;
+}
+
+#quitter {
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "QuinqueFive";
+}
+
+#quitter:hover {
+    -fx-background-image: url("/com/next/pong/img/quitter.png");
+    -fx-background-size: 50%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right;
+}
+
+#accueil {
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "QuinqueFive";
+}
+
+#accueil:hover {
+    -fx-background-image: url("/com/next/pong/img/acceuil.png");
+    -fx-background-size: 50%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right;
+}
+
+#options {
+    -fx-text-alignment: center;
+    -fx-alignment: top-left;
+    -fx-font-family: "QuinqueFive";
+}
+
+#options:hover {
+    -fx-background-image: url("/com/next/pong/img/options.png");
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: bottom;
+}

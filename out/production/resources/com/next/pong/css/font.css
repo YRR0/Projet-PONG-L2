@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'QuinqueFive';
+    src: url('../fonts/Quinquefive-K7qep.ttf');
+}
+
+.text {
+    -fx-font-family: "QuinqueFive";
+}
+
+#titleGame {
+    -fx-font-family: "QuinqueFive";
+}
