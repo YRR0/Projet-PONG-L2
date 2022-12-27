@@ -12,6 +12,7 @@ import com.next.pong.game.player.Player;
 import com.next.pong.pages.home.HomeActivity;
 import com.next.pong.pages.settings.SettingsActivity;
 import com.next.pong.utils.Vector2;
+import com.next.pong.pages.game.GameParameters;
 import javafx.scene.input.KeyCode;
 
 public class GameActivity extends Activity<GameLayout> {
@@ -27,9 +28,14 @@ public class GameActivity extends Activity<GameLayout> {
         int width = GameLayout.DEFAULT_WIDTH;
         int height = GameLayout.DEFAULT_HEIGHT;
 
+
+        double ballSpeedX = GameParameters.ballSpeedX;
+        double ballSpeedY = GameParameters.ballSpeedY;
+
+
         var ball = new Ball(
                 new Vector2(0.5 * width, 0.5 * height),
-                new Vector2(0.2 * width, 0.3 * height),
+                new Vector2(ballSpeedX * width, ballSpeedY * height),
                 10
         );
 
