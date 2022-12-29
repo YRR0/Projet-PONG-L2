@@ -43,11 +43,11 @@ public class GameActivity extends Activity<GameLayout> {
         var speedB = new Vector2(0.0, 0.0);
         var sizeB = new Vector2(0.01 * width, 0.2 * height);
 
-        var playerB = AI ? new ComputerPlayer(positionB, speedB, sizeB) :
+        var playerB = AI ? new ComputerPlayer(positionB, speedB, sizeB , ComputerPlayer.Level.HARD) :
                 new Player(positionB, speedB, sizeB);
 
         game = new Game(width, height, ball, playerA, playerB);
-        gameTimer = new GameTimer(0, 10);
+        gameTimer = new GameTimer(1, 30);
 
         setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
 
