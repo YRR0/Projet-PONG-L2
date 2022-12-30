@@ -45,6 +45,8 @@ public class GameLayout extends Layout {
         line.getStyleClass().add("line");
         line2.getStyleClass().add("line");
         addStyleSheet(Resources.Style.FIELD_STYLE);
+        addElements(ballElement);
+
     }
 
     private void initScore() { // Pour le score
@@ -91,7 +93,6 @@ public class GameLayout extends Layout {
         ballElement = new BallElement();
         playerElementA.setFill(Color.LIGHTCYAN);
         playerElementB.setFill(Color.LIGHTCYAN);
-        addElements(ballElement);
     }
 
     public void setScore(int x, int y) {

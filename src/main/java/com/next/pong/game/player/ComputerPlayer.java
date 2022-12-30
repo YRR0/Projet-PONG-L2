@@ -9,10 +9,10 @@ public class ComputerPlayer extends Player {
         EASY, MEDIUM, HARD;
     }
 
-    private Level level;
+    private final Level level;
 
     public ComputerPlayer(Vector2 position, Vector2 speed, Vector2 size, Level level) {
-        super(position, speed, size);
+        super(position, (level.equals(Level.HARD)) ? (new Vector2(speed.x() * 2, speed.y() *  2)) : speed,size);
         this.level = level;
     }
 

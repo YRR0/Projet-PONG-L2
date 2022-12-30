@@ -27,7 +27,7 @@ public class Court {
     private final Player playerA;
     private final Player playerB;
 
-    private static final double MAX_PLAYER_BALL_DEFLECTION = 0.2 * Math.PI;
+    private static final double MAX_PLAYER_BALL_DEFLECTION = 0.5 * Math.PI;
 
     public Court(int width, int height, Ball ball, Player playerA, Player playerB) {
         this.width = width;
