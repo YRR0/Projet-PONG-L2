@@ -22,16 +22,13 @@ public class ComputerPlayer extends Player {
 
         double factor = switch (level) {
             case MEDIUM -> 0.5;
-            case EASY -> 0.3;
-            case HARD -> 0.75;
+            case EASY -> 0.7;
+            case HARD -> 0.25;
         };
 
-        double screenMid = factor * layoutWidth;
+        var movePos = ((RacketPosition.x() > 0.5 * layoutWidth) ? factor : (1 - factor)) * layoutWidth;
 
-        boolean isSameLeftSide = RacketPosition.x() < screenMid && BallPosition.x() < screenMid;
-        boolean isSameRightSide = RacketPosition.x() > screenMid && BallPosition.x() > screenMid;
-
-        if (isSameLeftSide || isSameRightSide) {
+        if (BallPosition.x() > movePos) {
             if (BallPosition.y() < RacketPosition.y()) {
                 applyForceUp();
             } else if (BallPosition.y() > RacketPosition.y()) {

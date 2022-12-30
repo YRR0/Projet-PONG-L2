@@ -23,6 +23,9 @@ public class Ball {
     public Vector2 getPosition() {
         return position;
     }
+    public Vector2 getSpeed() {
+        return new Vector2(speed.x(), speed.y());
+    }
 
     public void setPosition(Vector2 position) {
         this.position = position;
