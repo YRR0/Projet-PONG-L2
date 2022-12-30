@@ -1,0 +1,554 @@
+[33mcommit 70c648f099f51ba3abc59c1f760b79fc933b0d05[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/mode_tournoi[m[33m, [m[1;31morigin/fullScreenGame[m[33m)[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Wed Dec 21 16:30:41 2022 +0100
+
+    fixing game timer in pause
+
+[33mcommit e6508abeb2b6ce45fdba1eb930f749416dec7b9d[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Wed Dec 21 16:16:53 2022 +0100
+
+    &&
+
+[33mcommit 286906002a7795ee43cb360e2afec6a419f8c732[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Wed Dec 21 16:02:29 2022 +0100
+
+    adjusting the size of component to fit the screen size
+
+[33mcommit e4b08a4b830c5e7ba2248dcf1e6592ef08660224[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Wed Dec 21 14:33:57 2022 +0100
+
+    setting the full screen view in the stage
+
+[33mcommit bd5f6499a25f957ae15d3405c2705a0e8a790be5[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Wed Dec 21 14:32:49 2022 +0100
+
+    set fxml files to be full screen
+
+[33mcommit b6c18140d8fcdb8ac6b0c4645017d8d495f2b0b0[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Wed Dec 21 14:31:52 2022 +0100
+
+    get the screen size
+
+[33mcommit 3ab185cf073ed4d55460b4d5f77570734d54ac7c[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Dec 20 23:57:13 2022 +0100
+
+    Displaying the game timer
+
+[33mcommit 5834bad7044c6737745b735c873470af10d8a65d[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Dec 20 23:50:15 2022 +0100
+
+    Adding sound effect to game timer
+
+[33mcommit f1f990e9e91319ed8906be027a9a96982291cb33[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Dec 20 23:48:21 2022 +0100
+
+    Fixing game timer
+
+[33mcommit 4ff53d9a00548135eae15ecc04a12c922a8cae90[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Dec 20 23:46:41 2022 +0100
+
+    delete ModeTournoi
+
+[33mcommit 2df7f83a54a356988a9c472d3ad90c87b430b859[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 19:37:02 2022 +0100
+
+    Added player ball deflection
+
+[33mcommit a47357bbcd809e8e40d879eb71c6c13e841fff68[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 18:48:10 2022 +0100
+
+    Fixed erratic ball collision when overlapping twice over
+
+[33mcommit 177e3514a92ff4f7d4434c4324e83049f8beebb1[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 18:41:04 2022 +0100
+
+    Fixed player ID in court listener
+
+[33mcommit e8db08e4eeab22f1d430ae0c2a75ccf21d812f8e[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 18:30:30 2022 +0100
+
+    Removed game reference from timer's members
+
+[33mcommit ed62ed78eb1a112623aa76e7f517723992f016ac[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 18:15:51 2022 +0100
+
+    GameActivity formatting
+
+[33mcommit f915322377a7400bd3d2fe37fb61a5fc16b557ca[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 18:11:45 2022 +0100
+
+    HomeActivity formatting
+
+[33mcommit 6d280ef9a1f063a7f51f74eb82efdf9664ed65cf[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 18:06:21 2022 +0100
+
+    Removed swing dependency
+
+[33mcommit 441a6df0aa9a26ddf10ddcfa2e40db2ebe552d2e[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 18:05:36 2022 +0100
+
+    Removed Timer from GameTimer. Using OUR update loop!!!
+
+[33mcommit 8578092dd1a6d27f5ada8d549bbb3e9a7da42fac[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:55:54 2022 +0100
+
+    Cleaned up computer player
+
+[33mcommit 91619a9221a5ec2642d5db9ba0f7238f65f70bae[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:50:27 2022 +0100
+
+    Auto formatting
+
+[33mcommit cd82d7d68e7146ab1c0adff470ea19f0d6dc2e61[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:47:24 2022 +0100
+
+    Code formatting
+
+[33mcommit 3ea9b40fb7041c2333a063e563cc7be80807e158[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:44:13 2022 +0100
+
+    Pulled out game timer
+
+[33mcommit 95b62eb46860486712f5386572e07dcdf04d3540[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:30:23 2022 +0100
+
+    Auto formatting
+
+[33mcommit 911af376f8cc449ed7b59e71a1ab3d9a906f8c34[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:29:21 2022 +0100
+
+    Fixed class cast bootstrap css error
+
+[33mcommit 34cd7849ba350f3bac1e961929b8623bddcf2832[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:28:16 2022 +0100
+
+    Removed key listeners inside Player
+
+[33mcommit c63cf68c50647fe0f69262f7d7c716283e236a58[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:27:48 2022 +0100
+
+    Removed unused accessors
+
+[33mcommit 572c9d9d6978ca9bab721c2503e941800c206519[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:27:34 2022 +0100
+
+    Cleaned up AI code
+
+[33mcommit 272e4a30fdf3fe3a75f6eff2340fdc40dd8ddc00[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 17:06:20 2022 +0100
+
+    Cleaned up frame print
+
+[33mcommit eb35750ff78db56ba2a5f652a13316b25946821a[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Dec 5 16:58:12 2022 +0100
+
+    Deleted unused ActivityPayload
+
+[33mcommit ee0ade60ae8396ab58495fad05075c0320916c59[m
+Author: Deniz Ertekin <KingDen01@yandex.ru>
+Date:   Mon Dec 5 17:45:32 2022 +0100
+
+    Modified menu (fxml and css files)
+
+[33mcommit 67ced71b84033df10b0738e2415002afcfa00002[m
+Author: Tsiory Rarison <irinararison@gmail.com>
+Date:   Sat Dec 3 11:32:21 2022 +0100
+
+    Add mode Tournament
+
+[33mcommit 85346539f8025aa795a1eddbe8586cf78c197564[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Fri Dec 2 22:02:43 2022 +0100
+
+    setting up the game timer
+
+[33mcommit c52226770ee064b5765ee6f1bf55f18ca9e04158[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Thu Dec 1 22:51:14 2022 +0100
+
+    styling the pause menu
+
+[33mcommit 905e8e3d390ba7cac8e39d36ead58107093dac34[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Wed Nov 30 11:54:25 2022 +0100
+
+    updating the ComputerPlayer
+
+[33mcommit 441fd4f4542033a0917b5fed592da2301f87e528[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Nov 29 23:26:38 2022 +0100
+
+    first version of the ComputerPlayer
+
+[33mcommit ab3ca9b7d069c65fafa5f726d6e5ebf79db5b743[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Nov 29 23:25:54 2022 +0100
+
+    clean up
+
+[33mcommit 3ceae72f378eb32dd32642e59d68bfcccabe71e6[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Nov 29 01:50:52 2022 +0100
+
+    fixing some bugs
+
+[33mcommit a4fb0252c991c4411bf87404a4c1585b29a7d2ed[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Tue Nov 29 01:12:45 2022 +0100
+
+    setting up the sound and adding more listeners to the court and game
+
+[33mcommit 2577461239ad386785637e73974ccf92ad97e909[m
+Author: TAMDRARI Yacine <yacinetamdrari5@gmail.com>
+Date:   Mon Nov 28 22:39:20 2022 +0100
+
+    adding css to Layout
+
+[33mcommit 69f474ee337ecbe69f1c647848c1ba7300143c79[m
+Author: Tsiory Rarison <irinararison@gmail.com>
+Date:   Sun Nov 27 15:18:53 2022 +0100
+
+    Ajout de Pause et de quelques elements d'animation
+
+[33mcommit 76a9ff77ebd0fe0a09260f88c966ce897b08c93b[m
+Merge: 68b58af 36b8a62
+Author: ERTEKIN deniz <denizertekin007@gmail.com>
+Date:   Sun Nov 27 15:15:04 2022 +0100
+
+    Merge branch 'new-menu' into 'develop'
+    
+    Added new home & settings pages
+    
+    See merge request next/pong!18
+
+[33mcommit 36b8a622cf1ddfad4c51577982584dd62b898fe4[m[33m ([m[1;31morigin/new-menu[m[33m)[m
+Author: Deniz Ertekin <KingDen01@yandex.ru>
+Date:   Sun Nov 27 16:12:01 2022 +0100
+
+    Added new home & settings pages
+
+[33mcommit 68b58afe23964e79d974d2f8ef3af7fa4ca5f54e[m
+Merge: 28457e6 68776f1
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Sat Nov 26 17:58:29 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Game physics rework & added audio & framework res reference
+    
+    See merge request next/pong!17
+
+[33mcommit 68776f11051493d7e602fda70392299e945fe399[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sat Nov 26 17:56:47 2022 +0100
+
+    Fixed key inputs during game
+
+[33mcommit c1d1a57d9bf4aaea4ad84431fbda8bc81711b683[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sat Nov 26 17:24:22 2022 +0100
+
+    @previous
+
+[33mcommit 2ec390e690044c33044f62d11e6f6b8ebb33a8f7[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sat Nov 26 17:24:07 2022 +0100
+
+    Removed redundant Player
+
+[33mcommit 6f2cbb9a4e2282bda2510289f050b6c16e7367c2[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sat Nov 26 17:21:24 2022 +0100
+
+    Added inertia
+
+[33mcommit 0cffcebf5a3a91d057353a6fc3008184c93b6aef[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sat Nov 26 17:21:00 2022 +0100
+
+    Resetting player inertia when hitting wall
+
+[33mcommit 338ba50316a1f5bdc3c15b1324c5338c833883f9[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Thu Nov 24 14:02:39 2022 +0100
+
+    Clamp player position
+
+[33mcommit cff26348ba9e5a44d26bd31b590216ca53167997[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Thu Nov 24 13:46:40 2022 +0100
+
+    Centered score
+
+[33mcommit 9f3fade4e92218473bea9d9ec6358d74b47b2eda[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 22:38:27 2022 +0100
+
+    Only MP3
+
+[33mcommit 81eebaa715c5c2297e63ac7e394f192d31c06b45[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 22:38:06 2022 +0100
+
+    Using resources reference
+
+[33mcommit 34571a0d1f5bef20bac503b31b243975a1e4ae04[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 22:37:33 2022 +0100
+
+    Added clip
+
+[33mcommit 10b64c73b454c673422b339a2bfc05bb93bc9c01[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 21:34:05 2022 +0100
+
+    Added player control
+
+[33mcommit 8ca51b2546e586acf2a558dd6f817fa9601bac9e[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 21:18:51 2022 +0100
+
+    Activity inheriting from javafx Scene
+
+[33mcommit de3a06dd799f33def644c374ad6f385b88ed1011[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 20:23:03 2022 +0100
+
+    Added listeners and ball reset
+
+[33mcommit 71a9c34b7212105ae214edc3db86f95941b3fe70[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 18:20:04 2022 +0100
+
+    Std ms -> sec
+
+[33mcommit d3ffbaa6471cfb7dfb3b768fba33b378151e86a5[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 18:03:20 2022 +0100
+
+    Added player collision & player rendering fix
+
+[33mcommit 0013749a7647acc0488eb2433b5542faa57889b7[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 16:55:39 2022 +0100
+
+    Rendering players
+
+[33mcommit 24fbf52ccda7c4c787f9ce088097303dd920123e[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 16:32:59 2022 +0100
+
+    Abstracting away ball element from layout
+
+[33mcommit e021cf292cad86174e8abf9251e3f51bcbba9397[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 16:26:51 2022 +0100
+
+    Redoing core physics - bouncing ball
+
+[33mcommit 294df758b2a577b432b42ebc662b915263722e6f[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 16:26:07 2022 +0100
+
+    Added simple audio
+
+[33mcommit 70abb9b5d704086727af14c06fd357c9f8dc7fe6[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 23 16:24:27 2022 +0100
+
+    Simplifying layout ref in activity
+
+[33mcommit efea3becda3be038c9b0028f6c42c7253979edfa[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Tue Nov 22 21:35:34 2022 +0100
+
+    Protecting update & destroy (@see previous)
+
+[33mcommit a248049c513d217ed2d4223689c1f20d57ac6c47[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Tue Nov 22 20:08:44 2022 +0100
+
+    Force layout update & destroy
+
+[33mcommit 28457e608f2a1b1ef9bfcecfb65d7e4e9be7e67d[m
+Merge: 59f7d69 ddb59b5
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Tue Nov 22 11:35:05 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Fixed game timing update
+    
+    See merge request next/pong!16
+
+[33mcommit ddb59b568c1515ef391058b49fde82053ddd6beb[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Tue Nov 22 11:33:12 2022 +0100
+
+    Fixed game timing update
+
+[33mcommit 59f7d69ff114bfac67c557ebd7756960b57ac849[m[33m ([m[1;31morigin/settings[m[33m)[m
+Merge: 44b4d51 d6edee6
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Mon Nov 21 17:32:29 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Fixed resource import
+    
+    See merge request next/pong!15
+
+[33mcommit d6edee61c7c98f6ad18520a4ce31df7413a48686[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Nov 21 17:30:31 2022 +0100
+
+    Fixed resource import
+
+[33mcommit 44b4d512f390def6494b850beca4f84bae3ea5c4[m
+Merge: bb58ea5 a6a0651
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Mon Nov 21 17:08:53 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Added res ref & renamed delta time
+    
+    See merge request next/pong!14
+
+[33mcommit a6a06512802da34d2c03f0a9540d884d397c898e[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Wed Nov 9 14:53:24 2022 +0100
+
+    Renaming deltaTime -> deltaMs
+
+[33mcommit 8300ae0909ec7ac5d201c5c8a0c1c7466da51710[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Tue Nov 8 11:20:08 2022 +0100
+
+    Proper resources references
+
+[33mcommit bb58ea52365e72465273f3a8f9dc3015e3998f34[m[33m ([m[1;31morigin/timer_mode[m[33m)[m
+Merge: a06331e 02a3191
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Mon Nov 7 16:27:58 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Fixed ns -> ms conversion
+    
+    See merge request next/pong!13
+
+[33mcommit 02a319132668431154a37d4c2b977439c3c5b961[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Nov 7 16:27:16 2022 +0100
+
+    Fixed ns -> ms conversion
+
+[33mcommit a06331e5ed7d5db48c52eac1ea7ae0d38b8f8b29[m[33m ([m[1;31morigin/main_menu[m[33m)[m
+Merge: 37e9dc8 28b04ad
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Mon Nov 7 16:24:56 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Stop resizing
+    
+    See merge request next/pong!12
+
+[33mcommit 28b04ad2aadd4a1e72cfabfe76d044a109671f52[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Nov 7 16:23:27 2022 +0100
+
+    Stop resizing
+
+[33mcommit 37e9dc8a8a1627cfdd3cc7a6cedd6366f6f60132[m
+Merge: 5c60ffb 7518016
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Mon Nov 7 16:02:01 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Added support for FXML
+    
+    See merge request next/pong!11
+
+[33mcommit 7518016d9831f8162410bcc717133ba8b1e4a7ad[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Mon Nov 7 16:01:07 2022 +0100
+
+    Added support for FXML
+
+[33mcommit 5c60ffb482a989b73234a072e4687b5c317b8163[m
+Merge: 127cdaf daae4f3
+Author: FITZGERALD avon <avon.fitzy@gmail.com>
+Date:   Sun Nov 6 01:29:41 2022 +0100
+
+    Merge branch 'develop' into 'develop'
+    
+    Removal of modal quit & fixes to new game core logic
+    
+    See merge request next/pong!10
+
+[33mcommit daae4f3a5da7677c1d19bb7a81c0d8a8f74be4e7[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sun Nov 6 01:26:04 2022 +0100
+
+    Fixed releasing resources when closing
+
+[33mcommit a786dc19900beb71038b440f6ff372511a75686d[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sun Nov 6 01:04:52 2022 +0100
+
+    Fixed resources org
+
+[33mcommit 7d398983d52b024a10f5615f73c9950cba1b91cb[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sun Nov 6 01:02:06 2022 +0100
+
+    Fixed bug w/ previous Simplified Court API
+
+[33mcommit 464713813307cb7cdab16b515e1ea95324ab4764[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sun Nov 6 01:00:12 2022 +0100
+
+    Simplified Court API
+
+[33mcommit ef417e65df43d905e5e454d1947534d0ad84c431[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sun Nov 6 00:55:23 2022 +0100
+
+    GameLayout dimens should not be exposed out to all
+
+[33mcommit 031e9b807127ca1fb54a5a18f72d183c9d8242ad[m
+Author: Avon FitzGerald <avon.fitzy@gmail.com>
+Date:   Sun Nov 6 00:51:37 2022 +0100
+
+    Renamed onStop -> onDestroy (less a
