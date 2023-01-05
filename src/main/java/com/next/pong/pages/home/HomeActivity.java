@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 
 public class HomeActivity extends Activity<HomeLayout> {
 
+    private boolean muted;
     private final Sound music;
     private final Sound soundEffect;
 
@@ -26,13 +27,13 @@ public class HomeActivity extends Activity<HomeLayout> {
 
         Node playButton = findElementById("newGameButton");
         playButton.setOnMouseClicked(event -> {
-            soundEffect.playSoundEffect(Resources.Music.COIN);
+            if(!muted) soundEffect.playSoundEffect(Resources.Music.COIN);
             Window.goTo(new GameActivity(false));
         });
 
         Node playButtonAI = findElementById("newGameButtonAI");
         playButtonAI.setOnMouseClicked(event -> {
-            soundEffect.playSoundEffect(Resources.Music.COIN);
+            if(!muted) soundEffect.playSoundEffect(Resources.Music.COIN);
             Window.goTo(new GameActivity(true));
         });
 
@@ -70,6 +71,16 @@ public class HomeActivity extends Activity<HomeLayout> {
         quitTheGame.setPrefSize(0.3 * width, 0.1 * height);
         quitTheGame.setLayoutX(0.5 * width - 0.15 * width);
         quitTheGame.setLayoutY(0.75 * height);
+    }
+
+    public void mute() {
+        music.stopMusic();
+        muted = true;
+    }
+
+    public void unmute() {
+        music.playMusic(Resources.Music.GAME);
+        muted = false;
     }
 
 

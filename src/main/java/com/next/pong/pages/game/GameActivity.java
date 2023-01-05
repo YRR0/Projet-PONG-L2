@@ -18,6 +18,7 @@ public class GameActivity extends Activity<GameLayout> {
 
     private final Game game;
     private final Sound music;
+    private boolean muted;
     private final Sound soundEffect;
     private final GameTimer gameTimer;
 
@@ -90,7 +91,7 @@ public class GameActivity extends Activity<GameLayout> {
 
             @Override
             public void onBallVerticalWallCollision(int id) {
-                soundEffect.playSoundEffect(Resources.Music.BOUNCE);
+                if(!muted) soundEffect.playSoundEffect(Resources.Music.BOUNCE);
                 if (id == 1) {
                     g.line.getStyleClass().add("line-ball-collision");
                     g.line2.getStyleClass().remove("line-ball-collision");
@@ -102,7 +103,7 @@ public class GameActivity extends Activity<GameLayout> {
 
             @Override
             public void onBallPlayerCollision(int id) {
-                soundEffect.playSoundEffect(Resources.Music.KICK);
+                if(!muted) soundEffect.playSoundEffect(Resources.Music.KICK);
             }
         });
 
@@ -200,16 +201,23 @@ public class GameActivity extends Activity<GameLayout> {
     }
 
     //------------------------------------------------------------------------
-    Game getGame() {
-        return game;
-    }
 
-    void setWinner(String winner) {
+    private void setWinner(String winner) {
         layout.setWinner(winner);
     }
 
-    boolean gameEnded() {
-        return gameTimer.getMinutes() <= 0 && gameTimer.getSeconds() <= 0;
+    private boolean gameEnded() {
+        return (gameTimer.getMinutes() <= 0) && (gameTimer.getSeconds() <= 0);
+    }
+
+    private void mute() {
+        muted = true;
+        music.stopMusic();
+    }
+
+    private void unmute() {
+        muted = false;
+        music.playMusic(Resources.Music.GAME);
     }
 
     //------------------------------------------------------------------------
