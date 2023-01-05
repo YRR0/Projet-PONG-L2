@@ -30,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Slider id="ballSpeedX" layoutX="683.0" layoutY="199.0" />
+      <Slider id="ballSpeedX" layoutX="683.0" layoutY="199.0" prefHeight="16.0" prefWidth="266.0" />
       <Label layoutX="422.0" layoutY="180.0" prefHeight="55.0" prefWidth="192.0" text="BallSpeedX" textAlignment="CENTER" textFill="#da1717">
          <font>
             <Font size="11.0" />
@@ -41,7 +41,7 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Slider id="ballSpeedY" layoutX="683.0" layoutY="280.0" />
+      <Slider id="ballSpeedY" layoutX="683.0" layoutY="280.0" prefHeight="16.0" prefWidth="266.0" />
       <Label layoutX="422.0" layoutY="344.0" prefHeight="55.0" prefWidth="242.0" text="Control player1" textAlignment="CENTER" textFill="#da1717">
          <font>
             <Font size="10.0" />
@@ -56,15 +56,24 @@
       </Label>
       <Label layoutX="711.0" layoutY="418.0" prefHeight="30.0" prefWidth="84.0" text="uP" textFill="#f50274" />
       <Label layoutX="973.0" layoutY="418.0" prefHeight="30.0" prefWidth="84.0" text="Down" textFill="#ff6f0f" />
-      <Label layoutX="422.0" layoutY="488.0" prefHeight="55.0" prefWidth="192.0" text="Timer" textAlignment="CENTER" textFill="#da1717">
+      <Label layoutX="422.0" layoutY="508.0" prefHeight="55.0" prefWidth="192.0" text="Timer" textAlignment="CENTER" textFill="#da1717">
          <font>
             <Font size="11.0" />
          </font>
       </Label>
-      <Slider id="timer" layoutX="683.0" layoutY="527.0" />
-      <Button id="btnUp1" layoutX="782.0" layoutY="359.0" mnemonicParsing="false" text="Button" />
-      <Button id="BtnUp2" layoutX="782.0" layoutY="420.0" mnemonicParsing="false" text="Button" />
-      <Button id="BtnDown2" layoutX="1064.0" layoutY="419.0" mnemonicParsing="false" text="Button" />
-      <Button id="btnDown1" layoutX="1064.0" layoutY="359.0" mnemonicParsing="false" text="Button" />
+      <Slider id="timerMinutes" layoutX="683.0" layoutY="527.0" prefHeight="16.0" prefWidth="166.0" />
+      <Button id="btnUp1" layoutX="782.0" layoutY="359.0" mnemonicParsing="false" text="Z" />
+      <Button id="btnUp2" layoutX="782.0" layoutY="420.0" mnemonicParsing="false" text="UP" />
+      <Button id="btnDown2" layoutX="1064.0" layoutY="419.0" mnemonicParsing="false" text="DOWN" />
+      <Button id="btnDown1" layoutX="1064.0" layoutY="359.0" mnemonicParsing="false" text="S" />
+      <Label layoutX="537.0" layoutY="520.0" prefHeight="30.0" prefWidth="119.0" text="minutes" textFill="#e5fc1b" />
+      <Label layoutX="874.0" layoutY="520.0" prefHeight="30.0" prefWidth="119.0" text="Seconds" textFill="#deed0e" />
+      <Slider id="timerSeconds" layoutX="1012.0" layoutY="527.0" prefHeight="16.0" prefWidth="219.0" />
+      <Label layoutX="422.0" layoutY="563.0" prefHeight="55.0" prefWidth="192.0" text="Score to win" textAlignment="CENTER" textFill="#da1717">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Slider id="score" layoutX="683.0" layoutY="591.0" prefHeight="16.0" prefWidth="266.0" />
    </children>
 </AnchorPane>

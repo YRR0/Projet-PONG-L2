@@ -20,7 +20,7 @@ public class GameActivity extends Activity<GameLayout> {
     private final Sound music;
     private boolean muted;
     private final Sound soundEffect;
-    private final GameTimer gameTimer;
+    private GameTimer gameTimer = null;
 
     public GameActivity(boolean AI) {
         super(new GameLayout());
@@ -30,7 +30,7 @@ public class GameActivity extends Activity<GameLayout> {
 
         var ball = new Ball(
                 new Vector2(0.5 * width, 0.5 * height),
-                new Vector2(0.2 * width, 0.3 * height),
+                new Vector2((SettingsActivity.ballSpeedX() / 100) * width, (SettingsActivity.ballSpeedY() / 100) * height),
                 10
         );
 
@@ -48,12 +48,12 @@ public class GameActivity extends Activity<GameLayout> {
                 new Player(positionB, speedB, sizeB);
 
         game = new Game(width, height, ball, playerA, playerB);
-        gameTimer = new GameTimer(1, 30);
+        if(SettingsActivity.timerSet()) gameTimer = new GameTimer(SettingsActivity.timerMinutes(), SettingsActivity.timerSeconds());
 
-        setupPlayerControl(playerA, KeyCode.CONTROL, KeyCode.ALT);
+        setupPlayerControl(playerA, SettingsActivity.up1(), SettingsActivity.down1());
 
         if (!(playerB instanceof ComputerPlayer)) {
-            setupPlayerControl(playerB, KeyCode.UP, KeyCode.DOWN);
+            setupPlayerControl(playerB, SettingsActivity.up2(), SettingsActivity.down2());
         }
 
         setUpPause(KeyCode.ESCAPE, game, this);
@@ -64,7 +64,7 @@ public class GameActivity extends Activity<GameLayout> {
             g.gamePause.buttonConfigPauseStop();
             game.getCourt().pause = false;
 
-            if (gameTimer.getMinutes() > 0 && (gameTimer.getSeconds() >= 0)) {
+            if (gameTimer != null && gameTimer.getMinutes() > 0 && (gameTimer.getSeconds() >= 0)) {
                 gameTimer.start();
             }
         });
@@ -108,7 +108,7 @@ public class GameActivity extends Activity<GameLayout> {
         });
 
         // Timer mode
-        gameTimer.start();
+        if(gameTimer != null) gameTimer.start();
     }
 
     private void setUpPause(KeyCode pause, Game ga, GameActivity gaAc) {
@@ -119,12 +119,12 @@ public class GameActivity extends Activity<GameLayout> {
                     ga.getCourt().pause = false;
                     gaAc.layout.restoreOpa();
                     gaAc.layout.gamePause.buttonConfigPauseStop();
-                    if((gameTimer.getSeconds() >= 0) && (gameTimer.getMinutes() >= 0)) gameTimer.start();
+                    if(gameTimer != null && (gameTimer.getSeconds() >= 0) && (gameTimer.getMinutes() >= 0)) gameTimer.start();
                 } else {
                     ga.getCourt().pause = true;
                     gaAc.layout.pauseOpacity();
                     gaAc.layout.gamePause.buttonConfigPause();
-                    gameTimer.stop();
+                    if(gameTimer != null) gameTimer.stop();
                 }
             }
 
@@ -170,7 +170,7 @@ public class GameActivity extends Activity<GameLayout> {
         game.update(deltaTime);
 
         layout.setScore(game.getScorePlayerA(), game.getScorePlayerB());
-        layout.setTime(gameTimer.getTime());
+        if(gameTimer != null) layout.setTime(gameTimer.getTime());
 
         var ball = game.getBall();
         var ballPosition = ball.getPosition();
@@ -190,13 +190,23 @@ public class GameActivity extends Activity<GameLayout> {
             player.update(ball, Layout.DEFAULT_WIDTH);
         }
 
-        if(gameTimer.update(deltaTime)) {
+        if(gameTimer != null && gameTimer.update(deltaTime)) {
             game.getCourt().pause = true;
             int scoreA = game.getScorePlayerA();
             int scoreB = game.getScorePlayerB();
             if(scoreA > scoreB) this.layout.setWinner("Left Player has won the game");
             else if(scoreB > scoreA) this.layout.setWinner("Right Player has won the game");
             else this.layout.setWinner("Draw; No one has won the game");
+        }
+
+        if(SettingsActivity.scoreToWin() > 0) {
+            if(game.getScorePlayerA() >= SettingsActivity.scoreToWin()) {
+                game.getCourt().pause = true;
+                this.layout.setWinner("Left Player has won the game");
+            } else if(game.getScorePlayerB() >= SettingsActivity.scoreToWin()) {
+                game.getCourt().pause = true;
+                this.layout.setWinner("Right Player has won the game");
+            }
         }
     }
 
