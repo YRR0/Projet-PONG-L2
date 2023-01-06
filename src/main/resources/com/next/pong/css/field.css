@@ -24,13 +24,13 @@
 
 #winner {
     -fx-font-family: "QuinqueFive";
-    -fx-font-size: 50px;
+    -fx-font-size: 30px;
 }
 
 #nextGame {
     -fx-text-alignment: center;
     -fx-text-fill: #f8f8ff;
     -fx-background-color:#808080;
-    -fx-font-size: 25px;
+    -fx-font-size: 20px;
     -fx-font-family: "QuinqueFive";
 }

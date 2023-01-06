@@ -13,7 +13,7 @@ public class SettingsActivity extends Activity<SettingsLayout> {
     private static int timerMinutes = 0, timerSeconds = 0, scoreToWin = 5;
     private static double ballSpeedX = 20, ballSpeedY = 30;
 
-    private Button backButton = (Button) findElementById("backToMenu");
+    private Button backButton = (Button) findElementById("back");
     private Button player1Up = (Button) findElementById("btnUp1");
     private Button player1Down = (Button) findElementById("btnDown1");
     private Button player2Up = (Button) findElementById("btnUp2");

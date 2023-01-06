@@ -134,8 +134,8 @@ public class Court {
         if ((isInPlayerA || isInPlayerB) && !isBallInCollisionSpeed) {
 
             ball.flipSpeedX();
-            var offsetParam = playerBallOffsetParam(isInPlayerA ? playerA : playerB);
-            ball.setSpeed(ball.getSpeedAngle() + offsetParam * MAX_PLAYER_BALL_DEFLECTION);
+            //var offsetParam = playerBallOffsetParam(isInPlayerA ? playerA : playerB);
+            //ball.setSpeed(ball.getSpeedAngle() + offsetParam * MAX_PLAYER_BALL_DEFLECTION);
 
             if(listener != null) {
                 if(isInPlayerA) {
@@ -152,6 +152,13 @@ public class Court {
     private double playerBallOffsetParam(Player player) {
         var offset = ball.getPosition().y() - player.getPosition().y();
         return 2 * offset / player.getSize().y();
+    }
+
+    private boolean collision(Player player) {
+        var ballPosition = ball.getPosition();
+        var playerPosition = player.getPosition();
+        var offset = 0.5 * player.getSize().y();
+        return ballPosition.x() <= playerPosition.x() && ballPosition.y() > playerPosition.y() - offset && ballPosition.y() < playerPosition.y() + offset;
     }
 
 }
