@@ -22,12 +22,9 @@ public class Court {
     private final int height;
 
     private final Ball ball;
-    private boolean isBallInCollisionSpeed;
-
     private final Player playerA;
     private final Player playerB;
 
-    private static final double MAX_PLAYER_BALL_DEFLECTION = 0.4 * Math.PI;
 
     public Court(int width, int height, Ball ball, Player playerA, Player playerB) {
         this.width = width;
@@ -110,7 +107,7 @@ public class Court {
         var isTooFarBottom = position.y() - radius < 0;
         var isTooFarTop = position.y() + radius > height;
 
-        if ((isTooFarBottom || isTooFarTop) && !isBallInCollisionSpeed) {
+        if ((isTooFarBottom || isTooFarTop)) {
             ball.flipSpeedY();
 
             if (listener != null) {
@@ -122,7 +119,6 @@ public class Court {
             }
         }
 
-        isBallInCollisionSpeed = isTooFarBottom || isTooFarTop;
     }
 
     private void ballPlayerCollision() {
@@ -131,11 +127,9 @@ public class Court {
         boolean isInPlayerA = Collision.areColliding(ballBoundary, playerA.getBoundary());
         boolean isInPlayerB = Collision.areColliding(ballBoundary, playerB.getBoundary());
 
-        if ((isInPlayerA || isInPlayerB) && !isBallInCollisionSpeed) {
+        if ((isInPlayerA || isInPlayerB)) {
 
             ball.flipSpeedX();
-            //var offsetParam = playerBallOffsetParam(isInPlayerA ? playerA : playerB);
-            //ball.setSpeed(ball.getSpeedAngle() + offsetParam * MAX_PLAYER_BALL_DEFLECTION);
 
             if(listener != null) {
                 if(isInPlayerA) {
@@ -145,20 +139,11 @@ public class Court {
                 }
             }
         }
-
-        isBallInCollisionSpeed = isInPlayerA || isInPlayerB;
     }
 
     private double playerBallOffsetParam(Player player) {
         var offset = ball.getPosition().y() - player.getPosition().y();
         return 2 * offset / player.getSize().y();
-    }
-
-    private boolean collision(Player player) {
-        var ballPosition = ball.getPosition();
-        var playerPosition = player.getPosition();
-        var offset = 0.5 * player.getSize().y();
-        return ballPosition.x() <= playerPosition.x() && ballPosition.y() > playerPosition.y() - offset && ballPosition.y() < playerPosition.y() + offset;
     }
 
 }
