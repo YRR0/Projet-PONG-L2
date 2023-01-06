@@ -46,4 +46,4 @@ Le jeu vous permet aussi de choisir la durée d'une partie si les joueurs préf�
 
 ## Lien de la vidéo de presentation
 
-Clicker sur video pour être redirigé vert la [video](https://www.youtube.com/watch?v=msn0zfdEk58)
+Clicker sur video pour être redirigé vers la [video](https://www.youtube.com/watch?v=msn0zfdEk58)
