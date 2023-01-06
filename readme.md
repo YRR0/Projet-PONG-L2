@@ -39,4 +39,11 @@ Le projet en lui-même a besoin de Java 17 pour être compilé et exécuté.
 
 ## Jouer
 
-La raquette de gauche est contrôlée par les touches CONTROL et ALT, alors que celle de droite est contrôlée par les flèches HAUT et BAS.
+La raquette de gauche est contrôlée par les touches Z et S, alors que celle de droite est contrôlée par les flèches HAUT et BAS et les touches sont paramétrables dans Settings du projet.  
+Il y a plusieurs possibilités pour choisir le mode de jeu soit contre un adversaire artificiel, soit contre un autre joueur humain.
+On peut paramétrer le score final pour gagner une partie dans settings, on peut aussi modifier la vitesse de la balle.
+Le jeu vous permet aussi de choisir la durée d'une partie si les joueurs préfèrent un mode contre la montre au lieu de mode avec un score final borné.
+
+## Lien de la vidéo de presentation
+
+Clicker sur video pour être redirigé vert la [video](https://www.youtube.com/watch?v=msn0zfdEk58)
